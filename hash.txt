@@ -1,0 +1,20 @@
+sitio base de ejemplo:
+http://zm.mtnchef.club/
+
+endpoint (GET) "/api/v1/hash"
+http://zm.mtnchef.club/endpoint-de-consulta/?hash=03967e
+
+{"active":false}
+
+
+https://content.mx.telcel.epamujer.moob.club/api/v1/validate_hash
+
+
+
+url sitio: https://mx.telcel.epamujer.moob.club/
+
+url: https://content.mx.telcel.epamujer.moob.club/ --> url del contenido del wordpress
+endpoint: api/v1/validate_hash --> {"active":false}
+endpoint: api/v1/landing --> {"url": "http://google.com" }
+
+api: 'http://content.mx.telcel.epamujer.moob.club/wp-json/wp/v2/';
