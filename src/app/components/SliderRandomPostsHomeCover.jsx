@@ -61,13 +61,15 @@ export default function SliderRandomPostsHomeCover({
   }, [posts, qty, catFiltered]);
 
   return (
-    <SwiperSliderHomeCover
-      posts={randomPosts}
-      slidesPerView={1}
-      delayPerView={4000}
-      spaceBetweenSlides={14}
-      colorBullets={'white'}
-      sizeBullets={'default'}
-    />
+    <div className=" z-20 relative top-0 w-screen h-[60vh] min-h-[450px]">
+      <SwiperSliderHomeCover
+        posts={randomPosts}
+        slidesPerView={1}
+        delayPerView={4000}
+        spaceBetweenSlides={14}
+        colorBullets={'white'}
+        sizeBullets={'default'}
+      />
+    </div>
   );
 }

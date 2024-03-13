@@ -7,7 +7,7 @@ import { getPostsByCategoryId } from '@/services/api-content.js';
 import { getRandomPosts, cleanDataPosts } from '@/utils/functions.js';
 
 import { poppinsReg400, poppinsReg600 } from '../../utils/fonts.js';
-import ButtonLikeFav from './ui/ButtonLikeFav.jsx';
+import ButtonLikeFav from '../components/ui/ButtonLikeFav.jsx';
 import ImageMissing from '../components/ImageMissing.jsx';
 
 export default async function RandomPostsRecommended({

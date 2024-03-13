@@ -6,11 +6,11 @@ import ReactHtmlParser from 'react-html-parser';
 import { cleanDataPosts, getRandomPosts } from '@/utils/functions';
 import { getPostsByCategoryId } from '@/services/api-content';
 
-import ButtonSeePost from '../components/ui/ButtonSeePost';
+import ButtonSeePost from './ui/ButtonSeePost';
 
 import { poppinsReg400 } from '@/utils/fonts';
 import iconVideo from '../../../public/assets/icons/IconoVideo2.webp';
-import ImageMissing from '../components/ImageMissing';
+import ImageMissing from './ImageMissing';
 
 const gridColumns = {
   2: 'grid-cols-2 grid-rows-1',

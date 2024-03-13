@@ -4,15 +4,11 @@ import { getDataPostById } from "@/services/api-content";
 import { getVimeoNumber, getImageHeaderPost } from "@/utils/functions";
 import ReactHtmlParser from "react-html-parser";
 
-import { poppinsReg500 } from "../../../../utils/fonts";
-
 export default async function VideoReceta({ params }) {
   const { id } = params;
   const dataVideo = await getDataPostById(id);
-  //console.log(dataVideo);
   const imageHeader = getImageHeaderPost(dataVideo);
   const vimeoNumber = getVimeoNumber({ string: dataVideo?.content.rendered });
-  
 
   return (
     <main className=" z-0 mt-36 w-full   h-full min-h-screen px-4 flex flex-col items-center justify-between ">
@@ -24,8 +20,7 @@ export default async function VideoReceta({ params }) {
             <div className="absolute w-full h-full rounded-[inherit]">
               <Image
                 className={`  w-full h-auto  object-cover rounded-[inherit]  `}
-                // width={220}
-                // height={160}
+                sizes="100vw"
                 fill={true}
                 src={imageHeader}
                 alt="Imagen Header Post"
@@ -38,7 +33,6 @@ export default async function VideoReceta({ params }) {
           <div className=" z-20 w-full h-full py-[2%] flex flex-col items-center justify-end gap-8 absolute top-0">
             <h3
               className={
-                poppinsReg500.className +
                 ` w-full px-6 text-left text-lg md:text-xl lg:text-2xl xl:text-3xl text-EpaWhite text-shadow-sm leading-5 line-clamp-2 shadow-black`
               }
             >

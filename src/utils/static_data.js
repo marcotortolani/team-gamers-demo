@@ -89,27 +89,27 @@ export const CATEGORIES = {
 };
 
 export const CAT_GAMERS = {
-  root: {
-    name: 'Ver todo',
-    slug: 'gamers',
+  gaming: {
+    name: 'Gaming',
+    slug: 'gaming',
   },
   eventos: {
     name: 'Eventos',
-    slug: 'gamers/eventos',
+    slug: 'gaming/eventos',
   },
   trucos: {
     name: 'Trucos',
-    slug: 'gamers/trucos',
+    slug: 'gaming/trucos',
   },
   gamers: {
     name: 'Gamers',
-    slug: 'gamers/gamers',
+    slug: 'gaming/gamers',
   },
 };
 
 export const CAT_EDITORIAL = {
-  root: {
-    name: 'Ver todo',
+  editorial: {
+    name: 'Editorial',
     slug: 'editorial',
   },
   videojuegos: {
@@ -131,8 +131,8 @@ export const CAT_EDITORIAL = {
 };
 
 export const CAT_MUSICA = {
-  root: {
-    name: 'Ver todo',
+  musica: {
+    name: 'Musica',
     slug: 'musica',
   },
   trap: {

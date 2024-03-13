@@ -19,10 +19,12 @@ SwiperCore.use([Pagination]);
 export default function SwiperSliderPosts({
   posts,
   slidesPerView,
+  centered,
   delayPerView,
   spaceBetweenSlides,
   colorBullets,
   sizeBullets,
+  titleOnly,
 }) {
   const [indexPag, setIndexPag] = useState(0);
   const sliderRef = useRef(0);
@@ -43,7 +45,7 @@ export default function SwiperSliderPosts({
       <Swiper
         ref={sliderRef}
         slidesPerView={slidesPerView}
-        centeredSlides={false}
+        centeredSlides={centered}
         spaceBetween={spaceBetweenSlides}
         autoplay={{
           delay: delayPerView,
@@ -59,41 +61,52 @@ export default function SwiperSliderPosts({
       >
         {posts?.map((post) => (
           <SwiperSlide className={` w-full h-fit`} key={post.id}>
-            <div
-              className={` relative w-full flex justify-center h-fit  gap-4`}
+            <Link
+              className=" w-full h-fit "
+              href={`/${post.category}/${post.id}`}
             >
-              <div className="  relative w-[90%] min-h-[250px] md:min-h-[240px] lg:min-h-[250px] ">
-                {post.images.length > 0 ? (
-                  <Image
-                    className={` w-auto h-full md:w-full md:h-auto object-cover rounded-lg`}
-                    fill={true}
-                    sizes="(max-width: 350px)"
-                    src={post.images[0]}
-                    alt={`Image ${post.title}`}
-                  />
-                ) : (
-                  <ImageMissing />
-                )}
-                <div className=" z-0 absolute w-full h-full flex items-center justify-center ">
-                  <PlayCircleIcon color="white" size={60} />
+              <div
+                className={` relative w-full flex justify-center h-fit  gap-4`}
+              >
+                <div className="  relative w-[90%] aspect-[3/2] ">
+                  {post.images.length > 0 ? (
+                    <Image
+                      className={` w-auto h-full md:w-full md:h-auto object-cover rounded-lg`}
+                      fill={true}
+                      sizes="(max-width: 350px)"
+                      src={post.images[0]}
+                      alt={`Image ${post.title}`}
+                    />
+                  ) : (
+                    <ImageMissing />
+                  )}
+                  <div className=" z-0 absolute w-full h-full flex items-center justify-center ">
+                    <PlayCircleIcon color="white" size={60} />
+                  </div>
+                </div>
+
+                <div className=" z-20 absolute bottom-0 w-5/6  h-full flex flex-col justify-end gap-2 pb-4">
+                  <h3
+                    className={`text-White font-semibold line-clamp-1 uppercase text-start text-2xl `}
+                  >
+                    <span className=" px-2 pr-4 bg-Black box-decoration-clone leading-[3rem]">
+                      {ReactHtmlParser(post.title)}
+                    </span>
+                  </h3>
+                  {!titleOnly && (
+                    <p
+                      className={
+                        ' lowercase font-medium text-xl md:text-2xl lg:text-base line-clamp-2 text-Black  overflow-hidden '
+                      }
+                    >
+                      <span className="px-2 pr-4 bg-White/90 box-decoration-clone leading-[2rem]">
+                        {ReactHtmlParser(post.excerpt)}
+                      </span>
+                    </p>
+                  )}
                 </div>
               </div>
-
-              <div className=" z-20 absolute bottom-0 w-5/6  h-full flex flex-col justify-end gap-2 pb-4">
-                <h3
-                  className={` bg-Black text-White uppercase px-2 text-start text-2xl `}
-                >
-                  {ReactHtmlParser(post.title)}
-                </h3>
-                <p
-                  className={
-                    ' w-5/6 px-2 lowercase text-xl md:text-2xl lg:text-base line-clamp-2 text-Black bg-White/80 overflow-hidden '
-                  }
-                >
-                  {ReactHtmlParser(post.excerpt)}
-                </p>
-              </div>
-            </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

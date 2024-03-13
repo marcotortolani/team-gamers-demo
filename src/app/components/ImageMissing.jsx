@@ -3,7 +3,7 @@ import { poppinsReg400 } from "@/utils/fonts";
 
 export default function ImageMissing({
   text = "Imágen faltante",
-  colorBg = "bg-EpaDetails",
+  colorBg = "bg-Details",
 }) {
   return (
     <div

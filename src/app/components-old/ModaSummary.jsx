@@ -6,9 +6,9 @@ import {
 import { cleanDataPosts, getRandomPosts } from '@/utils/functions';
 import { CATEGORIES } from '@/utils/static_data';
 import StaticCover from './StaticCover';
-import SliderVideoPosts from './SliderVideoPosts';
-import FeaturedPosts from './FeaturedPosts';
-import LatestPosts from './LatestPosts';
+import SliderVideoPosts from '../components/SliderMiniVideoPosts';
+import FeaturedPosts from '../components/FeaturedPosts';
+import LatestPosts from '../components/LongCardsLatestPosts';
 import { staticCoverModa } from '@/utils/static_data';
 
 export default async function ModaSummary() {

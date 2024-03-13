@@ -91,34 +91,40 @@ export default function Header() {
         onClose={closeSidebar}
       /> */}
 
-      <div className=" lg:hidden  w-full max-w-[460px] h-16 flex flex-col items-center justify-center bg-Primary ">
-        <div className="w-full h-full flex items-center justify-around">
-          {/* <BurguerMenu onOpen={openSidebar} /> */}
-          <Link
-            href={'/'}
-            className={` ${
-              sectionName === 'home' ? 'bg-Black' : 'bg-transparent'
-            } w-7 p-1 rounded-md`}
-          >
-            <HomeIcon fill={sectionName === 'home' ? '#FFF' : '#000'} />
-          </Link>
-          <div className=" w-2/5 max-w-[250px]">
-            <Image
-              width={250}
-              height={250}
-              src={logoHorizontal}
-              alt="Logo Horizontal Team Gamers"
-            />
-          </div>
-          <Link href={'/'} className=" w-7 ">
-            <UserIcon />
-          </Link>
-        </div>
-
-        <SearchBar />
-        <DropdownMenu />
-        <div></div>
-      </div>
+      <HeaderMobile />
     </header>
+  );
+}
+
+export function HeaderMobile() {
+  return (
+    <div className=" lg:hidden  w-full max-w-[460px] h-16 flex flex-col items-center justify-center bg-Primary ">
+      <div className="w-full h-full flex items-center justify-around">
+        {/* <BurguerMenu onOpen={openSidebar} /> */}
+        {/* <Link
+          href={'/'}
+          className={` ${
+            sectionName === 'home' ? 'bg-Black' : 'bg-transparent'
+          } w-7 p-1 rounded-md`}
+        >
+          <HomeIcon fill={sectionName === 'home' ? '#FFF' : '#000'} />
+        </Link> */}
+        <Link href={'/'} className=" w-2/5 max-w-[250px]">
+          <Image
+            width={250}
+            height={250}
+            src={logoHorizontal}
+            alt="Logo Horizontal Team Gamers"
+          />
+        </Link>
+
+        {/* <Link href={'/'} className=" w-7 ">
+          <UserIcon />
+        </Link> */}
+      </div>
+
+      <SearchBar />
+      <DropdownMenu />
+    </div>
   );
 }

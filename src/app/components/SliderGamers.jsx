@@ -72,7 +72,7 @@ export default function SliderGamers() {
         }}
         modules={[Autoplay, Navigation]}
         navigation={false}
-        className="mySwiper w-full h-full px-0 overflow-hidden "
+        className="mySwiper w-full h-full overflow-hidden "
       >
         {GAMERS_CARD.map((el) => (
           <SwiperSlide
@@ -101,7 +101,7 @@ export default function SliderGamers() {
                 />
                 <h4
                   className={
-                    ' absolute bottom-1 w-full uppercase font-extrabold text-center text-lg text-White  '
+                    ' absolute bottom-1 w-full uppercase font-extrabold text-center cursor-default pointer-events-none text-lg text-White  '
                   }
                 >
                   {el.name}

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useContext } from 'react';
 import { StateContext } from '@/providers/StateProvider';
 import ReactHtmlParser from 'react-html-parser';
-import ButtonLikeFav from './ui/ButtonLikeFav.jsx';
+import ButtonLikeFav from '../components/ui/ButtonLikeFav.jsx';
 
 import { poppinsReg400, poppinsReg600 } from '../../utils/fonts.js';
 import ImageMissing from '../components/ImageMissing.jsx';

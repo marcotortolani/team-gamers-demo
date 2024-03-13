@@ -40,7 +40,7 @@ export default function PaginationBullets({
     <div
       className={` w-full h-fit ${
         size === "sm" ? "py-2" : "py-4"
-      } flex items-center justify-center gap-2`}
+      } flex items-center justify-center gap-2 transition-all duration-150 ease-in-out`}
     >
       {[...Array(qtyBullets)].map((bullet, i) =>
         i + 1 === index ? (

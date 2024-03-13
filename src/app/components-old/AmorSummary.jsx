@@ -5,10 +5,10 @@ import {
 } from '@/services/api-content';
 import { cleanDataPosts, getRandomPosts } from '@/utils/functions';
 import { CATEGORIES } from '@/utils/static_data';
-import LatestPosts from './LatestPosts';
+import LatestPosts from '../components/LongCardsLatestPosts';
 import StaticCover from './StaticCover';
 import SubcategoriesItems from './SubcategoriesItems';
-import SliderVideoPosts from './SliderVideoPosts';
+import SliderVideoPosts from '../components/SliderMiniVideoPosts';
 import { staticCoverAmor, subcategoriesAmor } from '@/utils/static_data';
 //import LabelCategory from "./LabelCategory";
 

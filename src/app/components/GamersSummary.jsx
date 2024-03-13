@@ -1,19 +1,86 @@
 import React from 'react';
-import { getCategoryId } from '../../services/api-content';
-import { CATEGORIES } from '@/utils/static_data';
-import { Gamepad2, Ticket } from 'lucide-react';
+import {
+  getCategoryId,
+  getVideoPostsByCategoryId,
+  getPostsByCategoryId,
+} from '../../services/api-content';
+import { getRandomPosts, cleanDataPosts } from '@/utils/functions';
+import { CAT_GAMERS, CAT_EDITORIAL } from '@/utils/static_data';
+import { Gamepad2, Ticket, Wand2 } from 'lucide-react';
 import SliderGamers from './SliderGamers';
 import SliderLatestPosts from './SliderLatestPosts';
+import SliderMiniVideoPosts from './SliderMiniVideoPosts';
+import SliderLatestTricks from './SliderLatestTricks';
+import CardsLatestVideosPosts from './CardsLatestVideoPosts';
+
+const randomVideoElements = [
+  {
+    id: 1,
+    category: '',
+    title: 'Los sSports se apoderan de esta ciudad con el Venezuela Game Show',
+    excerpt: '',
+    images: ['/assets/Img-webp-TG/Eventos-Card1.webp'],
+  },
+  {
+    id: 2,
+    category: '',
+    title: 'Cobertura SOFA 2023',
+    excerpt: '',
+    images: ['/assets/Img-webp-TG/Eventos-Card2.webp'],
+  },
+  {
+    id: 3,
+    category: '',
+    title: 'Los sSports se apoderan de esta ciudad con el Venezuela Game Show',
+    excerpt: '',
+    images: ['/assets/Img-webp-TG/Eventos-Card1.webp'],
+  },
+  {
+    id: 4,
+    category: '',
+    title: 'Cobertura SOFA 2023',
+    excerpt: '',
+    images: ['/assets/Img-webp-TG/Eventos-Card2.webp'],
+  },
+  {
+    id: 5,
+    category: '',
+    title: 'Los sSports se apoderan de esta ciudad con el Venezuela Game Show',
+    excerpt: '',
+    images: ['/assets/Img-webp-TG/Eventos-Card1.webp'],
+  },
+  {
+    id: 6,
+    category: '',
+    title: 'Cobertura SOFA 2023',
+    excerpt: '',
+    images: ['/assets/Img-webp-TG/Eventos-Card2.webp'],
+  },
+];
 
 export default async function GamersSummary() {
-  const cat = CATEGORIES.bienestar;
-  const id = await getCategoryId(cat.name);
+  // const cat = CATEGORIES.bienestar;
+  const cat = CAT_EDITORIAL.editorial;
+  const categoryID = await getCategoryId(cat.name);
+
+  // const dataVideoPosts = await getVideoPostsByCategoryId({ id: categoryID });
+  const videosCatID = 2;
+  const dataVideoPosts = await getPostsByCategoryId({ id: videosCatID });
+
+  const qtyVideoElements = 4;
+  const randomVideoPosts = cleanDataPosts({
+    posts: getRandomPosts({ posts: dataVideoPosts, qty: qtyVideoElements }),
+    categorySlug: cat.slug,
+  });
+
 
   return (
-    <section className=" z-50 w-full md:w-5/6 lg:w-4/6 lg:max-w-[900px] h-fit pb-1 relative top-0 bg-red-500 flex flex-col items-center">
-      {/* <LabelCategory title={summaryElements[0].title} /> */}
-      <h1 className=" px-2 py-1 uppercase font-medium text-sm md:text-base flex items-center gap-2 bg-Secondary rounded-full">
-        <Gamepad2 /> Nuestros Gamers
+    <section className=" z-50 w-screen md:w-5/6 lg:w-4/6 lg:max-w-[900px] h-fit relative top-0 flex flex-col items-center">
+      <h1 className=" px-4 py-[0.15rem] uppercase font-medium text-sm md:text-base flex items-center gap-2 bg-Secondary rounded-full">
+        <div className=" w-4 h-4 ">
+          <Gamepad2 width={'100%'} height={'100%'} />
+        </div>
+        Nuestros Gamers
       </h1>
 
       {/* Slider fotos de NUESTROS GAMERS */}
@@ -22,22 +89,47 @@ export default async function GamersSummary() {
         ¡Nuestros videos exclusivos te ayudaran a convertirte en el mejor gamer!
       </p>
 
-      <article className=" flex flex-col gap-2">
-        <h2 className=" pl-4 flex items-center text-White">
-          <Ticket />
-          <span className=" border-b-4 leading-5 border-b-Primary">Eventos</span>
+      <article className=" w-full py-2 flex flex-col gap-4">
+        <h2 className=" pl-4 flex items-center justify-start gap-1 text-White">
+          <Ticket height={'100%'} />
+          <span className=" border-b-4 leading-5 border-b-Primary">
+            Eventos
+          </span>
         </h2>
-        <SliderLatestPosts id={id} qty={5} categorySlug={cat.slug} />
+
+        {categoryID !== undefined && (
+          <SliderLatestPosts id={categoryID} qty={5} categorySlug={cat.slug} />
+        )}
+
+        {randomVideoElements && (
+          <SliderMiniVideoPosts
+            sliderElements={randomVideoPosts}
+            slidesPerView={2.25}
+            spaceBetweenSlides={5}
+            delayPerView={2500}
+            colorBullets={'default'}
+            sizeBullets={'default'}
+          />
+        )}
       </article>
 
-      {/* <StaticCover elem={staticCoverBienestar} /> */}
-      {/* <SubcategoriesItems subcatElem={subcategoriesBienestar} /> */}
+      <article className=" w-full py-2 flex flex-col gap-4">
+        <h2 className=" pl-4 flex items-center justify-start gap-1 text-White">
+          <Wand2 height={'100%'} />
+          <span className=" border-b-4 leading-5 border-b-Primary">Trucos</span>
+        </h2>
+        {categoryID !== undefined && (
+          <SliderLatestTricks id={categoryID} qty={5} categorySlug={cat.slug} />
+        )}
+      </article>
 
-      {/* <CardsLatestPosts id={id} qty={2} categorySlug={cat.slug} /> */}
-
-      <div className=" w-screen  h-full pt-6 flex items-center justify-center md:bg-Primary md:bg-opacity-80 ">
-        {/* <SliderRandomPosts id={id} qty={4} categorySlug={cat.slug} /> */}
-      </div>
+      {categoryID !== undefined && (
+        <CardsLatestVideosPosts
+          id={categoryID}
+          qty={4}
+          categorySlug={cat.slug}
+        />
+      )}
     </section>
   );
 }

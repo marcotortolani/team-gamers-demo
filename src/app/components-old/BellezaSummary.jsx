@@ -6,8 +6,8 @@ import {
 import { cleanDataPosts, getRandomPosts } from '@/utils/functions';
 import { CATEGORIES } from '@/utils/static_data';
 import StaticCover from './StaticCover';
-import SliderVideoPosts from './SliderVideoPosts';
-import CardsLatestPosts from './CardsLatestPosts';
+import SliderVideoPosts from '../components/SliderMiniVideoPosts';
+import CardsLatestPosts from '../components/CardsLatestVideoPosts';
 import SliderRandomPosts from './SliderRandomPosts';
 import { staticCoverBelleza } from '@/utils/static_data';
 //import LabelCategory from "./LabelCategory";

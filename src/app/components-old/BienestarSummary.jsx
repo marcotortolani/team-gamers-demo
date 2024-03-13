@@ -4,7 +4,7 @@ import { CATEGORIES } from '@/utils/static_data';
 import SliderRandomPosts from './SliderRandomPosts';
 import StaticCover from './StaticCover';
 import SubcategoriesItems from './SubcategoriesItems';
-import CardsLatestPosts from './CardsLatestPosts';
+import CardsLatestPosts from '../components/CardsLatestVideoPosts';
 import {
   staticCoverBienestar,
   subcategoriesBienestar,

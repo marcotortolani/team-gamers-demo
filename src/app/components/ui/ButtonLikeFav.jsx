@@ -1,10 +1,10 @@
-"use client";
-import React from "react";
-import { useState, useId, useEffect, useContext } from "react";
-import { StateContext } from "../../../providers/StateProvider";
-import { HeartIcon } from "@/utils/icons";
+'use client';
+import React from 'react';
+import { useState, useId, useEffect, useContext } from 'react';
+import { StateContext } from '../../../providers/StateProvider';
+import { HeartIcon } from '@/utils/icons';
 
-export default function ButtonLikeFav({ post }) {
+export default function ButtonLikeFav({ post, color }) {
   const { favouritePosts, setFavouritePosts } = useContext(StateContext);
   const [isLiked, setIsLiked] = useState(false);
   const buttonID = useId();
@@ -40,7 +40,7 @@ export default function ButtonLikeFav({ post }) {
       onClick={handleClick}
       className=" w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 "
     >
-      <HeartIcon liked={isLiked} />
+      <HeartIcon liked={isLiked} color={color} />
     </button>
   );
 }

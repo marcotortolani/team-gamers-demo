@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import ReactHtmlParser from 'react-html-parser';
-import { cleanDataPosts, getImageHeaderPost } from '@/utils/functions';
+import { cleanDataPosts } from '@/utils/functions';
 import {
   getDataPostById,
   getDataCategoryByPostId,
@@ -9,13 +9,11 @@ import {
 
 import { poppinsReg500 } from '@/utils/fonts';
 import ImageMissing from '../components/ImageMissing';
-import ButtonLikeFav from './ui/ButtonLikeFav';
+import ButtonLikeFav from '../components/ui/ButtonLikeFav';
 
 export default async function PagePost({ id }) {
   const dataPost = await getDataPostById(id);
   const categoryData = await getDataCategoryByPostId(id);
-  //console.log(categoryData[0].slug);
-  //const imageHeader = getImageHeaderPost(dataPost);
 
   const contentPostParsed = ReactHtmlParser(dataPost?.content.rendered);
 
@@ -23,7 +21,6 @@ export default async function PagePost({ id }) {
     posts: new Array(dataPost),
     categorySlug: categoryData[0].slug,
   });
-  //console.log(post);
 
   return (
     <section className=" w-full md:w-5/6 lg:w-4/6 lg:max-w-[900px] flex flex-col items-center gap-4">
@@ -34,8 +31,6 @@ export default async function PagePost({ id }) {
           <div className=" w-full h-full rounded-[inherit]">
             <Image
               className={`  w-full h-auto  object-cover rounded-[inherit]  `}
-              // width={220}
-              // height={160}
               fill={true}
               src={post[0].images[0]}
               alt="Imagen Header Post"

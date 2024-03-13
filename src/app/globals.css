@@ -83,23 +83,6 @@
   align-items: center;
 } */
 
-input[type='text'] .search-bar::before {
-  content: '';
-  z-index: 100000;
-  position: absolute;
-  /* top: 50%;
-  left: 1.2rem;
-  transform: translateY(-50%); */
-  width: 14px; /* Ajusta el ancho según tus preferencias */
-  height: 14px;
-  position: absolute;
-  top: 0;
-  /* color: black; */
-  background: url('../../public/assets/icons/IconoBuscarBlack.webp');
-  background-color: blue;
-  background-size: cover;
-}
-
 .animation-image-bg {
   animation-name: animationImageBackground;
   animation-timing-function: ease-in;

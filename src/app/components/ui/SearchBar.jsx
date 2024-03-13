@@ -3,7 +3,6 @@ import React from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import ReactHtmlParser from 'react-html-parser';
 import { useState, useEffect } from 'react';
-import { openSans } from '@/utils/fonts';
 import { searchData, getCategoryNameByPostId } from '@/services/api-content';
 
 import { SearchIcon } from "@/utils/icons";
@@ -58,7 +57,7 @@ export default function SearchBar() {
       <form action="" className=" relative w-full ">
         <input
           className={
-            ` search-bar w-full pl-6 py-1 text-sm font-light border-White bg-Black border-solid border-2 rounded-lg 
+            ` relative w-full pl-6 py-1 text-sm font-light border-White bg-Black text-White border-solid border-2 rounded-lg 
                 outline-none focus:border-Secondary placeholder:text-SecondaryDark/60 `
           }
           type="text"
@@ -75,7 +74,7 @@ export default function SearchBar() {
         ) : (
           <button
             onClick={handleSearch}
-            className=" absolute top-0 right-2 p-2 h-full flex items-center  "
+            className=" absolute w-10 top-0 right-2 p-2 h-full flex items-center  "
           >
             <SearchIcon />
           </button>

@@ -12,19 +12,19 @@ export function cleanDataPosts({
       pExcerpt = [];
     if (!post) continue;
     post.excerpt.rendered
-      .split("</p>")
+      .split('</p>')
       .map((item) => item.trim())
-      .filter((item) => item !== "")
+      .filter((item) => item !== '')
       .forEach((paragraph) => {
-        pExcerpt.push(paragraph.replace(/<[^>]+>/g, ""));
+        pExcerpt.push(paragraph.replace(/<[^>]+>/g, ''));
       });
 
     post.content.rendered
-      .split("</p>")
+      .split('</p>')
       .map((item) => item.trim())
       .forEach((element) => {
-        if (element.includes("<img")) {
-          const image = element.match(/src="(.*?)"/)[1].replaceAll('"', "");
+        if (element.includes('<img')) {
+          const image = element.match(/src="(.*?)"/)[1].replaceAll('"', '');
           imgArray.push(image);
         }
         // else if (element !== "") {
@@ -47,11 +47,12 @@ export function cleanDataPosts({
       images: imgArray,
     });
   }
+
   return data;
 }
 
-export function getRandomPosts({ posts, qty = "all" }) {
-  if (qty === "all" || qty > posts.length) return posts;
+export function getRandomPosts({ posts, qty = 'all' }) {
+  if (qty === 'all' || qty > posts.length) return posts;
 
   const elements = qty < 1 ? 1 : qty;
 
@@ -65,8 +66,8 @@ export function getRandomPosts({ posts, qty = "all" }) {
   return postsRandom;
 }
 
-export function getLatestPosts({ posts, qty = "all" }) {
-  if (qty === "all" || qty > posts.length) return posts;
+export function getLatestPosts({ posts, qty = 'all' }) {
+  if (qty === 'all' || qty > posts.length) return posts;
   // take the "qty" latest
   const latestPosts = [];
   for (let i = 0; i < qty; i++) {
@@ -85,11 +86,11 @@ export function getImageHeaderPost(postData) {
   let imgArray = [];
 
   postData.content.rendered
-    .split("</p>")
+    .split('</p>')
     .map((item) => item.trim())
     .forEach((element) => {
-      if (element.includes("<img")) {
-        const image = element.match(/src="(.*?)"/)[1].replaceAll('"', "");
+      if (element.includes('<img')) {
+        const image = element.match(/src="(.*?)"/)[1].replaceAll('"', '');
         imgArray.push(image);
       }
     });

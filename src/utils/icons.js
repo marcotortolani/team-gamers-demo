@@ -1,11 +1,11 @@
-export function HeartIcon({ liked, color = '#f40001' }) {
+export function HeartIcon({ liked, color = '#A26DAA' }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="100%"
       height="100%"
       viewBox="0 0 24 24"
-      fill={liked ? '#f40001' : 'none'}
+      fill={liked ? color : 'none'}
       stroke={color}
       strokeWidth={liked ? '3' : '2'}
       strokeLinecap="round"

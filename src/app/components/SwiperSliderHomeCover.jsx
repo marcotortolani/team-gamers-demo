@@ -38,7 +38,7 @@ export default function SwiperSliderHomeCover({
   };
 
   return (
-    <div className=" z-40 relative top-0 mt-4 w-screen h-[85vh] min-h-[450px] flex flex-col items-center justify-end">
+    <div className=" top-0 w-full h-full flex flex-col items-center justify-center">
       <Swiper
         ref={sliderRef}
         slidesPerView={slidesPerView}
@@ -54,7 +54,7 @@ export default function SwiperSliderHomeCover({
         pagination={pagination}
         modules={[Autoplay, Navigation]}
         navigation={false}
-        className="mySwiper w-full h-2/3 overflow-hidden flex items-center "
+        className="mySwiper w-full h-full overflow-hidden flex items-center "
       >
         {posts?.map((post, index) => (
           <SwiperSlide
@@ -80,29 +80,33 @@ export default function SwiperSliderHomeCover({
                 ) : (
                   <ImageMissing />
                 )}
-                {/* <div className=" z-10 absolute bottom-0 w-full h-1/4 bg-gradient-to-t from-zinc-700 to-transparent rounded-[inherit]" /> */}
               </div>
               <div className=" absolute bottom-4 w-full h-2/3 px-8 flex flex-col items-center justify-end gap-5 ">
                 <div className=" w-full max-w-[800px] h-fit flex flex-col items-start justify-around gap-0 ">
                   <h2
                     className={
-                      ' min-w-fit mb-4 px-2 uppercase font-medium bg-black line-clamp-2 text-pretty text-2xl md:text-3xl lg:text-4xl text-White text-left  '
+                      ' mb-2 uppercase font-medium pointer-events-none cursor-default line-clamp-2 text-pretty text-2xl md:text-3xl lg:text-4xl text-White text-left  '
                     }
                   >
-                    {ReactHtmlParser(post.title)}
+                    <span className=" px-2 pr-4 bg-Black box-decoration-clone leading-[40px] ">
+                      {ReactHtmlParser(post.title)}
+                    </span>
                   </h2>
                   <h4
                     className={
-                      ' w-5/6 pl-2 font-medium line-clamp-2 text-lg md:text:lg lg:text-xl text-black bg-White/80 first-letter:uppercase '
+                      ' w-5/6 font-medium pointer-events-none cursor-default line-clamp-2 text-lg md:text:lg lg:text-xl text-Black first-letter:uppercase '
                     }
                   >
-                    {ReactHtmlParser(post.excerpt)}
+                    <span className=" px-3 bg-White/80 box-decoration-clone leading-[2.1rem] ">
+                      {ReactHtmlParser(post.excerpt)}
+                    </span>
                   </h4>
                 </div>
 
                 <ButtonSeePost
                   text="Ver más"
                   href={`/${post.category}/${post.id}`}
+                  style="gradient"
                   size="md"
                 />
               </div>

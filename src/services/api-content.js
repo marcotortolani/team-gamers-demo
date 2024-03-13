@@ -46,10 +46,10 @@ export async function getPostsByCategoryId({ id, tagExclude = 0 }) {
   return data_posts;
 }
 
-export async function getVideoPostsByCategoryId({ id, tagID = 14 }) {
+export async function getVideoPostsByCategoryId({ id, tagID = 2 }) {
   const perPage = 50;
   const data_posts = await getData(
-    `posts?per_page=${perPage}&categories=${id}&tags=${tagID}`
+    `posts?per_page=${perPage}&categories=${id}&parent=${tagID}`
   );
   return data_posts;
 }

@@ -6,9 +6,9 @@ import {
   getVideoPostsByCategoryId,
 } from '@/services/api-content';
 import { getRandomPosts, cleanDataPosts } from '@/utils/functions';
-import FeaturedPosts from '@/app/components-old/FeaturedPosts';
-import SliderVideoPosts from '@/app/components-old/SliderVideoPosts';
-import LatestPosts from '@/app/components-old/LatestPosts';
+import FeaturedPosts from '@/app/components/FeaturedPosts';
+import SliderVideoPosts from '@/app/components/SliderMiniVideoPosts';
+import LatestPosts from '@/app/components/LongCardsLatestPosts';
 import SliderCover from '@/app/components-old/SliderCover';
 
 const videoTag = 14;
