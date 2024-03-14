@@ -1,4 +1,4 @@
-import { configSiteStatic } from '../../configSiteStatic';
+import { configSiteStatic } from '../../configSiteStatic'
 const {
   coverBienestar,
   coverSalud,
@@ -12,7 +12,7 @@ const {
   coverBelleza,
   coverRecetas,
   coverCosmic,
-} = configSiteStatic.images;
+} = configSiteStatic.images
 const {
   iconoBienestar,
   iconoSalud,
@@ -26,7 +26,7 @@ const {
   iconoBelleza,
   iconoRecetas,
   iconoCosmic,
-} = configSiteStatic.icons;
+} = configSiteStatic.icons
 
 export const CATEGORIES = {
   home: { name: 'Home', slug: '' },
@@ -86,12 +86,16 @@ export const CATEGORIES = {
     name: 'Vos',
     slug: 'amor/vos',
   },
-};
+}
 
 export const CAT_GAMERS = {
   gaming: {
     name: 'Gaming',
     slug: 'gaming',
+  },
+  gamers: {
+    name: 'Gamers',
+    slug: 'gaming/gamers',
   },
   eventos: {
     name: 'Eventos',
@@ -101,11 +105,7 @@ export const CAT_GAMERS = {
     name: 'Trucos',
     slug: 'gaming/trucos',
   },
-  gamers: {
-    name: 'Gamers',
-    slug: 'gaming/gamers',
-  },
-};
+}
 
 export const CAT_EDITORIAL = {
   editorial: {
@@ -124,7 +124,7 @@ export const CAT_EDITORIAL = {
     name: 'Tecnología',
     slug: 'editorial/tecnologia',
   },
-};
+}
 
 export const CAT_MUSICA = {
   musica: {
@@ -139,9 +139,9 @@ export const CAT_MUSICA = {
     name: 'Pop',
     slug: 'musica/pop',
   },
-};
+}
 
-export const TEAM_GAMERS_CATEGORIES = { CAT_GAMERS, CAT_EDITORIAL, CAT_MUSICA };
+export const TEAM_GAMERS_CATEGORIES = { CAT_GAMERS, CAT_EDITORIAL, CAT_MUSICA }
 
 export const staticCoverBienestar = {
   id: 1,
@@ -149,7 +149,7 @@ export const staticCoverBienestar = {
   imgSrc: coverBienestar,
   iconSrc: iconoBienestar,
   href: `/${CATEGORIES.bienestar.slug}`,
-};
+}
 export const subcategoriesBienestar = [
   {
     id: 1,
@@ -179,7 +179,7 @@ export const subcategoriesBienestar = [
     iconSrc: iconoFitness,
     href: `/${CATEGORIES.fitness.slug}`,
   },
-];
+]
 
 export const staticCoverAmor = {
   id: 1,
@@ -187,7 +187,7 @@ export const staticCoverAmor = {
   imgSrc: coverAmor,
   iconSrc: iconoAmor,
   href: `/${CATEGORIES.amor.slug}`,
-};
+}
 export const subcategoriesAmor = [
   {
     id: 1,
@@ -203,7 +203,7 @@ export const subcategoriesAmor = [
     iconSrc: iconoVos,
     href: `/${CATEGORIES.vos.slug}`,
   },
-];
+]
 
 export const staticCoverModa = {
   id: 1,
@@ -211,7 +211,7 @@ export const staticCoverModa = {
   imgSrc: coverModa,
   iconSrc: iconoModa,
   href: `/${CATEGORIES.moda.slug}`,
-};
+}
 
 export const staticCoverBelleza = {
   id: 1,
@@ -219,7 +219,7 @@ export const staticCoverBelleza = {
   imgSrc: coverBelleza,
   iconSrc: iconoBelleza,
   href: `/${CATEGORIES.belleza.slug}`,
-};
+}
 
 export const staticCoverRecetas = {
   id: 1,
@@ -227,7 +227,7 @@ export const staticCoverRecetas = {
   imgSrc: coverRecetas,
   iconSrc: iconoRecetas,
   href: `/${CATEGORIES.recetas.slug}`,
-};
+}
 
 export const sliderSidebarCategories = [
   {
@@ -266,4 +266,4 @@ export const sliderSidebarCategories = [
     imgSrc: coverCosmic,
     href: `/${CATEGORIES.cosmic.slug}`,
   },
-];
+]
