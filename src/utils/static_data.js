@@ -124,10 +124,6 @@ export const CAT_EDITORIAL = {
     name: 'Tecnología',
     slug: 'editorial/tecnologia',
   },
-  eventos: {
-    name: 'Eventos',
-    slug: 'editorial/eventos',
-  },
 };
 
 export const CAT_MUSICA = {
@@ -136,12 +132,8 @@ export const CAT_MUSICA = {
     slug: 'musica',
   },
   trap: {
-    name: 'Trap',
+    name: 'Trap/Urbano',
     slug: 'musica/trap',
-  },
-  urbano: {
-    name: 'Urbano',
-    slug: 'musica/urbano',
   },
   pop: {
     name: 'Pop',
