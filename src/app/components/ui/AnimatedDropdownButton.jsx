@@ -1,40 +1,41 @@
-'use client';
-import { useEffect, useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
-import { ChevronDownIcon } from 'lucide-react';
+'use client'
+import { useEffect, useState } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
+import { motion } from 'framer-motion'
+import { ChevronDownIcon } from 'lucide-react'
 
 const AnimatedDropdown = ({ Icon, title, options }) => {
-  const [open, setOpen] = useState(false);
-  const [optionActive, setOptionActive] = useState('');
-  const router = useRouter();
-  const pathname = usePathname();
+  const [open, setOpen] = useState(false)
+  const [optionActive, setOptionActive] = useState('')
+  const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
-    const lastPath = pathname.split('/').slice(-1)[0];
+    const lastPath = pathname.split('/').slice(-1)[0]
 
     if (lastPath === '') {
-      setOptionActive('home');
+      setOptionActive('home')
     } else {
-      setOptionActive(lastPath);
+      setOptionActive(lastPath)
     }
-  }, [pathname]);
+    setOpen(false)
+  }, [pathname])
 
   function handleOption(slug) {
-    setOpen(false);
-    router.push(`/${slug}`);
+    setOpen(false)
+    router.push(`/${slug}`)
   }
 
   return (
     <div className={` flex items-center justify-center`}>
       <motion.div animate={open ? 'open' : 'closed'} className="relative">
         <button
-          onClick={() => setOpen((pv) => !pv)}
+          onClick={() => setOpen((prev) => !prev)}
           className={`${
             pathname.includes(title.toLowerCase())
               ? 'bg-Secondary text-Black '
               : 'bg-black text-indigo-50'
-          } flex items-center gap-1 px-1 xs:px-2 py-0 rounded-full  border-Secondary border-[2px] transition-colors`}
+          } flex items-center gap-1 px-1 xs:px-2 py-0 rounded-full  border-Secondary border-[2px] transition-colors duration-200 ease-in-out`}
         >
           <div className=" w-4 xs:w-5">
             <Icon size={'100%'} />
@@ -69,16 +70,16 @@ const AnimatedDropdown = ({ Icon, title, options }) => {
                   text={option.name}
                   optionActive={optionActive === option.name.toLowerCase()}
                 />
-              );
+              )
             } else {
-              return null;
+              return null
             }
           })}
         </motion.ul>
       </motion.div>
     </div>
-  );
-};
+  )
+}
 
 const Option = ({ firstOption, text, setOpen, optionActive }) => {
   return (
@@ -96,10 +97,10 @@ const Option = ({ firstOption, text, setOpen, optionActive }) => {
     >
       <span className="px-1 ">{firstOption ? 'Ver todo' : text}</span>
     </motion.li>
-  );
-};
+  )
+}
 
-export default AnimatedDropdown;
+export default AnimatedDropdown
 
 const wrapperVariants = {
   open: {
@@ -116,12 +117,12 @@ const wrapperVariants = {
       staggerChildren: 0.1,
     },
   },
-};
+}
 
 const iconVariants = {
   open: { rotate: 180 },
   closed: { rotate: 0 },
-};
+}
 
 const itemVariants = {
   open: {
@@ -138,9 +139,4 @@ const itemVariants = {
       when: 'afterChildren',
     },
   },
-};
-
-const actionIconVariants = {
-  open: { scale: 1, y: 0 },
-  closed: { scale: 0, y: -7 },
-};
+}

@@ -12,7 +12,7 @@ const CAT_MUSICA_OPTIONS = Object.values(CAT_MUSICA);
 export default function DropdownMenu() {
 
   return (
-    <div className=" absolute -bottom-20 left-0 w-full px-1 xs:px-4 flex items-center justify-center gap-2 ">
+    <div className=" absolute -bottom-20 left-0 w-full px-1 xs:px-4 flex items-center justify-between ">
       <AnimatedDropdown
         Icon={Gamepad2}
         title={CAT_GAMERS.gaming.name}
