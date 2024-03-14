@@ -1,19 +1,24 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import ReactHtmlParser from 'react-html-parser';
-import { getPostsByCategoryId } from '@/services/api-content';
-import { cleanDataPosts, getLatestPosts } from '@/utils/functions';
-import { PlayCircleIcon } from 'lucide-react';
-import ImageMissing from './ImageMissing';
+import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import ReactHtmlParser from 'react-html-parser'
+import { getPostsByCategoryId } from '@/services/api-content'
+import { cleanDataPosts, getLatestPosts } from '@/utils/functions'
+import { PlayCircleIcon } from 'lucide-react'
+import ImageMissing from './ImageMissing'
 
-export default async function CardsLatestVideosPosts({ id, qty, categorySlug }) {
-  const dataPosts = await getPostsByCategoryId({ id });
+export default async function CardsLatestVideosPosts({
+  id,
+  qty,
+  categorySlug,
+  verticalAspect,
+}) {
+  const dataPosts = await getPostsByCategoryId({ id })
 
   const cardPosts = cleanDataPosts({
     posts: getLatestPosts({ posts: dataPosts, qty: qty }),
     categorySlug,
-  });
+  })
 
   return (
     <div className=" w-screen h-full flex justify-center">
@@ -27,7 +32,9 @@ export default async function CardsLatestVideosPosts({ id, qty, categorySlug }) 
               <div className=" relative z-0 w-full h-full rounded-xl md:rounded-2xl lg:rounded-3xl">
                 {post.images.length > 0 ? (
                   <Image
-                    className={` relative w-full aspect-[4/3] object-center object-cover rounded-[inherit] cursor-default pointer-events-none select-none`}
+                    className={`${
+                      verticalAspect ? 'aspect-[5/6]' : 'aspect-[4/3]'
+                    } relative w-full  object-center object-cover rounded-[inherit] cursor-default pointer-events-none select-none`}
                     width={220}
                     height={220}
                     src={post.images[0]}
@@ -37,7 +44,7 @@ export default async function CardsLatestVideosPosts({ id, qty, categorySlug }) 
                   <ImageMissing />
                 )}
                 <div className=" z-10 absolute top-0 w-full h-full flex items-center justify-center bg-black/30 rounded-[inherit] ">
-                  <PlayCircleIcon color="white" size={30} />
+                  <PlayCircleIcon color="white" size={verticalAspect ? 50 : 30} />
                 </div>
               </div>
               <div className=" z-20 w-full h-full p-2 absolute bottom-0  pointer-events-none select-none">
@@ -54,5 +61,5 @@ export default async function CardsLatestVideosPosts({ id, qty, categorySlug }) 
         ))}
       </ul>
     </div>
-  );
+  )
 }

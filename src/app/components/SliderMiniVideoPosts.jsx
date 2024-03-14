@@ -1,19 +1,19 @@
-'use client';
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRef } from 'react';
+'use client'
+import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRef } from 'react'
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay, Navigation } from 'swiper/modules';
-import SwiperCore from 'swiper';
-import 'swiper/css';
-import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination, Autoplay, Navigation } from 'swiper/modules'
+import SwiperCore from 'swiper'
+import 'swiper/css'
+import 'swiper/css/pagination'
 
-SwiperCore.use([Pagination]);
+SwiperCore.use([Pagination])
 
-import videoIcon from '../../../public/assets/icons/IconoVideo2.webp';
-import ImageMissing from './ImageMissing';
+import videoIcon from '../../../public/assets/icons/IconoVideo2.webp'
+import ImageMissing from './ImageMissing'
 
 export default function SliderMiniVideoPosts({
   sliderElements,
@@ -22,8 +22,9 @@ export default function SliderMiniVideoPosts({
   delayPerView,
   colorBullets,
   sizeBullets,
+  verticalAspect,
 }) {
-  const sliderRef = useRef(0);
+  const sliderRef = useRef(0)
 
   return (
     <div className=" w-screen md:w-full lg:max-w-4xl lg:w-full h-full  ">
@@ -46,16 +47,19 @@ export default function SliderMiniVideoPosts({
         >
           {sliderElements?.map((post, i) => (
             <SwiperSlide
-              className={`${
-                i === sliderElements.length - 1 ? 'pr-2' : ''
+              className={` ${i === sliderElements.length - 1 ? 'pr-2' : ''} 
+              ${
+                verticalAspect ? ' aspect-[5/6]' : 'aspect-video'
               } w-full pl-2 h-full relative `}
               key={post.id}
             >
               <Link
                 href={`/${post.category}/${post.id}`}
-                className=" w-full h-full "
+                className=" w-full h-full  "
               >
-                <div className=" relative z-0 w-full h-full aspect-video min-h-[100px] md:min-h-[180px] rounded-lg ">
+                <div
+                  className={` relative z-0 w-full h-full  min-h-[100px] md:min-h-[180px] rounded-lg `}
+                >
                   {post.images.length > 0 ? (
                     <Image
                       className={` w-full h-auto object-cover rounded-[inherit]`}
@@ -67,7 +71,7 @@ export default function SliderMiniVideoPosts({
                   ) : (
                     <ImageMissing />
                   )}
-                  <div className=" z-10 w-full h-full absolute top-0 bg-black/20 rounded-[inherit] "></div>
+                  {/* <div className=" z-10 w-full h-full absolute top-0 bg-black/20 rounded-[inherit] "></div> */}
                 </div>
 
                 <div className=" z-20 w-full h-full p-2 pb-3 flex flex-col items-start justify-end gap-2 absolute bottom-0 ">
@@ -94,5 +98,5 @@ export default function SliderMiniVideoPosts({
         </Swiper>
       )}
     </div>
-  );
+  )
 }

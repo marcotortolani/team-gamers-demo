@@ -1,15 +1,13 @@
-'use client';
-import React, { useRef } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import tagGamer from '../../../public/assets/img/tag-team-gamers.webp';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay, Navigation } from 'swiper/modules';
-import SwiperCore from 'swiper';
-import 'swiper/css';
-import 'swiper/css/pagination';
+'use client'
+import React, { useRef } from 'react'
+import { CardGamer } from "./CardGamer"
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination, Autoplay, Navigation } from 'swiper/modules'
+import SwiperCore from 'swiper'
+import 'swiper/css'
+import 'swiper/css/pagination'
 
-SwiperCore.use([Pagination]);
+SwiperCore.use([Pagination])
 
 const GAMERS_CARD = [
   {
@@ -48,24 +46,24 @@ const GAMERS_CARD = [
     imgSrc: '/assets/Img-webp-TG/CardKevin-GAMERS.webp',
     href: '',
   },
-];
+]
 
 // const COLOR_BULLETS = 'white';
 // const SIZE_BULLETS = 'default';
-const SLIDES_PER_VIEW = 3.25;
-const DELAY_PER_VIEW = 2500;
-const SPACE_BETWEEN_SLIDES = 0;
+const SLIDES_PER_VIEW = 3.25
+const DELAY_PER_VIEW = 2500
+const SPACE_BETWEEN_SLIDES = 0
 
-export default function SliderGamers() {
-  const sliderRef = useRef(0);
+export default function SliderGamers({ miniCards }) {
+  const sliderRef = useRef(0)
 
   return (
-    <div className=" z-30 mt-4 w-screen h-fit min-h-[160px]  flex flex-col items-center justify-end overflow-hidden  lg:hidden">
+    <div className=" z-30 w-screen h-fit flex flex-col items-center justify-end overflow-hidden ">
       <Swiper
         ref={sliderRef}
-        slidesPerView={SLIDES_PER_VIEW}
-        centeredSlides={false}
-        spaceBetween={SPACE_BETWEEN_SLIDES}
+        slidesPerView={miniCards ? SLIDES_PER_VIEW : 1.8}
+        centeredSlides={miniCards ? false : true}
+        spaceBetween={miniCards ? SPACE_BETWEEN_SLIDES :20}
         autoplay={{
           delay: DELAY_PER_VIEW,
           disableOnInteraction: false,
@@ -74,43 +72,15 @@ export default function SliderGamers() {
         navigation={false}
         className="mySwiper w-full h-full overflow-hidden "
       >
-        {GAMERS_CARD.map((el) => (
+        {GAMERS_CARD.map((gamerData) => (
           <SwiperSlide
             className=" relative pb-4 w-full h-full  cursor-pointer"
-            key={el.id}
+            key={gamerData.id}
           >
-            <Link
-              className="relative w-full h-full flex justify-center items-center hover:cursor-pointer "
-              href={el.href}
-            >
-              <Image
-                className=" w-5/6 min-w-[90px] max-w-[100px] border-[3px] border-Secondary sm:max-w-[120px] h-auto rounded-xl"
-                width={90}
-                height={90}
-                src={el.imgSrc}
-                alt={`Gamer ${el.name}`}
-                loading="eager"
-              />
-
-              <div className=" z-20 absolute -bottom-2 object-cover aspect-[150/42]">
-                <Image
-                  src={tagGamer}
-                  alt={'Tag Image Modern Gamer'}
-                  width={"100%"}
-                  height={'auto'}
-                />
-                <h4
-                  className={
-                    ' absolute bottom-1 w-full uppercase font-extrabold text-center cursor-default pointer-events-none text-lg text-White  '
-                  }
-                >
-                  {el.name}
-                </h4>
-              </div>
-            </Link>
+           <CardGamer gamerData={gamerData} miniCard={miniCards} />
           </SwiperSlide>
         ))}
       </Swiper>
     </div>
-  );
+  )
 }

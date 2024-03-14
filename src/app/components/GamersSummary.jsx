@@ -76,7 +76,7 @@ export default async function GamersSummary() {
 
   return (
     <section className=" z-50 w-screen md:w-5/6 lg:w-4/6 lg:max-w-[900px] h-fit relative top-0 flex flex-col items-center">
-      <h1 className=" px-4 py-[0.15rem] uppercase font-medium text-sm md:text-base flex items-center gap-2 bg-Secondary rounded-full">
+      <h1 className=" px-4 py-[0.15rem] mb-4 uppercase font-medium text-sm md:text-base flex items-center gap-2 bg-Secondary rounded-full">
         <div className=" w-4 h-4 ">
           <Gamepad2 width={'100%'} height={'100%'} />
         </div>
@@ -84,7 +84,7 @@ export default async function GamersSummary() {
       </h1>
 
       {/* Slider fotos de NUESTROS GAMERS */}
-      <SliderGamers />
+      <SliderGamers miniCards />
       <p className=" w-full max-w-[350px] px-8 mb-4 text-White uppercase font-normal text-center">
         ¡Nuestros videos exclusivos te ayudaran a convertirte en el mejor gamer!
       </p>
@@ -101,7 +101,7 @@ export default async function GamersSummary() {
           <SliderLatestPosts id={categoryID} qty={5} categorySlug={cat.slug} />
         )}
 
-        {randomVideoElements && (
+        {randomVideoPosts && (
           <SliderMiniVideoPosts
             sliderElements={randomVideoPosts}
             slidesPerView={2.25}

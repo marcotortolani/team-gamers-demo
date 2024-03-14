@@ -1,20 +1,20 @@
-'use client';
-import React, { useState, useRef } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import ReactHtmlParser from 'react-html-parser';
-import { PlayCircleIcon } from 'lucide-react';
+'use client'
+import React, { useState, useRef } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import ReactHtmlParser from 'react-html-parser'
+import { PlayCircleIcon } from 'lucide-react'
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay, Navigation } from 'swiper/modules';
-import SwiperCore from 'swiper';
-import 'swiper/css';
-import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination, Autoplay, Navigation } from 'swiper/modules'
+import SwiperCore from 'swiper'
+import 'swiper/css'
+import 'swiper/css/pagination'
 
-import PaginationBullets from './ui/PaginationBullets';
-import ImageMissing from './ImageMissing';
+import PaginationBullets from './ui/PaginationBullets'
+import ImageMissing from './ImageMissing'
 
-SwiperCore.use([Pagination]);
+SwiperCore.use([Pagination])
 
 export default function SwiperSliderPosts({
   posts,
@@ -26,19 +26,19 @@ export default function SwiperSliderPosts({
   sizeBullets,
   titleOnly,
 }) {
-  const [indexPag, setIndexPag] = useState(0);
-  const sliderRef = useRef(0);
+  const [indexPag, setIndexPag] = useState(0)
+  const sliderRef = useRef(0)
 
-  const qtyBullets = Object.keys(posts).length - parseInt(slidesPerView) + 1;
+  const qtyBullets = Object.keys(posts).length - parseInt(slidesPerView) + 1
 
   const pagination = {
     clickable: true,
     type: 'custom',
     renderCustom: function (i, className) {
-      setIndexPag(className);
-      return null;
+      setIndexPag(className)
+      return null
     },
-  };
+  }
 
   return (
     <div className=" w-screen h-fit  ">
@@ -62,7 +62,7 @@ export default function SwiperSliderPosts({
         {posts?.map((post) => (
           <SwiperSlide className={` w-full h-fit`} key={post.id}>
             <Link
-              className=" w-full h-fit "
+              className=" relative w-full h-fit "
               href={`/${post.category}/${post.id}`}
             >
               <div
@@ -83,6 +83,9 @@ export default function SwiperSliderPosts({
                   <div className=" z-0 absolute w-full h-full flex items-center justify-center ">
                     <PlayCircleIcon color="white" size={60} />
                   </div>
+                  <span className=" absolute top-3 left-3 px-2 py-1 text-xs text-White bg-Black border-2 border-Secondary rounded-full ">
+                    Recién agregado
+                  </span>
                 </div>
 
                 <div className=" z-20 absolute bottom-0 w-5/6  h-full flex flex-col justify-end gap-2 pb-4">
@@ -118,5 +121,5 @@ export default function SwiperSliderPosts({
         index={indexPag}
       />
     </div>
-  );
+  )
 }
