@@ -9,7 +9,7 @@ import {
   SearchIcon,
   HomeIcon,
   HeartIcon,
-  PlayCircleIcon,
+  Gamepad2
 } from 'lucide-react';
 
 const navButtons = {
@@ -39,9 +39,9 @@ const navButtons = {
   },
   video: {
     id: 5,
-    title: 'videos',
-    icon: PlayCircleIcon,
-    href: '/videos',
+    title: 'gamers',
+    icon: Gamepad2,
+    href: '/gaming/gamers',
   },
 };
 
