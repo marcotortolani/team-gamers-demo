@@ -53,7 +53,7 @@ export default function SearchBar() {
   }
 
   return (
-    <div className=" w-2/3 max-w-[400px] lg:max-w-[600px] h-fit min-h-10 absolute -bottom-10 lg:top-24 flex justify-center">
+    <div className=" w-2/3 max-w-[400px] lg:max-w-[600px] h-fit min-h-10 lg:top-24 flex justify-center">
       <form action="" className=" relative w-full ">
         <input
           className={

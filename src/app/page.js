@@ -31,12 +31,13 @@ export default async function Home() {
   );
 
   return (
-    <main className=" z-0 relative w-full pt-40 px-4 flex flex-col items-center gap-2 ">
+    <main className=" z-0 relative w-full pt-44 px-4 flex flex-col items-center gap-2 ">
       <SliderRandomPostsHomeCover
         posts={dataPostsFiltered}
         qty={5}
         catFiltered={categoriesIDFiltered}
       />
+      
       <GamersSummary />
       <EditorialesSummary />
       <MusicaSummary />
