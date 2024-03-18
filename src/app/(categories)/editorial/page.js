@@ -1,72 +1,163 @@
-import React from 'react';
-import { CAT_EDITORIAL } from '@/utils/static_data';
-import {
-  getCategoryId,
-  getPostsByCategoryId,
-  getVideoPostsByCategoryId,
-} from '@/services/api-content';
-import { getRandomPosts, cleanDataPosts } from '@/utils/functions';
-import FeaturedPosts from '@/app/components/FeaturedPosts';
-import SliderVideoPosts from '@/app/components/SliderMiniVideoPosts';
-import LatestPosts from '@/app/components/LongCardsLatestPosts';
-import SliderCover from '@/app/components-old/SliderCover';
-import SubcategoriesItems from '@/app/components-old/SubcategoriesItems';
-import { subcategoriesAmor } from '@/utils/static_data';
+import React from 'react'
+import { CAT_EDITORIAL } from '@/utils/static_data'
+import { getCategoryId, getPostsByCategoryId } from '@/services/api-content'
+import { cleanDataPosts, getRandomPosts } from '@/utils/functions'
+import { FileText, Gamepad2, Joystick, CircuitBoard } from 'lucide-react'
 
-const videoTag = 14;
+import { TitleSection } from '@/app/components/ui/TitleSection'
+import SliderCoverLatestPosts from '@/app/components/SliderCoverLatestPosts'
 
-export default async function AmorPage() {
-  const cat = CAT_EDITORIAL.editorial;
-  const categoryID = await getCategoryId(cat.name);
-  const dataPosts = await getPostsByCategoryId({ id: categoryID });
-  const dataVideoPosts = await getVideoPostsByCategoryId({ id: categoryID });
+import SliderLatestModernPosts from '@/app/components/SliderLatestModernPosts'
+import LongCardsLatestPosts from '@/app/components/LongCardsLatestPosts'
+import ShortCardsLatestPosts from '@/app/components/ShortCardsLatestPosts'
 
-  const qtyElements = 4;
-  const randomPosts = cleanDataPosts({
-    posts: getRandomPosts({ posts: dataPosts, qty: qtyElements }),
-    categorySlug: cat.slug,
-  });
+export default async function page() {
+  const cat = CAT_EDITORIAL.editorial
+  const categoryID = await getCategoryId(cat.name)
 
-  const qtyVideoElements = 4;
+  // ---- data gamers ----
+
+  // aca habria que tomar la informacion de los gamers (incluyendo la imagen destacada de cada uno)
+  // y pasarla al componente Slider, pero genera conflicto porque internamente en CardGamer
+  // tambien hay un fetch para poder conseguir una imagen en el ultimo post del gamerID
+
+  //const gamersID = await getCategoryId('videos')
+  // const { data } = await getData('categories?per_page=50')
+  // const gamersCategories = data.filter((cat) => cat.parent === gamersID)
+
+  // ----------
+
+  const dataVideoPosts = await getPostsByCategoryId({ id: categoryID })
+
+  const qtyVideoElements = 10
   const randomVideoPosts = cleanDataPosts({
     posts: getRandomPosts({ posts: dataVideoPosts, qty: qtyVideoElements }),
     categorySlug: cat.slug,
-  });
+  })
+  const randomVideoPostsFirstSlice = randomVideoPosts.slice(
+    0,
+    parseInt(qtyVideoElements / 2)
+  )
+  const randomVideoPostsSecondSlice = randomVideoPosts.slice(
+    parseInt(qtyVideoElements / 2),
+    qtyVideoElements
+  )
 
   return (
-    <main className=" z-0 mt-36 w-full   h-full min-h-screen px-4 flex flex-col items-center justify-between ">
-      <div className=" w-full md:w-5/6 lg:w-4/6 lg:max-w-[900px] flex flex-col items-center">
-        <SliderCover
-          sliderElements={randomPosts}
-          slidesPerView={1}
-          spaceBetweenSlides={30}
-          delayPerView={3500}
-          colorBullets={'primary'}
-          sizeBullets={'default'}
+    <main className=" z-0 relative w-full pt-28 mb-20 px-4 flex flex-col items-center gap-2 ">
+      <section className=" w-screen md:w-5/6 lg:w-4/6 lg:max-w-[900px] h-fit relative top-0 flex flex-col items-center gap-4">
+        <TitleSection
+          icon={FileText}
+          title="Editoriales"
+          outline
+          borderColor="border-Secondary"
         />
-
-        <SubcategoriesItems subcatElem={subcategoriesAmor} />
-
-        <FeaturedPosts
+        <SliderCoverLatestPosts
           id={categoryID}
           qty={5}
           categorySlug={cat.slug}
-          tagExclude={videoTag}
+          styleColor="primary"
         />
+      </section>
 
-        <SliderVideoPosts
-          sliderElements={randomVideoPosts}
-          slidesPerView={2}
-          spaceBetweenSlides={10}
-          delayPerView={3500}
-          colorBullets={'default'}
-          sizeBullets={'default'}
-        />
+      <section className=" mt-2 w-full py-2 flex flex-col items-center gap-4">
+        <TitleSection icon={Gamepad2} title="Videojuegos" />
 
-        <LatestPosts id={categoryID} qty={'all'} categorySlug={cat.slug} />
-      </div>
+        {categoryID && (
+          <SliderLatestModernPosts
+            id={categoryID}
+            qty={5}
+            categorySlug={cat.slug}
+            paginationHide
+          />
+        )}
 
-      <div className="w-full h-20"></div>
+        {/* subcategoria VIDEOJUEGOS */}
+        {categoryID && (
+          <LongCardsLatestPosts
+            id={categoryID}
+            qty={2}
+            categorySlug={cat.slug}
+          />
+        )}
+
+        {/* subcategoria VIDEOJUEGOS */}
+        {categoryID && (
+          <ShortCardsLatestPosts
+            id={categoryID}
+            qty={4}
+            categorySlug={cat.slug}
+            // miniCard
+            accentColor="secondary"
+          />
+        )}
+      </section>
+
+      <section className=" mt-6 w-full py-2 flex flex-col items-center gap-4">
+        <TitleSection icon={Joystick} title="Retro" />
+
+        {categoryID && (
+          <SliderLatestModernPosts
+            id={categoryID}
+            qty={5}
+            categorySlug={cat.slug}
+            paginationHide
+          />
+        )}
+
+        {/* subcategoria RETRO */}
+        {categoryID && (
+          <LongCardsLatestPosts
+            id={categoryID}
+            qty={2}
+            categorySlug={cat.slug}
+          />
+        )}
+
+        {/* subcategoria RETRO */}
+        {categoryID && (
+          <ShortCardsLatestPosts
+            id={categoryID}
+            qty={4}
+            categorySlug={cat.slug}
+            // miniCard
+            accentColor="secondary"
+          />
+        )}
+      </section>
+
+      <section className=" mt-6 w-full py-2 flex flex-col items-center gap-4">
+        <TitleSection icon={CircuitBoard} title="Tecnología" />
+
+        {categoryID && (
+          <SliderLatestModernPosts
+            id={categoryID}
+            qty={5}
+            categorySlug={cat.slug}
+            paginationHide
+          />
+        )}
+
+        {/* subcategoria TECNOLOGIA */}
+        {categoryID && (
+          <LongCardsLatestPosts
+            id={categoryID}
+            qty={2}
+            categorySlug={cat.slug}
+          />
+        )}
+
+        {/* subcategoria TECNOLOGIA */}
+        {categoryID && (
+          <ShortCardsLatestPosts
+            id={categoryID}
+            qty={4}
+            categorySlug={cat.slug}
+            // miniCard
+            accentColor="secondary"
+          />
+        )}
+      </section>
     </main>
-  );
+  )
 }

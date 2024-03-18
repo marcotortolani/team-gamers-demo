@@ -1,19 +1,19 @@
-import React from 'react';
-import Image from 'next/image';
-import ReactHtmlParser from 'react-html-parser';
-import ImageMissing from './ImageMissing';
-import ButtonSeePost from './ui/ButtonSeePost';
+import React from 'react'
+import Image from 'next/image'
+import ReactHtmlParser from 'react-html-parser'
+import ImageMissing from './ImageMissing'
+import ButtonSeePost from './ui/ButtonSeePost'
 
-export default function ShortCard({ qty, post, miniCard }) {
+export default function ShortCard({ qty, post, miniCard, accentColor }) {
   return (
     <li
       className={`${
         qty % 2 !== 0 && qty === index + 1
           ? 'col-span-2 aspect-[5/3]'
           : 'col-span-1 aspect-[2/3]'
-      } ${
-        miniCard ? 'max-h-[150px]' : ''
-      } col-row-1  relative w-full mt-0 bg-Primary rounded-xl md:rounded-xl lg:rounded-2xl `}
+      } ${miniCard ? 'max-h-[150px]' : ''} ${
+        accentColor === 'primary' ? 'bg-Primary' : 'bg-Secondary'
+      } col-row-1 relative w-full mt-0  rounded-xl md:rounded-xl lg:rounded-2xl `}
     >
       <div
         className={`${
@@ -58,10 +58,10 @@ export default function ShortCard({ qty, post, miniCard }) {
         <ButtonSeePost
           text="Ver nota"
           href={`/${post.category}/${post.id}`}
-          style="outlineSky"
+          style={accentColor === 'primary' ? 'outlineSky' : 'outlineViolet'}
           size="xs"
         />
       </div>
     </li>
-  );
+  )
 }

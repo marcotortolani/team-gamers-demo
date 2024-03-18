@@ -1,6 +1,6 @@
-import React from 'react';
-import { Skeleton } from '@/app/components-old/ui/skeleton';
-import HorizontalLine from '@/app/components-old/ui/HorizontalLine';
+import React from 'react'
+import { Skeleton } from '@/app/components-old/ui/skeleton'
+import HorizontalLine from '@/app/components/ui/HorizontalLine'
 
 export default function loading() {
   return (
@@ -64,5 +64,5 @@ export default function loading() {
 
       <div className="w-full h-20"></div>
     </main>
-  );
+  )
 }

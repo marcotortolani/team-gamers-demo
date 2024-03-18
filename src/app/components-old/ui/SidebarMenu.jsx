@@ -1,15 +1,15 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { CATEGORIES } from "@/utils/static_data";
-import HorizontalLine from "./HorizontalLine";
-import SliderSidebar from "../SliderSidebar";
-import { configSiteStatic } from "../../../../configSiteStatic.js";
+import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { CATEGORIES } from '@/utils/static_data'
+import HorizontalLine from '../../components/ui/HorizontalLine'
+import SliderSidebar from '../SliderSidebar'
+import { configSiteStatic } from '../../../../configSiteStatic.js'
 
-import { poppinsReg400 } from "../../../utils/fonts";
+import { poppinsReg400 } from '../../../utils/fonts'
 
-const { logoVertical } = configSiteStatic.images;
+const { logoVertical } = configSiteStatic.images
 const {
   iconoBienestar,
   iconoModa,
@@ -20,7 +20,7 @@ const {
   iconoVideo,
   iconoFavoritos,
   iconoHome,
-} = configSiteStatic.icons;
+} = configSiteStatic.icons
 
 const buttonElements = [
   {
@@ -75,39 +75,39 @@ const buttonElements = [
     id: 9,
     name: CATEGORIES.home.name,
     iconSrc: iconoHome,
-    href: "/",
+    href: '/',
   },
-];
+]
 
 export default function SidebarMenu({ isVisible, isOpen, onOpen, onClose }) {
-  const path = usePathname();
-  const pathName = path.split("/");
+  const path = usePathname()
+  const pathName = path.split('/')
 
   return (
     <div
       className={` ${
         isVisible
-          ? " lg:-translate-x-full "
+          ? ' lg:-translate-x-full '
           : isOpen
-          ? " lg:-translate-x-2 "
-          : " lg:translate-x-[4.5rem]  "
+          ? ' lg:-translate-x-2 '
+          : ' lg:translate-x-[4.5rem]  '
       } ${
         isOpen
-          ? " left-0 bg-black  bg-opacity-40 pointer-events-auto "
-          : " -left-4 bg-opacity-0 pointer-events-none "
+          ? ' left-0 bg-black  bg-opacity-40 pointer-events-auto '
+          : ' -left-4 bg-opacity-0 pointer-events-none '
       } transition-all fixed top-0 lg:left-2 z-40 w-full h-full md:flex md:items-center   lg:bg-transparent bg-opacity-40 lg:bg-opacity-0  `}
       onClick={isVisible ? onClose : null}
     >
       <div
         className={` ${
           isOpen
-            ? " translate-x-0 md:-translate-x-0 "
-            : " -translate-x-full md:w-[80px] md:min-w-[80px]  "
+            ? ' translate-x-0 md:-translate-x-0 '
+            : ' -translate-x-full md:w-[80px] md:min-w-[80px]  '
         } transition-all  w-1/2 min-w-[160px] max-w-[200px] h-full lg:h-fit min-h-[600px] md:max-h-[650px] lg:min-h-[500px]  px-4 py-4  overflow-y-scroll md:overflow-y-hidden  bg-EpaPrimary shadow-md shadow-black rounded-tr-3xl rounded-br-3xl`}
       >
         <div
           className={`${
-            isOpen ? "" : " md:hidden "
+            isOpen ? '' : ' md:hidden '
           } relative w-full h-fit flex items-center justify-start `}
         >
           <button
@@ -130,7 +130,7 @@ export default function SidebarMenu({ isVisible, isOpen, onOpen, onClose }) {
 
         <div
           className={` ${
-            isOpen ? " md:hidden " : " "
+            isOpen ? ' md:hidden ' : ' '
           } z-20 relative w-full h-[44px]  hidden md:flex items-center justify-center pointer-events-auto`}
         >
           <button
@@ -142,28 +142,28 @@ export default function SidebarMenu({ isVisible, isOpen, onOpen, onClose }) {
             <span className=" w-full h-[2px] p-0 bg-EpaWhite line-clamp-1 content-normal rounded-full " />
           </button>
         </div>
-        <HorizontalLine color={"white"} size={"xs"} />
+        <HorizontalLine color={'white'} size={'xs'} />
 
         <SliderSidebar />
 
         <nav className="w-full h-fit overflow-hidden ">
           <ul
             className={` ${
-              isOpen ? "" : " md:min-w-[30px]"
+              isOpen ? '' : ' md:min-w-[30px]'
             } w-full min-w-[130px] h-4/6 min-h-fit pt-4 mb-2 flex flex-col gap-3 overflow-hidden snap-none`}
           >
             {buttonElements.map((button) => {
               const isActive =
                 pathName.length > 1
-                  ? pathName[1] === button.href.replace("/", "")
-                  : true;
+                  ? pathName[1] === button.href.replace('/', '')
+                  : true
 
               return (
                 <li
                   className={` ${
                     isActive
-                      ? " bg-EpaDetails hover:bg-opacity-70 "
-                      : " bg-EpaPrimaryDark hover:bg-opacity-30 "
+                      ? ' bg-EpaDetails hover:bg-opacity-70 '
+                      : ' bg-EpaPrimaryDark hover:bg-opacity-30 '
                   } w-full h-fit min-h-[30px] md:min-h-[10px] flex items-center  rounded-full`}
                   key={button.id}
                 >
@@ -175,7 +175,7 @@ export default function SidebarMenu({ isVisible, isOpen, onOpen, onClose }) {
                       className={
                         poppinsReg400.className +
                         ` ${
-                          isOpen ? "" : " hidden "
+                          isOpen ? '' : ' hidden '
                         } transition-all w-5/6 whitespace-nowrap text-sm text-EpaWhite`
                       }
                     >
@@ -183,7 +183,7 @@ export default function SidebarMenu({ isVisible, isOpen, onOpen, onClose }) {
                     </h4>
                     <div
                       className={` ${
-                        isOpen ? "ml-1" : "ml-0"
+                        isOpen ? 'ml-1' : 'ml-0'
                       } w-auto h-full  py-2`}
                     >
                       <Image
@@ -195,11 +195,11 @@ export default function SidebarMenu({ isVisible, isOpen, onOpen, onClose }) {
                     </div>
                   </Link>
                 </li>
-              );
+              )
             })}
           </ul>
         </nav>
       </div>
     </div>
-  );
+  )
 }

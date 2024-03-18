@@ -1,9 +1,9 @@
 import React from "react";
 
 const colorSet = {
-  white: "bg-white",
-  default: "bg-EpaPrimary",
-  defaultLight: "bg-EpaPrimary bg-opacity-50",
+  white: "bg-White",
+  default: "bg-Primary",
+  defaultLight: "bg-Primary bg-opacity-50",
 };
 
 const sizeSet = {

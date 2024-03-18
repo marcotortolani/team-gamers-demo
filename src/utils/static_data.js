@@ -132,7 +132,7 @@ export const CAT_MUSICA = {
     slug: 'musica',
   },
   trap: {
-    name: 'Trap/Urbano',
+    name: 'Trap',
     slug: 'musica/trap',
   },
   pop: {

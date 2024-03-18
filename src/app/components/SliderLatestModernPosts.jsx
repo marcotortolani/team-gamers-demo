@@ -2,8 +2,9 @@ import React from 'react'
 import { getPostsByCategoryId } from '@/services/api-content'
 import { getLatestPosts, cleanDataPosts } from '@/utils/functions'
 import SwiperSliderPosts from './SwiperSliderPosts'
+import SwiperSliderModernPosts from "./SwiperSliderModernPosts"
 
-export default async function SliderLatestPosts({
+export default async function SliderLatestModernPosts({
   id,
   qty,
   categorySlug,
@@ -17,14 +18,15 @@ export default async function SliderLatestPosts({
   })
 
   return (
-    <SwiperSliderPosts
+    <SwiperSliderModernPosts
       posts={latestPosts}
-      slidesPerView={1}
+      slidesPerView={1.3}
       delayPerView={3500}
-      spaceBetweenSlides={0}
+      spaceBetweenSlides={-10}
       colorBullets={'white'}
       sizeBullets={'default'}
       paginationHide={paginationHide}
+      titleOnly
     />
   )
 }

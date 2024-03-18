@@ -4,7 +4,7 @@ export function TitleSection({ icon, title, outline, borderColor }) {
     <h2
       className={` ${
         outline
-          ? 'px-4 py-[0.1rem]  bg-Black uppercase font-medium text-lg gap-3 border-[1px] rounded-full'
+          ? 'px-4 py-[0.1rem]  bg-Black uppercase font-medium text-lg gap-3 border-2 rounded-full'
           : 'text-xl gap-2'
       } ${borderColor} flex items-center justify-center  text-White `}
     >

@@ -8,10 +8,11 @@ import 'swiper/css/pagination'
 
 import PaginationBullets from './ui/PaginationBullets'
 import CardLastPost from './CardLastPost'
+import CardLastModernPost from './CardLastModernPost'
 
 SwiperCore.use([Pagination])
 
-export default function SwiperSliderPosts({
+export default function SwiperSliderModernPosts({
   posts,
   slidesPerView,
   centered,
@@ -53,11 +54,11 @@ export default function SwiperSliderPosts({
         pagination={pagination}
         modules={[Autoplay, Navigation]}
         navigation={false}
-        className="mySwiper w-full  max-w-2xl md:max-w-2xl lg:max-w-4xl h-full lg:min-h-[250px] px-0 overflow-hidden flex justify-center items-center gap-6 "
+        className="mySwiper w-full   max-w-2xl md:max-w-2xl lg:max-w-4xl h-full lg:min-h-[250px] "
       >
         {posts?.map((post) => (
-          <SwiperSlide className={` w-full h-fit`} key={post.id}>
-            <CardLastPost post={post} titleOnly={titleOnly} />
+          <SwiperSlide className={` w-full h-fit `} key={post.id}>
+            <CardLastModernPost post={post} titleOnly={titleOnly} />
           </SwiperSlide>
         ))}
       </Swiper>

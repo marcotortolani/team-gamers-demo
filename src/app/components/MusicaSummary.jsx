@@ -1,18 +1,18 @@
-import React from 'react';
+import React from 'react'
 import {
   getCategoryId,
   getVideoPostsByCategoryId,
-} from '../../services/api-content';
-import { getRandomPosts, cleanDataPosts } from '@/utils/functions';
-import { CATEGORIES, CAT_EDITORIAL } from '@/utils/static_data';
-import { PlayCircleIcon } from 'lucide-react';
-import SliderCoverLatestPosts from './SliderCoverLatestPosts';
-import ShortCardsLatestPosts from './ShortCardsLatestPosts';
-import LongCardsLatestPosts from './LongCardsLatestPosts';
+} from '../../services/api-content'
+import { getRandomPosts, cleanDataPosts } from '@/utils/functions'
+import { CATEGORIES, CAT_EDITORIAL } from '@/utils/static_data'
+import { PlayCircleIcon } from 'lucide-react'
+import SliderCoverLatestPosts from './SliderCoverLatestPosts'
+import ShortCardsLatestPosts from './ShortCardsLatestPosts'
+import LongCardsLatestPosts from './LongCardsLatestPosts'
 
 export default async function MusicaSummary() {
-  const cat = CAT_EDITORIAL.editorial;
-  const categoryID = await getCategoryId(cat.name);
+  const cat = CAT_EDITORIAL.editorial
+  const categoryID = await getCategoryId(cat.name)
 
   // const dataVideoPosts = await getVideoPostsByCategoryId({ id: categoryID });
 
@@ -24,12 +24,12 @@ export default async function MusicaSummary() {
 
   return (
     <section className=" z-50 w-screen md:w-5/6 lg:w-4/6 lg:max-w-[900px] h-fit relative top-0 flex flex-col items-center gap-8">
-      <h1 className=" px-8 py-[0.15rem] uppercase font-medium text-sm md:text-base flex items-center gap-2 bg-Secondary rounded-full">
+      <h2 className=" px-8 py-[0.15rem] uppercase font-medium text-sm md:text-base flex items-center gap-2 bg-Secondary rounded-full">
         <div className=" w-4 h-4 ">
           <PlayCircleIcon width={'100%'} height={'100%'} />
         </div>
         Música
-      </h1>
+      </h2>
 
       <article className=" ">
         <SliderCoverLatestPosts
@@ -47,6 +47,7 @@ export default async function MusicaSummary() {
           qty={4}
           categorySlug={cat.slug}
           miniCard
+          accentColor="primary"
         />
       </article>
 
@@ -55,5 +56,5 @@ export default async function MusicaSummary() {
         <LongCardsLatestPosts id={categoryID} qty={2} categorySlug={cat.slug} />
       </article>
     </section>
-  );
+  )
 }

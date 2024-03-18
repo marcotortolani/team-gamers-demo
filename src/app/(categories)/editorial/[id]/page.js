@@ -1,11 +1,11 @@
-import React from 'react';
-import { CAT_EDITORIAL } from '@/utils/static_data';
-import SectionRecommended from '@/app/components-old/SectionRecommended';
-import PagePost from '@/app/components-old/PagePost';
+import React from 'react'
+import { CAT_EDITORIAL } from '@/utils/static_data'
+import SectionRecommended from '@/app/components/SectionRecommended'
+import PagePost from '@/app/components-old/PagePost'
 
 export default function page({ params }) {
-  const { id } = params;
-  const cat = CAT_EDITORIAL.editorial;
+  const { id } = params
+  const cat = CAT_EDITORIAL.editorial
 
   return (
     <main
@@ -16,5 +16,5 @@ export default function page({ params }) {
 
       <div className="w-full h-20"></div>
     </main>
-  );
+  )
 }
