@@ -9,14 +9,25 @@ import { Gamepad2, Ticket } from 'lucide-react'
 import { Wand2 } from 'lucide-react'
 import SliderLatestTricks from '@/app/components/SliderLatestTricks'
 import CardsLatestVideosPosts from '@/app/components/CardsLatestVideoPosts'
+import { TitleSection } from '@/app/components/ui/TitleSection'
 
 export default async function page() {
   const cat = CAT_EDITORIAL.editorial
   const categoryID = await getCategoryId(cat.name)
 
-  // const dataVideoPosts = await getVideoPostsByCategoryId({ id: categoryID });
-  const videosCatID = 2
-  const dataVideoPosts = await getPostsByCategoryId({ id: videosCatID })
+  // ---- data gamers ----
+
+  // aca habria que tomar la informacion de los gamers (incluyendo la imagen destacada de cada uno)
+  // y pasarla al componente Slider, pero genera conflicto porque internamente en CardGamer
+  // tambien hay un fetch para poder conseguir una imagen en el ultimo post del gamerID
+
+  //const gamersID = await getCategoryId('videos')
+  // const { data } = await getData('categories?per_page=50')
+  // const gamersCategories = data.filter((cat) => cat.parent === gamersID)
+
+  // ----------
+
+  const dataVideoPosts = await getPostsByCategoryId({ id: categoryID })
 
   const qtyVideoElements = 10
   const randomVideoPosts = cleanDataPosts({
@@ -35,12 +46,12 @@ export default async function page() {
   return (
     <main className=" z-0 relative w-full pt-28 mb-20 px-4 flex flex-col items-center gap-2 ">
       <section className=" w-screen md:w-5/6 lg:w-4/6 lg:max-w-[900px] h-fit relative top-0 flex flex-col items-center gap-4">
-        <h2 className=" px-4 py-[0.1rem] uppercase font-medium text-lg md:text-base flex items-center gap-3 bg-Black text-White border-[1px] border-Secondary rounded-full">
-          <div className=" w-6 h-6 ">
-            <Gamepad2 width={'100%'} height={'100%'} />
-          </div>
-          Gamers
-        </h2>
+        <TitleSection
+          icon={Gamepad2}
+          title="Gamers"
+          outline
+          borderColor="border-Secondary"
+        />
         <p className=" w-full max-w-[350px] px-8 mb-4 text-White uppercase font-normal text-center">
           ¡Nuestros videos exclusivos te ayudaran a convertirte en el mejor
           gamer!
@@ -68,7 +79,7 @@ export default async function page() {
             />
             <SliderMiniVideoPosts
               sliderElements={randomVideoPostsSecondSlice}
-              slidesPerView={2.25}
+              slidesPerView={2.5}
               spaceBetweenSlides={5}
               delayPerView={2500}
               colorBullets={'default'}
@@ -96,17 +107,5 @@ export default async function page() {
         )}
       </section>
     </main>
-  )
-}
-
-export function TitleSection({ icon, title }) {
-  const Icon = icon
-  return (
-    <h2 className=" flex items-center justify-center gap-2 text-xl text-White">
-      <div className=" w-7 h-7">
-        <Icon width={'100%'} height={'100%'} />
-      </div>
-      <span className=" border-b-4 leading-6 border-b-Primary">{title}</span>
-    </h2>
   )
 }

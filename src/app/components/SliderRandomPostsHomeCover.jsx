@@ -1,36 +1,36 @@
-'use client';
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { getRandomPosts } from '@/utils/functions';
-import SwiperSliderHomeCover from './SwiperSliderHomeCover';
+'use client'
+import React from 'react'
+import { useState, useEffect } from 'react'
+import { getRandomPosts } from '@/utils/functions'
+import SwiperSliderHomeCover from './SwiperSliderHomeCover'
 
 function cleanDataPosts({ posts, catFiltered }) {
   // process the content and return an object with id, title, images array, paragraph excerpt array
-  let data = [];
+  let data = []
   for (let i = 0; i < posts.length; i++) {
-    const post = posts[i];
+    const post = posts[i]
     let imgArray = [],
-      pExcerpt = [];
-    if (!post) continue;
+      pExcerpt = []
+    if (!post) continue
     post.excerpt.rendered
       .split('</p>')
       .map((item) => item.trim())
       .filter((item) => item !== '')
       .forEach((paragraph) => {
-        pExcerpt.push(paragraph.replace(/<[^>]+>/g, ''));
-      });
+        pExcerpt.push(paragraph.replace(/<[^>]+>/g, ''))
+      })
     post.content.rendered
       .split('</p>')
       .map((item) => item.trim())
       .forEach((element) => {
         if (element.includes('<img')) {
-          const image = element.match(/src="(.*?)"/)[1].replaceAll('"', '');
-          imgArray.push(image);
+          const image = element.match(/src="(.*?)"/)[1].replaceAll('"', '')
+          imgArray.push(image)
         }
         // else if (element !== "") {
         //   pArray.push(element);
         // }
-      });
+      })
 
     data.push({
       id: post.id,
@@ -39,9 +39,10 @@ function cleanDataPosts({ posts, catFiltered }) {
       title: post.title.rendered,
       excerpt: pExcerpt[0],
       image: imgArray[0],
-    });
+    })
   }
-  return data;
+
+  return data
 }
 
 export default function SliderRandomPostsHomeCover({
@@ -49,16 +50,17 @@ export default function SliderRandomPostsHomeCover({
   qty,
   catFiltered,
 }) {
-  const [randomPosts, setRandomPosts] = useState([]);
+  const [randomPosts, setRandomPosts] = useState([])
 
   useEffect(() => {
-    if (!posts) return;
+    if (!posts) return
     const newRandomPosts = cleanDataPosts({
       posts: getRandomPosts({ posts: posts, qty: qty }),
       catFiltered: catFiltered,
-    });
-    setRandomPosts(newRandomPosts);
-  }, [posts, qty, catFiltered]);
+    })
+
+    setRandomPosts(newRandomPosts)
+  }, [posts, qty, catFiltered])
 
   return (
     <div className=" z-20 relative top-0 w-screen h-[60vh] min-h-[450px]">
@@ -71,5 +73,5 @@ export default function SliderRandomPostsHomeCover({
         sizeBullets={'default'}
       />
     </div>
-  );
+  )
 }

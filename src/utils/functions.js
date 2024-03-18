@@ -5,32 +5,32 @@ export function cleanDataPosts({
   videosCategoryID,
 }) {
   // process the content and return an object with id, title, images array, paragraph excerpt array
-  let data = [];
+  let data = []
   for (let i = 0; i < posts.length; i++) {
-    const post = posts[i];
+    const post = posts[i]
     let imgArray = [],
-      pExcerpt = [];
-    if (!post) continue;
+      pExcerpt = []
+    if (!post) continue
     post.excerpt.rendered
       .split('</p>')
       .map((item) => item.trim())
       .filter((item) => item !== '')
       .forEach((paragraph) => {
-        pExcerpt.push(paragraph.replace(/<[^>]+>/g, ''));
-      });
+        pExcerpt.push(paragraph.replace(/<[^>]+>/g, ''))
+      })
 
     post.content.rendered
       .split('</p>')
       .map((item) => item.trim())
       .forEach((element) => {
         if (element.includes('<img')) {
-          const image = element.match(/src="(.*?)"/)[1].replaceAll('"', '');
-          imgArray.push(image);
+          const image = element.match(/src="(.*?)"/)[1].replaceAll('"', '')
+          imgArray.push(image)
         }
         // else if (element !== "") {
         //   pArray.push(element);
         // }
-      });
+      })
 
     data.push({
       id: post.id,
@@ -45,68 +45,68 @@ export function cleanDataPosts({
       title: post.title.rendered,
       excerpt: pExcerpt[0],
       images: imgArray,
-    });
+    })
   }
 
-  return data;
+  return data
 }
 
 export function getRandomPosts({ posts, qty = 'all' }) {
-  if (qty === 'all' || qty > posts.length) return posts;
+  if (qty === 'all' || qty > posts.length) return posts
 
-  const elements = qty < 1 ? 1 : qty;
+  const elements = qty < 1 ? 1 : qty
 
-  let postsRandom = [];
+  let postsRandom = []
   while (postsRandom.length < elements) {
-    const index = Math.floor(Math.random() * posts.length);
+    const index = Math.floor(Math.random() * posts.length)
     if (!postsRandom.some((el) => el.id === posts[index].id)) {
-      postsRandom.push(posts[index]);
+      postsRandom.push(posts[index])
     }
   }
-  return postsRandom;
+  return postsRandom
 }
 
 export function getLatestPosts({ posts, qty = 'all' }) {
-  if (qty === 'all' || qty > posts.length) return posts;
+  if (qty === 'all' || qty > posts.length) return posts
   // take the "qty" latest
-  const latestPosts = [];
+  const latestPosts = []
   for (let i = 0; i < qty; i++) {
-    let post = posts[i];
-    if (!post) break;
-    latestPosts.push(post);
+    let post = posts[i]
+    if (!post) break
+    latestPosts.push(post)
   }
 
-  return latestPosts;
+  return latestPosts
 }
 
 export function getImageHeaderPost(postData) {
-  if (!postData) return;
+  if (!postData) return
 
-  // process the content and return an object with id, title, images array, paragraph excerpt array
-  let imgArray = [];
-
-  postData.content.rendered
+  // process the content and return the first image from an array
+  let imgArray = []
+  
+  postData?.content.rendered
     .split('</p>')
     .map((item) => item.trim())
     .forEach((element) => {
       if (element.includes('<img')) {
-        const image = element.match(/src="(.*?)"/)[1].replaceAll('"', '');
-        imgArray.push(image);
+        const image = element.match(/src="(.*?)"/)[1].replaceAll('"', '')
+        imgArray.push(image)
       }
-    });
+    })
 
-  return imgArray[imgArray.length - 1];
+  return imgArray[imgArray.length - 1]
 }
 
 export function getVimeoNumber({ string }) {
   // Expresión regular para encontrar el número después de "vimeo.com/"
-  const regex = /vimeo.com\/(\d+)/;
+  const regex = /vimeo.com\/(\d+)/
   // Aplicar la expresión regular a la cadena
   //const match = string.match(regex);
 
-  const match = string.match(/src="https:\/\/player.vimeo.com\/video\/(\d+)\?/);
+  const match = string.match(/src="https:\/\/player.vimeo.com\/video\/(\d+)\?/)
   // Verificar si se encontró el número
-  return match && match[1] ? match[1] : null;
+  return match && match[1] ? match[1] : null
 }
 
 export function cleanDataSearch() {}

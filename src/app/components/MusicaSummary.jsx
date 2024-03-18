@@ -14,13 +14,13 @@ export default async function MusicaSummary() {
   const cat = CAT_EDITORIAL.editorial;
   const categoryID = await getCategoryId(cat.name);
 
-  const dataVideoPosts = await getVideoPostsByCategoryId({ id: categoryID });
+  // const dataVideoPosts = await getVideoPostsByCategoryId({ id: categoryID });
 
-  const qtyVideoElements = 4;
-  const randomVideoPosts = cleanDataPosts({
-    posts: getRandomPosts({ posts: dataVideoPosts, qty: qtyVideoElements }),
-    categorySlug: cat.slug,
-  });
+  // const qtyVideoElements = 4;
+  // const randomVideoPosts = cleanDataPosts({
+  //   posts: getRandomPosts({ posts: dataVideoPosts, qty: qtyVideoElements }),
+  //   categorySlug: cat.slug,
+  // });
 
   return (
     <section className=" z-50 w-screen md:w-5/6 lg:w-4/6 lg:max-w-[900px] h-fit relative top-0 flex flex-col items-center gap-8">

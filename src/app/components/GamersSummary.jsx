@@ -1,17 +1,18 @@
-import React from 'react';
+import React from 'react'
 import {
   getCategoryId,
   getVideoPostsByCategoryId,
   getPostsByCategoryId,
-} from '../../services/api-content';
-import { getRandomPosts, cleanDataPosts } from '@/utils/functions';
-import { CAT_GAMERS, CAT_EDITORIAL } from '@/utils/static_data';
-import { Gamepad2, Ticket, Wand2 } from 'lucide-react';
-import SliderGamers from './SliderGamers';
-import SliderLatestPosts from './SliderLatestPosts';
-import SliderMiniVideoPosts from './SliderMiniVideoPosts';
-import SliderLatestTricks from './SliderLatestTricks';
-import CardsLatestVideosPosts from './CardsLatestVideoPosts';
+} from '../../services/api-content'
+import { getRandomPosts, cleanDataPosts } from '@/utils/functions'
+import { CAT_GAMERS, CAT_EDITORIAL } from '@/utils/static_data'
+import { Gamepad2, Ticket, Wand2 } from 'lucide-react'
+import SliderGamers from './SliderGamers'
+import SliderLatestPosts from './SliderLatestPosts'
+import SliderMiniVideoPosts from './SliderMiniVideoPosts'
+import SliderLatestTricks from './SliderLatestTricks'
+import CardsLatestVideosPosts from './CardsLatestVideoPosts'
+import { TitleSection } from "./ui/TitleSection"
 
 const randomVideoElements = [
   {
@@ -56,23 +57,22 @@ const randomVideoElements = [
     excerpt: '',
     images: ['/assets/Img-webp-TG/Eventos-Card2.webp'],
   },
-];
+]
 
 export default async function GamersSummary() {
   // const cat = CATEGORIES.bienestar;
-  const cat = CAT_EDITORIAL.editorial;
-  const categoryID = await getCategoryId(cat.name);
+  const cat = CAT_EDITORIAL.editorial
+  const categoryID = await getCategoryId(cat.name)
 
   // const dataVideoPosts = await getVideoPostsByCategoryId({ id: categoryID });
-  const videosCatID = 2;
-  const dataVideoPosts = await getPostsByCategoryId({ id: videosCatID });
+  const videosCatID = 2
+  const dataVideoPosts = await getPostsByCategoryId({ id: videosCatID })
 
-  const qtyVideoElements = 4;
+  const qtyVideoElements = 4
   const randomVideoPosts = cleanDataPosts({
     posts: getRandomPosts({ posts: dataVideoPosts, qty: qtyVideoElements }),
     categorySlug: cat.slug,
-  });
-
+  })
 
   return (
     <section className=" z-50 w-screen md:w-5/6 lg:w-4/6 lg:max-w-[900px] h-fit relative top-0 flex flex-col items-center">
@@ -131,5 +131,5 @@ export default async function GamersSummary() {
         />
       )}
     </section>
-  );
+  )
 }

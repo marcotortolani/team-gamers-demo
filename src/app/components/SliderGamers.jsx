@@ -1,6 +1,7 @@
 'use client'
-import React, { useRef } from 'react'
-import { CardGamer } from "./CardGamer"
+import React, { useRef, useState, useEffect } from 'react'
+import { getCategoryId, getData } from '@/services/api-content'
+import { CardGamer } from './CardGamer'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Autoplay, Navigation } from 'swiper/modules'
 import SwiperCore from 'swiper'
@@ -56,6 +57,21 @@ const SPACE_BETWEEN_SLIDES = 0
 
 export default function SliderGamers({ miniCards }) {
   const sliderRef = useRef(0)
+  const [dataGamers, setDataGamers] = useState([])
+
+  // esto asi no se puede hacer, es una doble peticion a la API
+  // esto se debe a que "GAMERS" ("videos" hasta ahora) esta
+  // creado como categoria pero no tiene TAG asignado
+  // y no hay endpoint en la api para traer categorias 
+  // filtrando por TAG
+  
+  // const gamersID = await getCategoryId('videos')
+  // const { data } = await getData('categories?per_page=50')
+  // const gamersCategories = data.filter((cat) => cat.parent === gamersID)
+
+  useEffect(() => {
+    
+  }, [])
 
   return (
     <div className=" z-30 w-screen h-fit flex flex-col items-center justify-end overflow-hidden ">
@@ -63,7 +79,7 @@ export default function SliderGamers({ miniCards }) {
         ref={sliderRef}
         slidesPerView={miniCards ? SLIDES_PER_VIEW : 1.8}
         centeredSlides={miniCards ? false : true}
-        spaceBetween={miniCards ? SPACE_BETWEEN_SLIDES :20}
+        spaceBetween={miniCards ? SPACE_BETWEEN_SLIDES : 20}
         autoplay={{
           delay: DELAY_PER_VIEW,
           disableOnInteraction: false,
@@ -77,7 +93,7 @@ export default function SliderGamers({ miniCards }) {
             className=" relative pb-4 w-full h-full  cursor-pointer"
             key={gamerData.id}
           >
-           <CardGamer gamerData={gamerData} miniCard={miniCards} />
+            <CardGamer gamerData={gamerData} miniCard={miniCards} />
           </SwiperSlide>
         ))}
       </Swiper>

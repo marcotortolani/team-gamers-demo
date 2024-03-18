@@ -1,4 +1,4 @@
-import { API_CONTENT } from '../config/config';
+import { API_CONTENT } from '../config/config'
 
 export async function getData(slug) {
   const res = await fetch(API_CONTENT + slug, {
@@ -7,59 +7,91 @@ export async function getData(slug) {
     headers: {
       'Content-Type': 'application/json',
     },
-  });
+  })
+
+  const data = await res.json()
 
   if (!res.ok) {
-    throw new Error(`Error ${res.status}: ${res.statusText}`);
+    throw new Error(`Error ${res.status}: ${res.statusText}`)
   }
-  return res.json();
+
+  const totalPages = res.headers.get('X-WP-TotalPages')
+    ? res.headers.get('X-WP-TotalPages')
+    : 0
+
+  return {
+    data,
+    pages: totalPages,
+  }
 }
 
 export async function getDataPostById(id) {
-  const data_post = await getData(`posts/${id}`);
-  return data_post;
+  const { data } = await getData(`posts/${id}`)
+  return data
 }
 
 export async function getDataCategoryByPostId(id) {
-  const data_category = await getData(`categories?post=${id}`);
-  return data_category;
+  const { data } = await getData(`categories?post=${id}`)
+  return data
 }
 
 export async function getCategoryId(categoryName) {
-  const data_categs = await getData('categories?per_page=30');
+  const { data } = await getData('categories?per_page=30')
 
-  let categoryId;
+  let categoryId
 
-  data_categs?.map((cat) => {
+  data?.map((cat) => {
     if (cat.name.toLowerCase() === categoryName.toLowerCase()) {
-      categoryId = cat.id;
+      categoryId = cat.id
     }
-  });
-  return categoryId;
+  })
+  return categoryId
 }
 
-export async function getPostsByCategoryId({ id, tagExclude = 0 }) {
-  const perPage = 50;
-  const data_posts = await getData(
+export async function getPostsByCategoryId({
+  id,
+  perPage = 50,
+  tagExclude = 0,
+}) {
+  const { data } = await getData(
     `posts?per_page=${perPage}&categories=${id}&tags_exclude=${tagExclude}`
-  );
-  return data_posts;
+  )
+  return data
+}
+
+export async function getPostsByPageByCategoryId({
+  id,
+  page = 1,
+  perPage = 10,
+  tagExclude = 0,
+}) {
+  const { data, pages } = await getData(
+    `posts?per_page=${perPage}&page=${page}&categories=${id}&tags_exclude=${tagExclude}`
+  )
+
+  return { data, pages }
 }
 
 export async function getVideoPostsByCategoryId({ id, tagID = 2 }) {
-  const perPage = 50;
-  const data_posts = await getData(
+  const perPage = 50
+  const { data } = await getData(
     `posts?per_page=${perPage}&categories=${id}&parent=${tagID}`
-  );
-  return data_posts;
+  )
+  return data
 }
 
 export async function searchData(slug) {
-  const data = await getData(`posts?search=${slug}`);
-  return data;
+  const { data } = await getData(`posts?search=${slug}`)
+  return data
 }
 
 export async function getCategoryNameByPostId(id) {
-  const data = await getData(`categories?post=${id}`);
-  return data[0].name.toLowerCase();
+  const { data } = await getData(`categories?post=${id}`)
+  return data[0].name.toLowerCase()
+}
+
+export async function getCategoryNameById(id) {
+  const { data } = await getData(`categories/${id}`)
+
+  return data.name
 }

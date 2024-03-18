@@ -9,7 +9,6 @@ export default function Footer() {
   return (
     <footer
       className={
-        poppinsReg400.className +
         ` w-full min-h-[160px] max-h-[280px] py-4 mb-20 bg-Primary  flex flex-col items-center justify-around gap-2`
       }
     >

@@ -4,7 +4,6 @@ import { cleanDataPosts } from '@/utils/functions.js';
 import ShortCard from "./ShortCard.jsx";
 
 export default async function CardsVideoPosts({ id }) {
-  //const qtyVideoElements = 4;
   const dataVideoPosts = await getVideoPostsByCategoryId({ id });
 
   const dataVideoPostsCleaned = cleanDataPosts({
