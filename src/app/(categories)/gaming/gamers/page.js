@@ -4,23 +4,17 @@ import { Gamepad2 } from 'lucide-react'
 import CardsGamers from '@/app/components/CardsGamers'
 import { TitleSection } from '@/app/components/ui/TitleSection'
 
-// function cleanDataCategories({ dataCategories }) {
-//   return dataCategories.map((category) => ({
-//     id: category.id,
-//     name: category.name,
-//     slug: category.slug,
-//   }))
-// }
-
 export default async function GamersPage() {
-  const gamersID = await getCategoryId('videos')
-  const { data } = await getData('categories?per_page=50')
-  const gamersCategories = data.filter((cat) => cat.parent === gamersID)
+  // este nombre de categoria en realidad es "gamers" pero no
+  // esta funcionando, puede ser algo de cache en los cambios
+  const gamersID = await getCategoryId('gamers')
+  const { data } = await getData(
+    `categories?parent=${gamersID}&per_page=30`
+  )
 
   return (
     <main className=" z-0 relative w-full pt-28 mb-24 px-4 flex flex-col items-center gap-2 ">
       <section className=" w-screen md:w-5/6 lg:w-4/6 lg:max-w-[900px] h-fit relative top-0 flex flex-col items-center gap-4">
-
         <TitleSection
           icon={Gamepad2}
           title="Gamers"
@@ -32,7 +26,7 @@ export default async function GamersPage() {
           gamer!
         </p>
 
-        <CardsGamers gamersData={gamersCategories} path={'/gaming/gamers/'} />
+        <CardsGamers gamersData={data} path={'/gaming/gamers/'} />
       </section>
     </main>
   )

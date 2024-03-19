@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { getPostsByPageByCategoryId, getData } from '@/services/api-content'
 import { cleanDataPosts } from '@/utils/functions'
 import { CardVideo } from './CardVideo'
+import Pagination from "./ui/Pagination"
 
 export default function GamerPosts({ dataPosts, pagesPosts, gamerID }) {
   const [currentPage, setCurrentPage] = useState(1)
@@ -97,19 +98,7 @@ export default function GamerPosts({ dataPosts, pagesPosts, gamerID }) {
         </div>
       )}
 
-      <div className="  w-full mt-6 px-4 flex items-center justify-center gap-1 xs:gap-2">
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            className={`${
-              currentPage === index + 1 ? 'bg-Secondary' : 'bg-gray-100'
-            } w-5 h-5 text-xs aspect-square xs:w-6 xs:h-6 xs:text-sm rounded-full text-Black`}
-            key={index + 1}
-            onClick={() => setCurrentPage(index + 1)}
-          >
-            {index + 1}
-          </button>
-        ))}
-      </div>
+      <Pagination page={currentPage} pages={totalPages} />
     </section>
   )
 }

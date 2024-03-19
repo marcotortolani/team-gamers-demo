@@ -55,24 +55,9 @@ const SLIDES_PER_VIEW = 3.25
 const DELAY_PER_VIEW = 2500
 const SPACE_BETWEEN_SLIDES = 0
 
-export default function SliderGamers({ miniCards }) {
+export default function SliderGamers({ gamersData, miniCards }) {
   const sliderRef = useRef(0)
-  const [dataGamers, setDataGamers] = useState([])
-
-  // esto asi no se puede hacer, es una doble peticion a la API
-  // esto se debe a que "GAMERS" ("videos" hasta ahora) esta
-  // creado como categoria pero no tiene TAG asignado
-  // y no hay endpoint en la api para traer categorias 
-  // filtrando por TAG
   
-  // const gamersID = await getCategoryId('videos')
-  // const { data } = await getData('categories?per_page=50')
-  // const gamersCategories = data.filter((cat) => cat.parent === gamersID)
-
-  useEffect(() => {
-    
-  }, [])
-
   return (
     <div className=" z-30 w-screen h-fit flex flex-col items-center justify-end overflow-hidden ">
       <Swiper
@@ -88,12 +73,12 @@ export default function SliderGamers({ miniCards }) {
         navigation={false}
         className="mySwiper w-full h-full overflow-hidden "
       >
-        {GAMERS_CARD.map((gamerData) => (
+        {gamersData?.map((gamerData) => (
           <SwiperSlide
             className=" relative pb-4 w-full h-full  cursor-pointer"
             key={gamerData.id}
           >
-            <CardGamer gamerData={gamerData} miniCard={miniCards} />
+            <CardGamer path="/gaming/gamers" gamerData={gamerData} miniCard={miniCards} />
           </SwiperSlide>
         ))}
       </Swiper>

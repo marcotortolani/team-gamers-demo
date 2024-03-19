@@ -5,7 +5,7 @@ import {
 } from '@/services/api-content'
 import { cleanDataPosts } from '@/utils/functions'
 import { CATEGORIES } from '@/utils/static_data'
-import Pagination from './Pagination'
+import Pagination from '../../../components/ui/Pagination'
 import { CardVideo } from '@/app/components/CardVideo'
 
 export default async function VideosByPage({ params }) {

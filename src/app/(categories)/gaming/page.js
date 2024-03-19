@@ -3,7 +3,7 @@ import SliderGamers from '@/app/components/SliderGamers'
 import SliderLatestPosts from '@/app/components/SliderLatestPosts'
 import SliderMiniVideoPosts from '@/app/components/SliderMiniVideoPosts'
 import { CAT_EDITORIAL } from '@/utils/static_data'
-import { getCategoryId, getPostsByCategoryId } from '@/services/api-content'
+import { getCategoryId, getData, getPostsByCategoryId } from '@/services/api-content'
 import { cleanDataPosts, getRandomPosts } from '@/utils/functions'
 import { Gamepad2, Ticket } from 'lucide-react'
 import { Wand2 } from 'lucide-react'
@@ -14,6 +14,9 @@ import { TitleSection } from '@/app/components/ui/TitleSection'
 export default async function page() {
   const cat = CAT_EDITORIAL.editorial
   const categoryID = await getCategoryId(cat.name)
+
+  const gamersID = await getCategoryId('gamers')
+  const gamersRes = await getData(`categories?parent=${gamersID}&per_page=30`)
 
   // ---- data gamers ----
 
@@ -56,7 +59,7 @@ export default async function page() {
           ¡Nuestros videos exclusivos te ayudaran a convertirte en el mejor
           gamer!
         </p>
-        <SliderGamers />
+        <SliderGamers gamersData={gamersRes?.data} />
       </section>
 
       <section className=" mt-6 w-full py-2 flex flex-col items-center gap-4">

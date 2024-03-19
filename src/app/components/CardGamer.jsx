@@ -9,13 +9,13 @@ export async function CardGamer({ path, gamerData, miniCard }) {
   // Hay que arreglar esto, para poder obtener la imagen el componente va a hacer
   // 1 petición por cada gamer, cada vez que se utilice este componente
 
-  let gamerImage = ''
-  if (!gamerData.imgSrc) {
-    const { data } = await getData(
-      `posts?per_page=1&categories=${gamerData.id}`
-    )
-    gamerImage = getImageHeaderPost(data[0])
-  }
+  // let gamerImage = ''
+  // if (!gamerData.imgSrc) {
+  //   const { data } = await getData(
+  //     `posts?per_page=1&categories=${gamerData.id}`
+  //   )
+  //   gamerImage = getImageHeaderPost(data[0])
+  // }
 
   return (
     <Link
@@ -29,7 +29,7 @@ export async function CardGamer({ path, gamerData, miniCard }) {
             : 'w-full max-w-[200px] aspect-[3/4] border-[6px]'
         } relative border-Secondary h-full bg-Secondary rounded-xl`}
       >
-        {gamerData && (
+        {/* {gamerData && (
           <Image
             className={` absolute object-cover object-center w-full h-full rounded-[inherit]`}
             fill
@@ -37,7 +37,7 @@ export async function CardGamer({ path, gamerData, miniCard }) {
             alt={`Imágen de ${gamerData.name}`}
             loading="eager"
           />
-        )}
+        )} */}
       </div>
 
       <div
