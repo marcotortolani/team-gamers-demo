@@ -4,13 +4,13 @@ import {
   getCategoryId,
 } from '@/services/api-content'
 import { cleanDataPosts } from '@/utils/functions'
-import { CATEGORIES } from '@/utils/static_data'
+import { CATEGORIES, CAT_GAMERS } from '@/utils/static_data'
 import Pagination from '../../../components/ui/Pagination'
 import { CardVideo } from '@/app/components/CardVideo'
 
 export default async function VideosByPage({ params }) {
   const { page } = params
-  const cat = CATEGORIES.videos
+  const cat = CAT_GAMERS.gamers
   const categoryID = await getCategoryId(cat.name)
   const { data, pages } = await getPostsByPageByCategoryId({
     id: categoryID,

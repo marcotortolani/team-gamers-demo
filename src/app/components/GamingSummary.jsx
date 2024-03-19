@@ -66,7 +66,7 @@ export default async function GamingSummary() {
   const categoryID = await getCategoryId(cat.name)
 
   const gamersID = await getCategoryId('gamers')
-  const gamersRes = await getData(`categories?parent=${gamersID}&per_page=30`)
+  const gamersRes = await getData(`categories?parent=${gamersID}&per_page=10`)
 
   // const dataVideoPosts = await getVideoPostsByCategoryId({ id: categoryID });
   const videosCatID = 2

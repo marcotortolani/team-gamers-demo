@@ -2,14 +2,14 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
-export default function Pagination({ page, pages = 1 }) {
+export default function Pagination({ path, page, pages = 1 }) {
   const router = useRouter()
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(parseInt(pages))
 
   function handlePagination(page) {
     if (page === currentPage) return
-    router.push(`/videos/${page}`)
+    router.push(`${path}/${page}`)
   }
 
   useEffect(() => {

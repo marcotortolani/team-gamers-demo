@@ -7,12 +7,12 @@ import { Gamepad2 } from 'lucide-react'
 import GamerPosts from '@/app/components/GamerPosts'
 
 export default async function page({ params }) {
-  const { id } = params
+  const { gamer_id, page } = params
   let gamerName = ''
   let response
-  if (id) {
-    gamerName = await getCategoryNameById(id)
-    response = await getPostsByPageByCategoryId({ id: id })
+  if (gamer_id) {
+    gamerName = await getCategoryNameById(gamer_id)
+    response = await getPostsByPageByCategoryId({ id: gamer_id, page: page })
   }
   const { data, pages } = response
 
@@ -25,7 +25,7 @@ export default async function page({ params }) {
           </div>
           {gamerName ? gamerName : 'No-name'}
         </h2>
-        <GamerPosts dataPosts={data} pagesPosts={pages} gamerID={id} />
+        <GamerPosts path={`/gaming/gamers/${gamer_id}`} dataPosts={data} page={page} pagesPosts={pages} gamerID={gamer_id} />
       </div>
     </div>
   )

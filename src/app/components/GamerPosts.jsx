@@ -1,13 +1,16 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import { getPostsByPageByCategoryId, getData } from '@/services/api-content'
 import { cleanDataPosts } from '@/utils/functions'
 import { CardVideo } from './CardVideo'
-import Pagination from "./ui/Pagination"
+import Pagination from './ui/Pagination'
 
-export default function GamerPosts({ dataPosts, pagesPosts, gamerID }) {
-  const [currentPage, setCurrentPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(0)
+export default function GamerPosts({
+  path,
+  dataPosts,
+  page,
+  pagesPosts,
+  gamerID,
+}) {
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState(null)
 
@@ -17,60 +20,8 @@ export default function GamerPosts({ dataPosts, pagesPosts, gamerID }) {
       const dataCleaned = cleanDataPosts({ posts: dataPosts })
       setData(dataCleaned)
       setIsLoading(false)
-      
     }
-    if (totalPages === 0) {
-      setTotalPages(parseInt(pagesPosts))
-    }
-    if (currentPage > 1) {
-      console.log('Fetching nueva pagina')
-      fetch(
-        'http://content.ve.movistar.teamgamers.moob.club/wp-json/wp/v2/posts?categories=2',
-        {
-          method: 'GET',
-          mode: 'cors',
-          headers: {
-            Accept: 'application/json',
-          },
-        }
-      )
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error('Network response was not OK')
-          }
-          return res.json()
-        })
-        .then((data) => {
-          console.log(data)
-          setData(data)
-        })
-        .catch((err) => {
-          console.log('Error fetching data: ', err)
-        })
-        .finally(setIsLoading(false))
-      // getData('posts?categories=52')
-      //   .then((res) => {
-      //     if (!res.ok) {
-      //       throw new Error('Network response was not OK')
-      //     }
-      //     return res.json()
-      //   })
-      //   .then((data) => {
-      //     console.log(data)
-      //     setData(data)
-      //   })
-      //   .catch((err) => {
-      //     console.log('Error fetching data: ', err)
-      //   })
-      //   .finally(setIsLoading(false))
-      // getPostsByPageByCategoryId({ id: gamerID, page: currentPage })
-      //   .then((res) => res.json())
-      //   .then((data) => {
-      //     console.log(data)
-      //     setData(data)
-      //   })
-    }
-  }, [currentPage])
+  }, [])
 
   return (
     <section className=" relative w-full h-full min-h-40 flex flex-col items-center">
@@ -81,7 +32,10 @@ export default function GamerPosts({ dataPosts, pagesPosts, gamerID }) {
               key={post.id}
               className={` w-full h-full col-span-1 row-span-1  relative flex flex-col items-center justify-center rounded-lg md:rounded-xl lg:rounded-2xl`}
             >
-              {/* <CardVideo post={post} href={`/gaming/gamers/video/${post.id}`} /> */}
+              <CardVideo
+                post={post}
+                href={`/gaming/gamers/${gamerID}/video/${post.id}`}
+              />
             </li>
           ))}
         </ul>
@@ -98,7 +52,7 @@ export default function GamerPosts({ dataPosts, pagesPosts, gamerID }) {
         </div>
       )}
 
-      <Pagination page={currentPage} pages={totalPages} />
+      {page && <Pagination path={path} page={page} pages={pagesPosts} />}
     </section>
   )
 }
