@@ -14,7 +14,7 @@ export default async function PostsGamerPage({ params }) {
     <main className=" z-0 mt-36 w-full  h-[70vh] px-4 flex flex-col items-center justify-between ">
       <div className=" w-full md:w-5/6 lg:w-4/6 lg:max-w-[900px] flex flex-col items-center">
         <div
-          className={` bg-EpaPostButton w-full h-[10vh] min-h-[80px] max-h-[100px] sm:max-h-[150px] mb-4 relative flex flex-col items-center justify-center rounded-lg lg:rounded-xl`}
+          className={` bg-Secondary w-full h-[10vh] min-h-[80px] max-h-[100px] sm:max-h-[150px] mb-4 relative flex flex-col items-center justify-center rounded-lg lg:rounded-xl`}
         >
           {imageHeader && (
             <div className="absolute w-full h-full rounded-[inherit]">

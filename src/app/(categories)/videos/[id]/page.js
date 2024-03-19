@@ -1,20 +1,20 @@
-import React from "react";
-import Image from "next/image";
-import { getDataPostById } from "@/services/api-content";
-import { getVimeoNumber, getImageHeaderPost } from "@/utils/functions";
-import ReactHtmlParser from "react-html-parser";
+import React from 'react'
+import Image from 'next/image'
+import { getDataPostById } from '@/services/api-content'
+import { getVimeoNumber, getImageHeaderPost } from '@/utils/functions'
+import ReactHtmlParser from 'react-html-parser'
 
-export default async function VideoReceta({ params }) {
-  const { id } = params;
-  const dataVideo = await getDataPostById(id);
-  const imageHeader = getImageHeaderPost(dataVideo);
-  const vimeoNumber = getVimeoNumber({ string: dataVideo?.content.rendered });
+export default async function VideoPageByID({ params }) {
+  const { id } = params
+  const dataVideo = await getDataPostById(id)
+  const imageHeader = getImageHeaderPost(dataVideo)
+  const vimeoNumber = getVimeoNumber({ string: dataVideo?.content.rendered })
 
   return (
     <main className=" z-0 mt-36 w-full   h-full min-h-screen px-4 flex flex-col items-center justify-between ">
       <div className=" w-full md:w-5/6 lg:w-4/6 lg:max-w-[900px] flex flex-col items-center">
         <div
-          className={` bg-EpaPostButton w-full h-[20vh] min-h-[100px] max-h-[120px] sm:max-h-[150px] mb-4 relative flex flex-col items-center justify-center rounded-lg lg:rounded-xl`}
+          className={` bg-Secondary w-full h-[10vh] min-h-[80px] max-h-[100px] sm:max-h-[150px] mb-4 relative flex flex-col items-center justify-center rounded-lg lg:rounded-xl`}
         >
           {imageHeader && (
             <div className="absolute w-full h-full rounded-[inherit]">
@@ -29,12 +29,10 @@ export default async function VideoReceta({ params }) {
             </div>
           )}
 
-          <div className=" z-10 absolute top-0 w-full h-full bg-black opacity-30 line-clamp-1 content-normal rounded-[inherit]" />
+          <div className=" z-10 absolute top-0 w-full h-full bg-black opacity-50 shadow-inner shadow-Secondary line-clamp-1 content-normal rounded-[inherit]" />
           <div className=" z-20 w-full h-full py-[2%] flex flex-col items-center justify-end gap-8 absolute top-0">
             <h3
-              className={
-                ` w-full px-6 text-left text-lg md:text-xl lg:text-2xl xl:text-3xl text-EpaWhite text-shadow-sm leading-5 line-clamp-2 shadow-black`
-              }
+              className={` w-full px-6 text-White text-left text-xl md:text-xl lg:text-2xl xl:text-3xl text-shadow-sm line-clamp-2 shadow-black`}
             >
               {ReactHtmlParser(dataVideo?.title.rendered)}
             </h3>
@@ -45,7 +43,7 @@ export default async function VideoReceta({ params }) {
           {vimeoNumber && (
             <iframe
               src={
-                "https://player.vimeo.com/video/" +
+                'https://player.vimeo.com/video/' +
                 vimeoNumber +
                 `?background=0&badge=1&autoplay=0&autopause=1&byline=0&controls=1&pip=none&quality_selector=0`
               }
@@ -64,5 +62,5 @@ export default async function VideoReceta({ params }) {
         </div>
       </div>
     </main>
-  );
+  )
 }
