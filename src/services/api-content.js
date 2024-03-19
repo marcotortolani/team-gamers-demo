@@ -2,6 +2,7 @@ import { API_CONTENT } from '../config/config'
 
 export async function getData(slug) {
   const res = await fetch(API_CONTENT + slug, {
+    method: 'GET',
     mode: 'cors',
     credentials: 'omit',
     headers: {

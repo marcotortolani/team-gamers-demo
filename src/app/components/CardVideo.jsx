@@ -6,18 +6,20 @@ import { PlayCircleIcon } from 'lucide-react'
 import ImageMissing from './ImageMissing'
 
 export function CardVideo({ post, href, verticalAspect }) {
+  
   return (
     <Link className="w-full h-full" href={href}>
       <div className=" relative z-0 w-full h-full rounded-xl md:rounded-2xl lg:rounded-3xl">
-        {post.images.length > 0 ? (
+        {post?.images.length > 0 ? (
           <Image
             className={`${
               verticalAspect ? 'aspect-[5/6]' : 'aspect-[4/3]'
             } relative w-full object-cover rounded-[inherit] cursor-default pointer-events-none select-none`}
-            width={220}
-            height={220}
-            src={post.images[0]}
-            alt={`Image ${post.title}`}
+            width={200}
+            height={80}
+            src={post?.images[0]}
+            loading="lazy"
+            alt={`Image ${post?.title}`}
           />
         ) : (
           <ImageMissing />
@@ -35,7 +37,7 @@ export function CardVideo({ post, href, verticalAspect }) {
           } absolute bottom-3 w-5/6 text-Black line-clamp-1 uppercase font-medium text-start  pointer-events-none select-none`}
         >
           <span className=" px-2 pr-3 bg-White/80 box-decoration-clone leading-[1.2rem]">
-            {ReactHtmlParser(post.title)}
+            {ReactHtmlParser(post?.title)}
           </span>
         </h3>
       </div>
