@@ -3,7 +3,7 @@ import { getData } from '@/services/api-content'
 import { CATEGORIES } from '@/utils/static_data'
 
 import SliderRandomPostsHomeCover from './components/SliderRandomPostsHomeCover'
-import GamersSummary from './components/GamersSummary'
+import GamingSummary from './components/GamingSummary'
 import EditorialesSummary from './components/EditorialesSummary'
 import MusicaSummary from './components/MusicaSummary'
 import { cleanDataPosts } from '@/utils/functions'
@@ -37,7 +37,7 @@ export default async function Home() {
         catFiltered={categoriesIDFiltered}
       />
 
-      <GamersSummary />
+      <GamingSummary />
       <EditorialesSummary />
       <MusicaSummary />
       <div className="w-full h-16"></div>
