@@ -37,21 +37,20 @@ export async function getDataCategoryByPostId(id) {
 }
 
 export async function getCategoryId(categoryName) {
-  const { data } = await getData('categories?per_page=30')
+  const { data } = await getData(`categories?search=${categoryName}`)
 
-  let categoryId
+  const categoryLink = data[0]._links.self[0].href.split('/')
+  const categoryLinkLength = categoryLink.length
 
-  data?.map((cat) => {
-    if (cat.name.toLowerCase() === categoryName.toLowerCase()) {
-      categoryId = cat.id
-    }
-  })
-  return categoryId
+  const categoryID = parseInt(
+    categoryLink.slice(categoryLinkLength - 1, categoryLinkLength)[0]
+  )
+  return categoryID
 }
 
 export async function getPostsByCategoryId({
   id,
-  perPage = 50,
+  perPage = 10,
   tagExclude = 0,
 }) {
   const { data } = await getData(
