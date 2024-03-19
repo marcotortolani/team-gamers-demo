@@ -3,6 +3,7 @@ import {
   getCategoryId,
   getVideoPostsByCategoryId,
   getPostsByCategoryId,
+  getData,
 } from '../../services/api-content'
 import { getRandomPosts, cleanDataPosts } from '@/utils/functions'
 import { CAT_GAMERS, CAT_EDITORIAL } from '@/utils/static_data'
@@ -12,7 +13,7 @@ import SliderLatestPosts from './SliderLatestPosts'
 import SliderMiniVideoPosts from './SliderMiniVideoPosts'
 import SliderLatestTricks from './SliderLatestTricks'
 import CardsLatestVideosPosts from './CardsLatestVideoPosts'
-import { TitleSection } from "./ui/TitleSection"
+import { TitleSection } from './ui/TitleSection'
 
 const randomVideoElements = [
   {
@@ -59,10 +60,13 @@ const randomVideoElements = [
   },
 ]
 
-export default async function GamersSummary() {
+export default async function GamingSummary() {
   // const cat = CATEGORIES.bienestar;
   const cat = CAT_EDITORIAL.editorial
   const categoryID = await getCategoryId(cat.name)
+
+  const gamersID = await getCategoryId('gamers')
+  const gamersRes = await getData(`categories?parent=${gamersID}&per_page=30`)
 
   // const dataVideoPosts = await getVideoPostsByCategoryId({ id: categoryID });
   const videosCatID = 2
@@ -84,7 +88,11 @@ export default async function GamersSummary() {
       </h1>
 
       {/* Slider fotos de NUESTROS GAMERS */}
-      <SliderGamers miniCards />
+      <SliderGamers
+        path="/gaming/gamers"
+        gamersData={gamersRes?.data}
+        miniCards
+      />
       <p className=" w-full max-w-[350px] px-8 mb-4 text-White uppercase font-normal text-center">
         ¡Nuestros videos exclusivos te ayudaran a convertirte en el mejor gamer!
       </p>
