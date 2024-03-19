@@ -63,7 +63,7 @@ export default function Header() {
         lowerPosition >= 50
           ? 'bg-white/20 shadow-md backdrop-filter backdrop-blur-md ring-1 ring-gray-600'
           : 'bg-transparent'
-      }  rounded-b-xl  pb-2 transition-all duration-200 ease-in-out z-20 fixed lg:top-0 lg:absolute w-full h-fit flex justify-center`}
+      } z-50  rounded-b-xl  pb-2 transition-all duration-200 ease-in-out fixed lg:top-0 lg:absolute w-full h-fit flex justify-center`}
     >
       <div className=" absolute top-4 lg:top-0 w-screen h-20 hidden lg:flex items-center justify-evenly bg-Primary shadow-md shadow-gray-800  rounded-b-2xl">
         <div className=" w-1/6 h-full flex items-center justify-center  cursor-default pointer-events-none">

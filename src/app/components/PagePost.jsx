@@ -1,26 +1,26 @@
-import React from 'react';
-import Image from 'next/image';
-import ReactHtmlParser from 'react-html-parser';
-import { cleanDataPosts } from '@/utils/functions';
+import React from 'react'
+import Image from 'next/image'
+import ReactHtmlParser from 'react-html-parser'
+import { cleanDataPosts } from '@/utils/functions'
 import {
   getDataPostById,
   getDataCategoryByPostId,
-} from '@/services/api-content';
+} from '@/services/api-content'
 
-import { poppinsReg500 } from '@/utils/fonts';
-import ImageMissing from '../components/ImageMissing';
-import ButtonLikeFav from '../components/ui/ButtonLikeFav';
+import { poppinsReg500 } from '@/utils/fonts'
+import ImageMissing from './ImageMissing'
+import ButtonLikeFav from './ui/ButtonLikeFav'
 
 export default async function PagePost({ id }) {
-  const dataPost = await getDataPostById(id);
-  const categoryData = await getDataCategoryByPostId(id);
+  const dataPost = await getDataPostById(id)
+  const categoryData = await getDataCategoryByPostId(id)
 
-  const contentPostParsed = ReactHtmlParser(dataPost?.content.rendered);
+  const contentPostParsed = ReactHtmlParser(dataPost?.content.rendered)
 
   const post = cleanDataPosts({
     posts: new Array(dataPost),
     categorySlug: categoryData[0].slug,
-  });
+  })
 
   return (
     <section className=" w-full md:w-5/6 lg:w-4/6 lg:max-w-[900px] flex flex-col items-center gap-4">
@@ -38,7 +38,7 @@ export default async function PagePost({ id }) {
             />
           </div>
         ) : (
-          <ImageMissing text={''} colorBg={'bg-EpaPrimary'} />
+          <ImageMissing text={''} colorBg={'bg-Primary'} />
         )}
         <div className=" z-10 absolute top-0 w-full h-full bg-black opacity-30 line-clamp-1 content-normal rounded-[inherit]" />
         <div className=" z-20 w-full h-full py-[2%] flex flex-col items-center justify-end gap-8 absolute top-0">
@@ -59,5 +59,5 @@ export default async function PagePost({ id }) {
         {contentPostParsed}
       </div>
     </section>
-  );
+  )
 }

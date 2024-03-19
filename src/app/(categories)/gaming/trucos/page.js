@@ -7,8 +7,8 @@ import CardsLatestVideosPosts from '@/app/components/CardsLatestVideoPosts'
 
 export default async function page() {
   const cat = CAT_EDITORIAL.editorial
-  const categoryID = await getCategoryId('videos')
-
+  const categoryID = await getCategoryId(cat.name)
+  
   const videosCatID = 2
   const dataVideoPosts = await getPostsByCategoryId({ id: videosCatID })
 

@@ -1,4 +1,4 @@
-export function HeartIcon({ liked, color = '#A26DAA' }) {
+export function HeartIcon({ liked, color = '#39DFFF' }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -14,7 +14,7 @@ export function HeartIcon({ liked, color = '#A26DAA' }) {
     >
       <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
     </svg>
-  );
+  )
 }
 
 export function FilterIcon() {
@@ -41,7 +41,7 @@ export function FilterIcon() {
       <line x1="8" x2="8" y1="10" y2="14" />
       <line x1="16" x2="16" y1="18" y2="22" />
     </svg>
-  );
+  )
 }
 
 export function HomeIcon({
@@ -74,7 +74,7 @@ export function HomeIcon({
         ></path>
       </g>
     </svg>
-  );
+  )
 }
 
 export function UserIcon({
@@ -102,7 +102,7 @@ export function UserIcon({
         ></path>
       </g>
     </svg>
-  );
+  )
 }
 
 export function SearchIcon({
@@ -132,7 +132,7 @@ export function SearchIcon({
         </g>
       </g>
     </svg>
-  );
+  )
 }
 
 export function VideoIcon({
@@ -153,7 +153,7 @@ export function VideoIcon({
         <path d="M12,1A11,11,0,1,0,23,12,11.013,11.013,0,0,0,12,1Zm0,20a9,9,0,1,1,9-9A9.011,9.011,0,0,1,12,21ZM10,8l6,4-6,4Z"></path>
       </g>
     </svg>
-  );
+  )
 }
 
 export function ArrowBackIcon({
@@ -185,5 +185,5 @@ export function ArrowBackIcon({
         </g>
       </g>
     </svg>
-  );
+  )
 }
