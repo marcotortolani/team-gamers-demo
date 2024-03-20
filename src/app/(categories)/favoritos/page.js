@@ -1,5 +1,5 @@
-import React from 'react';
-import FavouriteCardPost from '@/app/components-old/FavouriteCardPost';
+import React from 'react'
+import FavouriteCardPost from '@/app/components/FavouriteCardPost'
 
 export default function FavouritesPage() {
   return (
@@ -10,5 +10,5 @@ export default function FavouritesPage() {
 
       <div className="w-full h-20"></div>
     </main>
-  );
+  )
 }

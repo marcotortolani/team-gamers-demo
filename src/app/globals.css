@@ -94,8 +94,7 @@
 }
 
 .post-parsed {
-  font-family: 'textRegular', sans-serif;
-  font-weight: 300;
+  font-weight: 200;
   /* font-size: clamp(0.8rem, 4vw, 1.3rem); */
   /* background-color: aquamarine; */
 }
@@ -107,6 +106,8 @@
 }
 .post-parsed img {
   border-radius: 0.6rem;
+  aspect-ratio: 16/9;
+  object-fit: cover;
 }
 
 .post-parsed ul li,
@@ -114,8 +115,7 @@ ol li {
   margin: 1rem 0;
   font-style: italic;
   list-style: none;
-  font-family: 'textMedium', sans-serif;
-  font-weight: 500;
+  font-weight: 300;
 }
 
 @media (min-width: 550px) {

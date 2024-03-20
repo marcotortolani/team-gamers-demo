@@ -7,7 +7,6 @@ import {
   getDataCategoryByPostId,
 } from '@/services/api-content'
 
-import { poppinsReg500 } from '@/utils/fonts'
 import ImageMissing from './ImageMissing'
 import ButtonLikeFav from './ui/ButtonLikeFav'
 
@@ -25,7 +24,7 @@ export default async function PagePost({ id }) {
   return (
     <section className=" w-full md:w-5/6 lg:w-4/6 lg:max-w-[900px] flex flex-col items-center gap-4">
       <div
-        className={` bg-EpaPostButton w-full h-[20vh] min-h-[100px] max-h-[120px] sm:max-h-[150px] mb-4 relative flex flex-col items-center justify-center rounded-lg lg:rounded-xl`}
+        className={` bg-Primary w-full aspect-video relative flex flex-col items-center justify-center rounded-lg lg:rounded-xl`}
       >
         {post[0].images.length > 0 ? (
           <div className=" w-full h-full rounded-[inherit]">
@@ -41,21 +40,23 @@ export default async function PagePost({ id }) {
           <ImageMissing text={''} colorBg={'bg-Primary'} />
         )}
         <div className=" z-10 absolute top-0 w-full h-full bg-black opacity-30 line-clamp-1 content-normal rounded-[inherit]" />
-        <div className=" z-20 w-full h-full py-[2%] flex flex-col items-center justify-end gap-8 absolute top-0">
-          <h3
-            className={
-              poppinsReg500.className +
-              ` w-full px-6 text-left text-lg md:text-xl lg:text-2xl xl:text-3xl text-EpaWhite text-shadow-sm leading-5 line-clamp-2 shadow-black`
-            }
-          >
-            {ReactHtmlParser(post[0]?.title)}
-          </h3>
-        </div>
-        <div className="z-50 absolute top-0 m-2 p-2 right-0 w-14 h-10 flex items-center justify-center bg-black bg-opacity-30 rounded-full">
+
+        <div className="z-50 absolute top-0 m-2 p-2 right-0 w-10 h-10 flex items-center justify-center bg-Black/80 rounded-full">
           <ButtonLikeFav post={post[0]} />
         </div>
       </div>
-      <div className=" post-parsed text-base sm:text-lg md:text-xl lg:text-2xl leading-4 sm:leading-5 md:leading-6 lg:leading-7 ">
+      <div className=" z-20 w-full h-full py-[2%]">
+        <h2
+          className={
+            ' mb-2 uppercase font-normal pointer-events-none cursor-default line-clamp-2 text-pretty text-xl md:text-2xl lg:text-3xl text-White text-left  '
+          }
+        >
+          <span className=" px-2 pr-4 bg-Secondary box-decoration-clone leading-[35px] ">
+            {ReactHtmlParser(post[0]?.title)}
+          </span>
+        </h2>
+      </div>
+      <div className=" post-parsed text-base font-normal sm:text-lg md:text-xl lg:text-2xl leading-4 sm:leading-5 md:leading-6 lg:leading-7 ">
         {contentPostParsed}
       </div>
     </section>
