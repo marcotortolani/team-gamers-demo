@@ -1,15 +1,15 @@
-import React from 'react';
-import { getPostsByCategoryId } from '@/services/api-content';
-import { getLatestPosts, cleanDataPosts } from '@/utils/functions';
-import SwiperSliderPosts from './SwiperSliderPosts';
+import React from 'react'
+import { getPostsByCategoryId } from '@/services/api-content'
+import { getLatestPosts, cleanDataPosts } from '@/utils/functions'
+import SwiperSliderPosts from './SwiperSliderPosts'
 
 export default async function SliderLatestTricks({ id, qty, categorySlug }) {
-  const dataPosts = await getPostsByCategoryId({ id });
+  const { data } = await getPostsByCategoryId({ id })
 
   const latestPosts = cleanDataPosts({
-    posts: getLatestPosts({ posts: dataPosts, qty: qty }),
+    posts: getLatestPosts({ posts: data, qty: qty }),
     categorySlug,
-  });
+  })
 
   return (
     <SwiperSliderPosts
@@ -22,5 +22,5 @@ export default async function SliderLatestTricks({ id, qty, categorySlug }) {
       sizeBullets={'default'}
       titleOnly
     />
-  );
+  )
 }

@@ -1,7 +1,7 @@
-import React from 'react';
-import { getPostsByCategoryId } from '@/services/api-content';
-import { getLatestPosts, cleanDataPosts } from '@/utils/functions';
-import SwiperSliderCoverPosts from './SwiperSliderCoverPosts';
+import React from 'react'
+import { getPostsByCategoryId } from '@/services/api-content'
+import { getLatestPosts, cleanDataPosts } from '@/utils/functions'
+import SwiperSliderCoverPosts from './SwiperSliderCoverPosts'
 
 export default async function SliderCoverLatestPosts({
   id,
@@ -9,12 +9,12 @@ export default async function SliderCoverLatestPosts({
   categorySlug,
   styleColor,
 }) {
-  const dataPosts = await getPostsByCategoryId({ id });
+  const { data } = await getPostsByCategoryId({ id })
 
   const latestPosts = cleanDataPosts({
-    posts: getLatestPosts({ posts: dataPosts, qty: qty }),
+    posts: getLatestPosts({ posts: data, qty: qty }),
     categorySlug,
-  });
+  })
 
   return (
     <div className=" w-screen h-full ">
@@ -28,5 +28,5 @@ export default async function SliderCoverLatestPosts({
         styleColor={styleColor}
       />
     </div>
-  );
+  )
 }

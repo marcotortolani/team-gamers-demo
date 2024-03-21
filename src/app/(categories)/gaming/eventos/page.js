@@ -6,18 +6,18 @@ import SliderLatestPosts from '@/app/components/SliderLatestPosts'
 import SliderMiniVideoPosts from '@/app/components/SliderMiniVideoPosts'
 import { cleanDataPosts, getRandomPosts } from '@/utils/functions'
 import { CAT_EDITORIAL } from '@/utils/static_data'
-import CardsLatestVideosPosts from "@/app/components/CardsLatestVideoPosts"
+import CardsLatestVideosPosts from '@/app/components/CardsLatestVideoPosts'
 
 export default async function page() {
   const cat = CAT_EDITORIAL.editorial
   const categoryID = await getCategoryId(cat.name)
 
   const videosCatID = 2
-  const dataVideoPosts = await getPostsByCategoryId({ id: videosCatID })
+  const { data } = await getPostsByCategoryId({ id: videosCatID })
 
   const qtyVideoElements = 10
   const randomVideoPosts = cleanDataPosts({
-    posts: getRandomPosts({ posts: dataVideoPosts, qty: qtyVideoElements }),
+    posts: getRandomPosts({ posts: data, qty: qtyVideoElements }),
     categorySlug: cat.slug,
   })
   const firstRandomVideoPosts = randomVideoPosts.slice(0, qtyVideoElements / 2)

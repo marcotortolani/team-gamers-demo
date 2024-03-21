@@ -71,11 +71,11 @@ export default async function GamingSummary() {
 
   // const dataVideoPosts = await getVideoPostsByCategoryId({ id: categoryID });
   const videosCatID = 2
-  const dataVideoPosts = await getPostsByCategoryId({ id: videosCatID })
+  const { data } = await getPostsByCategoryId({ id: videosCatID })
 
   const qtyVideoElements = 6
   const randomVideoPosts = cleanDataPosts({
-    posts: getRandomPosts({ posts: dataVideoPosts, qty: qtyVideoElements }),
+    posts: getRandomPosts({ posts: data, qty: qtyVideoElements }),
     categorySlug: cat.slug,
   })
 

@@ -15,10 +15,10 @@ export default async function LongCardsLatestPosts({
   categorySlug,
   tagExclude = 14,
 }) {
-  const dataPosts = await getPostsByCategoryId({ id, tagExclude: tagExclude })
+  const { data } = await getPostsByCategoryId({ id, tagExclude: tagExclude })
 
   const latestPosts = cleanDataPosts({
-    posts: getLatestPosts({ posts: dataPosts, qty: qty }),
+    posts: getLatestPosts({ posts: data, qty: qty }),
     categorySlug: categorySlug,
   })
 

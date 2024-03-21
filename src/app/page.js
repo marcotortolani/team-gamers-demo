@@ -40,7 +40,7 @@ export default async function Home() {
       <GamingSummary />
       <EditorialesSummary />
       <MusicaSummary />
-      <div className="w-full h-16 lg:h-[22rem]"></div>
+      <div className="w-full h-16 md:h-[15rem] lg:h-[22rem]"></div>
     </main>
   )
 }

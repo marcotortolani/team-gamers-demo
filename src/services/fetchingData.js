@@ -1,15 +1,15 @@
 'use server'
 
 import { getPostsByCategoryId } from '@/services/api-content'
-import { cleanDataPosts, getLatestPosts } from '@/utils/functions'
+import { cleanDataPosts } from '@/utils/functions'
 
 export async function fetchingData({ id, categorySlug, qty }) {
-  const dataPosts = await getPostsByCategoryId({ id })
+  const { data, posts } = await getPostsByCategoryId({ id, perPage: qty })
 
   const cardPosts = cleanDataPosts({
-    posts: getLatestPosts({ posts: dataPosts, qty: qty }),
+    posts: data,
     categorySlug,
   })
 
-  return cardPosts
+  return { cardPosts, posts }
 }

@@ -10,16 +10,22 @@ export default function CardsLatestVideosPosts({
   verticalAspect,
 }) {
   const [qtyPosts, setQtyPosts] = useState(qty)
+  const [totalPosts, setTotalPosts] = useState()
   const [posts, setPosts] = useState([])
 
   function handleClick() {
-    setQtyPosts((prev) => prev + 2)
+    if (totalPosts - qtyPosts  > 4) {
+      setQtyPosts((prev) => prev + 4)
+    }else{
+      setQtyPosts(totalPosts)
+    }
   }
 
   useEffect(() => {
-    fetchingData({ id: id, categorySlug: categorySlug, qty: qtyPosts }).then(
-      (res) => setPosts(res)
-    )
+    fetchingData({ id, categorySlug, qty: qtyPosts }).then((res) => {
+      setPosts(res.cardPosts)
+      setTotalPosts(res.posts)
+    })
   }, [qtyPosts])
 
   return (
@@ -40,7 +46,8 @@ export default function CardsLatestVideosPosts({
       </ul>
       <button
         type="button"
-        className=" w-fit px-4 py-1 uppercase border-2 border-Secondary rounded-full text-White"
+        disabled={qtyPosts === totalPosts}
+        className=" w-fit px-4 py-1 uppercase border-2 border-Secondary disabled:border-gray-900 disabled:bg-gray-400 disabled:text-gray-300 disabled:scale-90 transition-all duration-200 ease-in-out rounded-full text-White"
         onClick={handleClick}
       >
         Cargar más

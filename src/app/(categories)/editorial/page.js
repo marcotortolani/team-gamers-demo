@@ -27,11 +27,11 @@ export default async function page() {
 
   // ----------
 
-  const dataVideoPosts = await getPostsByCategoryId({ id: categoryID })
+  const { data } = await getPostsByCategoryId({ id: categoryID })
 
   const qtyVideoElements = 10
   const randomVideoPosts = cleanDataPosts({
-    posts: getRandomPosts({ posts: dataVideoPosts, qty: qtyVideoElements }),
+    posts: getRandomPosts({ posts: data, qty: qtyVideoElements }),
     categorySlug: cat.slug,
   })
   const randomVideoPostsFirstSlice = randomVideoPosts.slice(

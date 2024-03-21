@@ -2,7 +2,7 @@ import React from 'react'
 import { getPostsByCategoryId } from '@/services/api-content'
 import { getLatestPosts, cleanDataPosts } from '@/utils/functions'
 import SwiperSliderPosts from './SwiperSliderPosts'
-import SwiperSliderModernPosts from "./SwiperSliderModernPosts"
+import SwiperSliderModernPosts from './SwiperSliderModernPosts'
 
 export default async function SliderLatestModernPosts({
   id,
@@ -10,10 +10,10 @@ export default async function SliderLatestModernPosts({
   categorySlug,
   paginationHide,
 }) {
-  const dataPosts = await getPostsByCategoryId({ id })
+  const { data } = await getPostsByCategoryId({ id })
 
   const latestPosts = cleanDataPosts({
-    posts: getLatestPosts({ posts: dataPosts, qty: qty }),
+    posts: getLatestPosts({ posts: data, qty: qty }),
     categorySlug,
   })
 

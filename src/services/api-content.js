@@ -17,12 +17,17 @@ export async function getData(slug) {
     throw new Error(`Error ${res.status}: ${res.statusText}`)
   }
 
+  const totalPosts = res.headers.get('X-WP-Total')
+    ? res.headers.get('X-WP-Total')
+    : 0
+
   const totalPages = res.headers.get('X-WP-TotalPages')
     ? res.headers.get('X-WP-TotalPages')
     : 0
 
   return {
     data,
+    posts: totalPosts,
     pages: totalPages,
   }
 }
@@ -54,10 +59,10 @@ export async function getPostsByCategoryId({
   perPage = 10,
   tagExclude = 0,
 }) {
-  const { data } = await getData(
+  const { data, posts, pages } = await getData(
     `posts?per_page=${perPage}&categories=${id}&tags_exclude=${tagExclude}`
   )
-  return data
+  return { data, posts, pages }
 }
 
 export async function getPostsByPageByCategoryId({

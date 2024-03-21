@@ -9,10 +9,10 @@ export default async function SliderLatestPosts({
   categorySlug,
   paginationHide,
 }) {
-  const dataPosts = await getPostsByCategoryId({ id })
+  const { data } = await getPostsByCategoryId({ id })
 
   const latestPosts = cleanDataPosts({
-    posts: getLatestPosts({ posts: dataPosts, qty: qty }),
+    posts: getLatestPosts({ posts: data, qty: qty }),
     categorySlug,
   })
 

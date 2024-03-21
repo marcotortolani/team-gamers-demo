@@ -1,6 +1,5 @@
 'use client'
-import React, { useRef, useState, useEffect } from 'react'
-import { getCategoryId, getData } from '@/services/api-content'
+import React, { useRef } from 'react'
 import { CardGamer } from './CardGamer'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Autoplay, Navigation } from 'swiper/modules'
@@ -9,45 +8,6 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 
 SwiperCore.use([Pagination])
-
-const GAMERS_CARD = [
-  {
-    id: 1,
-    name: 'Kevin',
-    imgSrc: '/assets/Img-webp-TG/CardKevin-GAMERS.webp',
-    href: '',
-  },
-  {
-    id: 2,
-    name: 'Alejandro',
-    imgSrc: '/assets/Img-webp-TG/CardAlejandro-GAMERS.webp',
-    href: '',
-  },
-  {
-    id: 3,
-    name: 'Yue',
-    imgSrc: '/assets/Img-webp-TG/CardYue-GAMERS.webp',
-    href: '',
-  },
-  {
-    id: 4,
-    name: 'Linker',
-    imgSrc: '/assets/Img-webp-TG/CardLinker-GAMERS.webp',
-    href: '',
-  },
-  {
-    id: 5,
-    name: 'Ramona',
-    imgSrc: '/assets/Img-webp-TG/CardYue-GAMERS.webp',
-    href: '',
-  },
-  {
-    id: 6,
-    name: 'Carlos',
-    imgSrc: '/assets/Img-webp-TG/CardKevin-GAMERS.webp',
-    href: '',
-  },
-]
 
 // const COLOR_BULLETS = 'white';
 // const SIZE_BULLETS = 'default';
