@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const plugin = require('tailwindcss/plugin');
+const plugin = require('tailwindcss/plugin')
 module.exports = {
   darkMode: ['class'],
   content: [
@@ -40,7 +40,7 @@ module.exports = {
         Primary: '#A26DAA',
         PrimaryDark: '#774D7D',
         Secondary: '#39DFFF',
-        SecondaryDark: '#39DFFF',
+        SecondaryDark: '#2AB3CD',
         White: '#FFFFFF',
         Black: '#000000',
         Accent: '#023859',
@@ -67,8 +67,8 @@ module.exports = {
           }),
         },
         { values: theme('textShadow') }
-      );
+      )
     }),
     require('flowbite/plugin'),
   ],
-};
+}

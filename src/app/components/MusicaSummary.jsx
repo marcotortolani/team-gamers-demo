@@ -9,6 +9,7 @@ import { PlayCircleIcon } from 'lucide-react'
 import SliderCoverLatestPosts from './SliderCoverLatestPosts'
 import ShortCardsLatestPosts from './ShortCardsLatestPosts'
 import LongCardsLatestPosts from './LongCardsLatestPosts'
+import { TitleSummary } from './ui/TitleSummary'
 
 export default async function MusicaSummary() {
   const cat = CAT_EDITORIAL.editorial
@@ -23,13 +24,8 @@ export default async function MusicaSummary() {
   // });
 
   return (
-    <section className=" z-50 w-screen md:w-5/6 lg:w-4/6 lg:max-w-[900px] h-fit relative top-0 flex flex-col items-center gap-8">
-      <h2 className=" px-8 py-[0.15rem] uppercase font-medium text-sm md:text-base flex items-center gap-2 bg-Secondary rounded-full">
-        <div className=" w-4 h-4 ">
-          <PlayCircleIcon width={'100%'} height={'100%'} />
-        </div>
-        Música
-      </h2>
+    <section className=" z-50 w-screen md:w-full lg:max-w-screen-lg h-fit relative top-0 flex flex-col items-center gap-8">
+      <TitleSummary title="Música" icon={PlayCircleIcon} />
 
       <article className=" ">
         <SliderCoverLatestPosts
@@ -40,7 +36,7 @@ export default async function MusicaSummary() {
         />
       </article>
 
-      <article className=" w-full px-4 ">
+      <article className=" w-full px-4 md:px-0 ">
         {/* subcategoria TRAP */}
         <ShortCardsLatestPosts
           id={categoryID}

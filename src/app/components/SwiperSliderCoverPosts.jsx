@@ -1,19 +1,19 @@
-'use client';
-import React from 'react';
-import Image from 'next/image';
-import { useRef, useState } from 'react';
-import ReactHtmlParser from 'react-html-parser';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay, Navigation } from 'swiper/modules';
-import SwiperCore from 'swiper';
-import 'swiper/css';
-import 'swiper/css/pagination';
+'use client'
+import React from 'react'
+import Image from 'next/image'
+import { useRef, useState } from 'react'
+import ReactHtmlParser from 'react-html-parser'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination, Autoplay, Navigation } from 'swiper/modules'
+import SwiperCore from 'swiper'
+import 'swiper/css'
+import 'swiper/css/pagination'
 
-import ButtonSeePost from './ui/ButtonSeePost';
-import PaginationBullets from './ui/PaginationBullets';
-import ImageMissing from './ImageMissing';
+import ButtonSeePost from './ui/ButtonSeePost'
+import PaginationBullets from './ui/PaginationBullets'
+import ImageMissing from './ImageMissing'
 
-SwiperCore.use([Pagination]);
+SwiperCore.use([Pagination])
 
 export default function SwiperSliderCoverPosts({
   posts,
@@ -24,19 +24,19 @@ export default function SwiperSliderCoverPosts({
   sizeBullets,
   styleColor,
 }) {
-  const [indexPag, setIndexPag] = useState(0);
-  const sliderRef = useRef(0);
+  const [indexPag, setIndexPag] = useState(0)
+  const sliderRef = useRef(0)
 
-  const qtyBullets = Object.keys(posts).length - parseInt(slidesPerView) + 1;
+  const qtyBullets = Object.keys(posts).length - parseInt(slidesPerView) + 1
 
   const pagination = {
     clickable: true,
     type: 'custom',
     renderCustom: function (i, className) {
-      setIndexPag(className);
-      return null;
+      setIndexPag(className)
+      return null
     },
-  };
+  }
 
   return (
     <div className=" top-0 w-full h-full flex flex-col items-center justify-center">
@@ -69,14 +69,12 @@ export default function SwiperSliderCoverPosts({
                 styleColor === 'primary'
                   ? 'bg-Primary text-White '
                   : 'bg-Secondary text-Black'
-              } relative mx-auto w-[90%] h-full flex flex-col items-center justify-between rounded-lg md:rounded-xl lg:rounded-2xl`}
+              } z-0 relative mx-auto w-[90%] max-w-[700px] aspect-[5/4] flex flex-col items-center justify-between rounded-lg md:rounded-xl lg:rounded-2xl`}
             >
-              <div className=" z-10 relative top-0 w-full h-4/5 sm:min-h-[400px] overflow-hidden rounded-[inherit]  ">
+              <div className=" z-0 relative top-0 w-full h-4/5 overflow-hidden rounded-[inherit]  ">
                 {post.images ? (
                   <Image
-                    className={`${
-                      indexPag === index + 1 ? '.animation-image-bg' : ''
-                    }  relative w-full h-auto lg:w-auto lg:h-full object-cover rounded-[inherit]`}
+                    className={` z-0 relative w-full h-auto lg:w-auto lg:h-full object-cover rounded-[inherit]`}
                     src={post.images[0]}
                     fill
                     priority
@@ -87,7 +85,7 @@ export default function SwiperSliderCoverPosts({
                 ) : (
                   <ImageMissing />
                 )}
-                <div className=" absolute top-0 w-full h-full flex items-center justify-center">
+                <div className=" z-20 absolute top-0 w-full h-full flex items-center justify-center">
                   <ButtonSeePost
                     text="Ver nota"
                     href={`/${post.category}/${post.id}`}
@@ -97,16 +95,14 @@ export default function SwiperSliderCoverPosts({
                 </div>
               </div>
 
-              <div className=" relative w-full h-1/5 flex flex-col items-center justify-center ">
-                <div className="relative w-full h-1/5  px-6  flex items-center justify-start ">
-                  <h2
-                    className={
-                      '  uppercase font-medium pointer-events-none cursor-default line-clamp-1 box-decoration-clone text-lg md:text-xl lg:text-2xl text-left  '
-                    }
-                  >
-                    {ReactHtmlParser(post.title)}
-                  </h2>
-                </div>
+              <div className=" z-30 relative w-full h-1/5  px-6  flex items-center justify-start ">
+                <h2
+                  className={
+                    '  uppercase font-medium pointer-events-none cursor-default line-clamp-1 box-decoration-clone text-lg md:text-xl lg:text-2xl text-left  '
+                  }
+                >
+                  {ReactHtmlParser(post.title)}
+                </h2>
               </div>
             </div>
           </SwiperSlide>
@@ -122,5 +118,5 @@ export default function SwiperSliderCoverPosts({
         />
       </div>
     </div>
-  );
+  )
 }

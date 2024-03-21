@@ -1,3 +1,4 @@
+'use server'
 import { API_CONTENT } from '../config/config'
 
 export async function getData(slug) {

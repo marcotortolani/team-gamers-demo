@@ -53,11 +53,11 @@ export default function SearchBar() {
   }
 
   return (
-    <div className=" w-2/3 max-w-[400px] lg:max-w-[600px] h-fit min-h-10 lg:top-24 flex justify-center">
+    <div className=" w-2/3 max-w-[400px] lg:max-w-[550px] h-fit min-h-10 flex justify-center">
       <form action="" className=" relative w-full ">
         <input
           className={
-            ` relative w-full pl-6 py-1 text-sm font-light border-White bg-Black text-White border-solid border-2 rounded-lg 
+            ` relative w-full pl-6 py-1 text-sm md:text-base font-light border-White bg-Black text-White border-solid border-2 rounded-lg 
                 outline-none focus:border-Secondary placeholder:text-SecondaryDark/60 `
           }
           type="text"
@@ -101,13 +101,4 @@ export default function SearchBar() {
       )}
     </div>
   );
-}
-
-{
-  /* <search role="search">
-<form action="/search">
-  <input type="search" name="" id="" />
-  <input type="submit" value="Search" />
-</form>
-</search> */
 }

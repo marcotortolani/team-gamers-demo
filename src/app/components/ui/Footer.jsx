@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { poppinsReg400 } from '../../../utils/fonts';
 import { configSiteStatic } from '../../../../configSiteStatic.js';
 const { logoHorizontal } = configSiteStatic.images;
 
@@ -9,10 +8,10 @@ export default function Footer() {
   return (
     <footer
       className={
-        ` w-full min-h-[160px] max-h-[280px] py-4 mb-20 bg-Primary  flex flex-col items-center justify-around gap-2`
+        ` z-40 w-full min-h-[160px] max-h-[250px] py-4 mb-20 bg-Primary  flex flex-col items-center justify-around gap-2`
       }
     >
-      <div className="w-full h-1/4 sm:h-2/5 md:h-1/3 flex items-center justify-center  cursor-default pointer-events-none">
+      <div className="w-full max-w-[200px] h-1/4 sm:h-2/5 md:h-1/3 flex items-center justify-center  cursor-default pointer-events-none">
         <Link
           href={'/'}
           className=" w-fit h-full flex items-center justify-center transition-all hover:scale-110 cursor-pointer pointer-events-auto"
@@ -36,13 +35,13 @@ export default function Footer() {
       </div>
       <Link
         href={'/'}
-        className=" h-1/4 uppercase text-xs md:text-sm lg:text-base text-Secondary hover:text-PostButton underline"
+        className=" h-1/4 uppercase text-xs md:text-sm lg:text-base text-Secondary hover:text-SecondaryDark underline"
       >
         Términos y Condiciones
       </Link>
       <Link
         href={'/subscribe-user'}
-        className=" h-1/4 uppercase text-[0.6rem] md:text-xs lg:text-sm text-Secondary hover:text-Primary underline"
+        className=" h-1/4 uppercase text-[0.6rem] md:text-xs lg:text-sm text-Secondary hover:text-SecondaryDark underline"
       >
         Suscripción
       </Link>

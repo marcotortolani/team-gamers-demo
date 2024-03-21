@@ -83,15 +83,6 @@
   align-items: center;
 } */
 
-.animation-image-bg {
-  animation-name: animationImageBackground;
-  animation-timing-function: ease-in;
-  animation-iteration-count: infinite;
-  /* animation-direction: alternate; */
-  /* animation-duration: 5000ms; */
-  /* animation-fill-mode: both; */
-  /* animation-duration: 5000ms; */
-}
 
 .post-parsed {
   font-weight: 200;

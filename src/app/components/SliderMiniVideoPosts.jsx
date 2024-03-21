@@ -27,7 +27,7 @@ export default function SliderMiniVideoPosts({
   const sliderRef = useRef(0)
 
   return (
-    <div className=" w-screen md:w-full lg:max-w-4xl lg:w-full h-full  ">
+    <div className=" w-screen lg:max-w-screen-lg  h-full  ">
       {sliderElements.length > 0 && (
         <Swiper
           ref={sliderRef}
@@ -47,10 +47,10 @@ export default function SliderMiniVideoPosts({
         >
           {sliderElements?.map((post, i) => (
             <SwiperSlide
-              className={` ${i === sliderElements.length - 1 ? 'pr-2' : ''} 
+              className={` ${i === sliderElements.length - 1 ? 'pr-2 md:pr-4 lg:pr-6' : ''} 
               ${
-                verticalAspect ? ' aspect-[5/6]' : 'aspect-video'
-              } w-full pl-2 h-full relative `}
+                verticalAspect ? ' aspect-[5/6] md:aspect-[4/3]' : 'aspect-video'
+              } w-full pl-2 md:pl-4 lg:pl-6 h-full relative `}
               key={post.id}
             >
               <Link
@@ -71,10 +71,9 @@ export default function SliderMiniVideoPosts({
                   ) : (
                     <ImageMissing />
                   )}
-                  {/* <div className=" z-10 w-full h-full absolute top-0 bg-black/20 rounded-[inherit] "></div> */}
                 </div>
 
-                <div className=" z-20 w-full h-full p-2 pb-3 flex flex-col items-start justify-end gap-2 absolute bottom-0 ">
+                <div className=" z-20 w-full h-full flex flex-col items-start justify-end gap-2 absolute bottom-0 ">
                   <div className="absolute top-0 left-0 z-30 w-full h-full flex items-center justify-center ">
                     <Image
                       className=" w-auto h-1/4 min-h-[20px] max-h-[60px]"
@@ -85,7 +84,7 @@ export default function SliderMiniVideoPosts({
                     />
                   </div>
                   <h3
-                    className={` z-10 w-fit max-w-[90%]  line-clamp-2 text-start font-medium text-xs sm:text-xs lg:text-base text-Black  `}
+                    className={` z-10 absolute bottom-2 left-2 md:bottom-4 md:left-4 w-[90%] line-clamp-2 text-start font-medium text-xs sm:text-xs md:text-base lg:text-lg text-Black  `}
                   >
                     <span className=" px-2 pr-3 bg-White/90 box-decoration-clone leading-[1.2rem]">
                       {post.title}

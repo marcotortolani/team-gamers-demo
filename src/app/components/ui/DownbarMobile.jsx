@@ -61,7 +61,7 @@ export default function DownbarMobile() {
   }, [path, currentPath, previousPath]);
 
   return (
-    <div className=" z-50 fixed bottom-0 w-full h-[8vh] min-h-[40px] max-h-[60px]  p-[0.8rem] py-4  flex items-center justify-center text-White bg-Primary md:hidden">
+    <div className=" z-50 fixed bottom-0 w-full h-[8vh] min-h-[40px] max-h-[60px]  p-[0.8rem] py-4  flex items-center justify-center text-White bg-Primary lg:hidden">
       <ul className=" w-full h-full flex items-center justify-around ">
         {Object.values(navButtons).map((button) => (
           <StyledTab

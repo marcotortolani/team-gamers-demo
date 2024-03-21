@@ -9,13 +9,13 @@ export default async function PostsGamerPage({ params }) {
   const vimeoNumber = getVimeoNumber({ string: dataVideo?.content.rendered })
 
   return (
-    <main className=" z-0 mt-36 w-full  h-[70vh] px-4 flex flex-col items-center justify-between ">
+    <main className=" z-0 mt-36 w-full h-full mb-24 px-4 flex flex-col items-center justify-between ">
       <div className=" w-full md:w-5/6 lg:w-4/6 lg:max-w-[900px] flex flex-col items-center">
         <div
           className={` bg-Secondary/70 shadow-inner shadow-gray-800 w-full h-[10vh] min-h-[80px] max-h-[100px] sm:max-h-[150px] mb-4 relative flex flex-col items-center justify-center rounded-lg lg:rounded-xl`}
         >
           <h3
-            className={` w-full px-6 text-White text-left text-2xl md:text-xl lg:text-2xl xl:text-3xl text-shadow line-clamp-2 shadow-black`}
+            className={` w-full px-6 text-White text-left text-2xl md:text-2xl lg:text-3xl text-shadow line-clamp-2 shadow-black`}
           >
             {ReactHtmlParser(dataVideo?.title.rendered)}
           </h3>

@@ -3,7 +3,11 @@ import SliderGamers from '@/app/components/SliderGamers'
 import SliderLatestPosts from '@/app/components/SliderLatestPosts'
 import SliderMiniVideoPosts from '@/app/components/SliderMiniVideoPosts'
 import { CAT_EDITORIAL } from '@/utils/static_data'
-import { getCategoryId, getData, getPostsByCategoryId } from '@/services/api-content'
+import {
+  getCategoryId,
+  getData,
+  getPostsByCategoryId,
+} from '@/services/api-content'
 import { cleanDataPosts, getRandomPosts } from '@/utils/functions'
 import { Gamepad2, Ticket } from 'lucide-react'
 import { Wand2 } from 'lucide-react'
@@ -48,21 +52,16 @@ export default async function page() {
 
   return (
     <main className=" z-0 relative w-full pt-28 mb-20 px-4 flex flex-col items-center gap-2 ">
-      <section className=" w-screen md:w-5/6 lg:w-4/6 lg:max-w-[900px] h-fit relative top-0 flex flex-col items-center gap-4">
-        <TitleSection
-          icon={Gamepad2}
-          title="Gamers"
-          outline
-          borderColor="border-Secondary"
-        />
-        <p className=" w-full max-w-[350px] px-8 mb-4 text-White uppercase font-normal text-center">
+      <section className=" w-screen md:w-5/6 lg:w-4/6 lg:max-w-screen-lg h-fit relative top-0 flex flex-col items-center gap-4">
+        <TitleSection icon={Gamepad2} title="Gamers" />
+        <p className=" w-full max-w-[350px] md:max-w-[450px] px-8 mb-4 text-base md:text-lg lg:text-xl text-White uppercase font-normal text-center">
           ¡Nuestros videos exclusivos te ayudaran a convertirte en el mejor
           gamer!
         </p>
         <SliderGamers gamersData={gamersRes?.data} />
       </section>
 
-      <section className=" mt-6 w-full py-2 flex flex-col items-center gap-4">
+      <section className=" mt-6 w-full py-2 flex flex-col items-center gap-4 md:gap-6 lg:gap-8">
         <TitleSection icon={Ticket} title="Eventos" />
 
         {categoryID !== undefined && (
@@ -93,7 +92,7 @@ export default async function page() {
         )}
       </section>
 
-      <section className=" mt-6 w-full py-2 flex flex-col items-center gap-4">
+      <section className=" mt-6 w-full py-2 flex flex-col items-center gap-4 md:gap-6 lg:gap-8">
         <TitleSection icon={Wand2} title="Trucos" />
 
         {categoryID !== undefined && (

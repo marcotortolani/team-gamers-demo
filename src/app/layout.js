@@ -1,17 +1,17 @@
-import './globals.css';
-import { Oswald } from 'next/font/google';
-import { StateProvider } from '@/providers/StateProvider';
-import DownbarMobile from './components/ui/DownbarMobile';
-import Header from './components/ui/Header';
-import Footer from './components/ui/Footer';
+import './globals.css'
+import { Oswald } from 'next/font/google'
+import { StateProvider } from '@/providers/StateProvider'
+import DownbarMobile from './components/ui/DownbarMobile'
+import Header from './components/ui/Header'
+import Footer from './components/ui/Footer'
 
-const oswald = Oswald({ subsets: ['latin'] });
+const oswald = Oswald({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Team Gamers',
   description:
     'Portal de contenido para gamers. Diseñado y desarrollado por Media Moob',
-};
+}
 
 export default function RootLayout({ children }) {
   return (
@@ -29,5 +29,5 @@ export default function RootLayout({ children }) {
         <Footer />
       </body>
     </html>
-  );
+  )
 }

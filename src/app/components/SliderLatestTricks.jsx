@@ -14,7 +14,7 @@ export default async function SliderLatestTricks({ id, qty, categorySlug }) {
   return (
     <SwiperSliderPosts
       posts={latestPosts}
-      slidesPerView={1.1}
+      slidesPerView={1}
       centered
       delayPerView={3500}
       spaceBetweenSlides={-20}

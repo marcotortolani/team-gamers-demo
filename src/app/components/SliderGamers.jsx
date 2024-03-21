@@ -51,7 +51,7 @@ const GAMERS_CARD = [
 
 // const COLOR_BULLETS = 'white';
 // const SIZE_BULLETS = 'default';
-const SLIDES_PER_VIEW = 3.25
+const SLIDES_PER_VIEW = 3
 const DELAY_PER_VIEW = 2500
 const SPACE_BETWEEN_SLIDES = 0
 
@@ -59,10 +59,10 @@ export default function SliderGamers({ gamersData, miniCards }) {
   const sliderRef = useRef(0)
   
   return (
-    <div className=" z-30 w-screen h-fit flex flex-col items-center justify-end overflow-hidden ">
+    <div className=" z-30 w-full h-full flex flex-col items-center justify-end overflow-hidden ">
       <Swiper
         ref={sliderRef}
-        slidesPerView={miniCards ? SLIDES_PER_VIEW : 1.8}
+        slidesPerView={SLIDES_PER_VIEW}
         centeredSlides={miniCards ? false : true}
         spaceBetween={miniCards ? SPACE_BETWEEN_SLIDES : 20}
         autoplay={{

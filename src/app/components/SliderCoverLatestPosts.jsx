@@ -17,7 +17,7 @@ export default async function SliderCoverLatestPosts({
   });
 
   return (
-    <div className=" w-screen h-[50vh] ">
+    <div className=" w-screen h-full ">
       <SwiperSliderCoverPosts
         posts={latestPosts}
         slidesPerView={1}

@@ -26,7 +26,7 @@ export default function GamerPosts({
   return (
     <section className=" relative w-full h-full min-h-40 flex flex-col items-center">
       {!isLoading ? (
-        <ul className=" w-full md:w-5/6 lg:w-4/6 lg:max-w-[900px] h-fit lg:max-h-[800px] px-4 py-4 lg:my-4 grid grid-cols-2 grid-rows-1  gap-3 lg:gap-4 select-none">
+        <ul className=" w-full h-fit px-4 py-4 lg:my-4 grid grid-cols-2 grid-rows-1  gap-3 md:gap-5 lg:gap-6 select-none">
           {data?.map((post) => (
             <li
               key={post.id}

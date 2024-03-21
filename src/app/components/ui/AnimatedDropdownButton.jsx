@@ -33,14 +33,14 @@ const AnimatedDropdown = ({ Icon, title, options }) => {
           onClick={() => setOpen((prev) => !prev)}
           className={`${
             pathname.includes(title.toLowerCase())
-              ? 'bg-Secondary text-Black '
-              : 'bg-black text-indigo-50'
-          } flex items-center gap-1 px-1 xs:px-2 py-0 rounded-full  border-Secondary border-[2px] transition-colors duration-200 ease-in-out`}
+              ? 'bg-Secondary text-Black hover:bg-SecondaryDark'
+              : 'bg-black text-indigo-50 hover:bg-Secondary hover:text-Black hover:font-medium'
+          } flex items-center gap-1 px-1 xs:px-2 md:px-3 lg:px-4 py-0 lg:py-1 rounded-full border-Secondary border-[2px] transition-colors duration-200 ease-in-out`}
         >
           <div className=" w-4 xs:w-5">
             <Icon size={'100%'} />
           </div>
-          <span className="font-light uppercase text-[0.6rem] xs:text-xs">
+          <span className="font-light uppercase text-[0.6rem] xs:text-xs md:text-base lg:text-lg">
             {title}
           </span>
           <motion.span className="  w-4 xs:w-5" variants={iconVariants}>
@@ -90,10 +90,10 @@ const Option = ({ firstOption, text, setOpen, optionActive }) => {
         optionActive
           ? 'bg-Primary text-White py-1 justify-center absolute left-0 translate-x-[50%]'
           : firstOption
-          ? ' text-white bg-Black font-normal justify-center absolute left-0 translate-x-[50%] h-8 rounded-t-none '
+          ? ' text-white bg-Black font-normal justify-center absolute left-0 translate-x-[50%] h-8 md:h-10 lg:h-12 rounded-t-none '
           : ' bg-transparent text-black '
       } 
-      relative -top-3 flex items-center w-full text-xs xs:text-sm font-medium whitespace-nowrap uppercase rounded-2xl hover:bg-indigo-100 hover:text-Primary transition-colors cursor-pointer`}
+      relative -top-3 md:-top-2 flex items-center w-full text-xs xs:text-sm md:text-base lg:text-lg font-medium whitespace-nowrap uppercase rounded-2xl hover:bg-indigo-100 hover:text-Primary hover:pl-1 md:hover:pl-2 transition-all duration-200 ease-in-out cursor-pointer`}
     >
       <span className="px-1 ">{firstOption ? 'Ver todo' : text}</span>
     </motion.li>

@@ -1,19 +1,18 @@
-'use client';
-import React from 'react';
-import Image from 'next/image';
-import { useRef, useState } from 'react';
-import ReactHtmlParser from 'react-html-parser';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay, Navigation } from 'swiper/modules';
-import SwiperCore from 'swiper';
-import 'swiper/css';
-import 'swiper/css/pagination';
+'use client'
+import React, { useRef, useState, useEffect } from 'react'
+import Image from 'next/image'
+import ReactHtmlParser from 'react-html-parser'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination, Autoplay, Navigation } from 'swiper/modules'
+import SwiperCore from 'swiper'
+import 'swiper/css'
+import 'swiper/css/pagination'
 
-import ButtonSeePost from './ui/ButtonSeePost';
-import PaginationBullets from './ui/PaginationBullets';
-import ImageMissing from './ImageMissing';
+import ButtonSeePost from './ui/ButtonSeePost'
+import PaginationBullets from './ui/PaginationBullets'
+import ImageMissing from './ImageMissing'
 
-SwiperCore.use([Pagination]);
+SwiperCore.use([Pagination])
 
 export default function SwiperSliderHomeCover({
   posts,
@@ -23,26 +22,34 @@ export default function SwiperSliderHomeCover({
   colorBullets,
   sizeBullets,
 }) {
-  const [indexPag, setIndexPag] = useState(0);
-  const sliderRef = useRef(0);
+  const [indexPag, setIndexPag] = useState(0)
+  const [slidePosts, setSlidePosts] = useState([])
+  const sliderRef = useRef(0)
 
-  const qtyBullets = Object.keys(posts).length - parseInt(slidesPerView) + 1;
+  const qtyBullets = Object.keys(posts).length - parseInt(slidesPerView) + 1
 
   const pagination = {
     clickable: true,
     type: 'custom',
     renderCustom: function (i, className) {
-      setIndexPag(className);
-      return null;
+      setIndexPag(className)
+      return null
     },
-  };
+  }
+  console.log(posts)
+
+  useEffect(() => {
+    if (slidePosts.length === 0) {
+      setSlidePosts(posts)
+    }
+  }, [posts])
 
   return (
     <div className=" top-0 w-full h-full flex flex-col items-center justify-center">
       <Swiper
         ref={sliderRef}
         slidesPerView={slidesPerView}
-        centeredSlides={false}
+        centeredSlides={true}
         spaceBetween={spaceBetweenSlides}
         autoplay={{
           delay: delayPerView,
@@ -54,17 +61,17 @@ export default function SwiperSliderHomeCover({
         pagination={pagination}
         modules={[Autoplay, Navigation]}
         navigation={false}
-        className="mySwiper w-full h-full overflow-hidden flex items-center "
+        className="mySwiper w-full h-full "
       >
-        {posts?.map((post, index) => (
+        {slidePosts?.map((post, index) => (
           <SwiperSlide
             className={`${
               index === 0 ? '' : ' '
-            } w-full min-w-[160px] h-full relative`}
+            } w-full min-w-[160px] h-full relative overflow-hidden`}
             key={post.id}
           >
-            <div className=" mx-auto w-[90%] h-full flex flex-col items-center justify-center rounded-xl">
-              <div className=" -z-10 relative top-0 w-full h-full lg:h-full sm:min-h-[400px] overflow-hidden rounded-2xl md:rounded-3xl lg:rounded-4xl ">
+            <div className=" relative mx-auto w-full md:w-[95%] aspect-[5/8] md:aspect-[5/6] xl:aspect-[5/3] flex flex-col items-center justify-center rounded-xl">
+              <div className=" -z-10 relative top-0 w-full h-full  overflow-hidden rounded-2xl md:rounded-3xl lg:rounded-4xl ">
                 {post.image ? (
                   <Image
                     className={`${
@@ -73,7 +80,7 @@ export default function SwiperSliderHomeCover({
                     src={post.image}
                     fill
                     priority
-                    sizes="(max-width: 90vw)"
+                    sizes="(max-width: 100vw)"
                     alt="Background Image"
                     style={{ animationDuration: `${delayPerView + 5000}ms` }}
                   />
@@ -81,23 +88,32 @@ export default function SwiperSliderHomeCover({
                   <ImageMissing />
                 )}
               </div>
-              <div className=" absolute bottom-4 w-full h-2/3 px-8 flex flex-col items-center justify-end gap-5 ">
+
+              <span
+                className={`${
+                  index % 2 === 0 ? 'bg-Primary text-White' : 'bg-Secondary text-Black'
+                } absolute top-2 left-2 xs:top-4 xs:left-4 md:top-8 md:left-8  px-4 py-1 text-sm md:text-base uppercase rounded-full`}
+              >
+                {post.category}
+              </span>
+
+              <div className=" absolute bottom-4 md:bottom-6 lg:bottom-8 w-full h-2/3 px-4 flex flex-col items-center justify-end gap-1 xs:gap-5 ">
                 <div className=" w-full max-w-[800px] h-fit flex flex-col items-start justify-around gap-0 ">
                   <h2
                     className={
-                      ' mb-2 uppercase font-medium pointer-events-none cursor-default line-clamp-2 text-pretty text-2xl md:text-3xl lg:text-4xl text-White text-left  '
+                      ' mb-2 uppercase font-medium pointer-events-none cursor-default line-clamp-2 text-pretty text-lg xs:text-xl md:text-2xl lg:text-3xl text-White text-left  '
                     }
                   >
-                    <span className=" px-2 pr-4 bg-Black box-decoration-clone leading-[40px] ">
+                    <span className=" px-2 pr-4 bg-Black box-decoration-clone leading-[30px] xs:leading-[40px] md:leading-[50px] ">
                       {ReactHtmlParser(post.title)}
                     </span>
                   </h2>
                   <h4
                     className={
-                      ' w-5/6 font-medium pointer-events-none cursor-default line-clamp-2 text-lg md:text:lg lg:text-xl text-Black first-letter:uppercase '
+                      ' w-5/6 font-medium pointer-events-none cursor-default line-clamp-2 text-base xs:text-lg md:text:xl lg:text-2xl text-Black first-letter:uppercase '
                     }
                   >
-                    <span className=" px-3 bg-White/80 box-decoration-clone leading-[2.1rem] ">
+                    <span className=" px-3 bg-White/90 box-decoration-clone leading-[1.8rem] xs:leading-[2.1rem] md:leading-[2.3rem] lg:leading-[2.5rem] ">
                       {ReactHtmlParser(post.excerpt)}
                     </span>
                   </h4>
@@ -124,5 +140,5 @@ export default function SwiperSliderHomeCover({
         />
       </div>
     </div>
-  );
+  )
 }

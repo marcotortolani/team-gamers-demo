@@ -10,6 +10,7 @@ import SliderCoverLatestPosts from './SliderCoverLatestPosts'
 import ShortCardsLatestPosts from './ShortCardsLatestPosts'
 import LongCardsLatestPosts from './LongCardsLatestPosts'
 import CardLastPost from './CardLastPost'
+import { TitleSummary } from './ui/TitleSummary'
 
 export default async function EditorialesSummary() {
   const cat = CAT_EDITORIAL.editorial
@@ -25,23 +26,16 @@ export default async function EditorialesSummary() {
 
   return (
     <section className=" z-50 w-screen md:w-5/6 lg:w-4/6 lg:max-w-[900px] h-fit relative top-0 flex flex-col items-center gap-8">
-      <h1 className=" px-8 py-[0.15rem] uppercase font-medium text-sm md:text-base flex items-center gap-2 bg-Secondary rounded-full">
-        <div className=" w-4 h-4 ">
-          <FileText width={'100%'} height={'100%'} />
-        </div>
-        Editoriales
-      </h1>
+      <TitleSummary title="Editoriales" icon={FileText} />
 
-      <article className=" ">
-        <SliderCoverLatestPosts
-          id={categoryID}
-          qty={5}
-          categorySlug={cat.slug}
-          styleColor="primary"
-        />
-      </article>
+      <SliderCoverLatestPosts
+        id={categoryID}
+        qty={5}
+        categorySlug={cat.slug}
+        styleColor="primary"
+      />
 
-      <article className=" w-full px-4 ">
+      <article className=" w-full px-4 md:px-0 ">
         {/* subcategoria VIDEOJUEGOS */}
         <ShortCardsLatestPosts
           id={categoryID}
@@ -51,7 +45,7 @@ export default async function EditorialesSummary() {
         />
       </article>
 
-      <article className="w-full px-4 py-2 ">
+      <article className="w-full px-4 py-2 md:px-0 ">
         {/* subcategoria TECNOLOGIA */}
         <LongCardsLatestPosts id={categoryID} qty={2} categorySlug={cat.slug} />
       </article>

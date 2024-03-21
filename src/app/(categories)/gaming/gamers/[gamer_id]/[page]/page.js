@@ -5,6 +5,7 @@ import {
 } from '@/services/api-content'
 import { Gamepad2 } from 'lucide-react'
 import GamerPosts from '@/app/components/GamerPosts'
+import { TitleSection } from '@/app/components/ui/TitleSection'
 
 export default async function page({ params }) {
   const { gamer_id, page } = params
@@ -18,14 +19,20 @@ export default async function page({ params }) {
 
   return (
     <div className="z-0 mt-28 mb-36 w-full h-full flex flex-col items-center justify-between ">
-      <div className=" w-full md:w-5/6 lg:w-4/6 lg:max-w-[900px] flex flex-col items-center">
-        <h2 className=" px-4 py-[0.1rem] uppercase font-medium text-lg md:text-base flex items-center gap-3 bg-Black text-White border-[1px] border-Primary rounded-full">
-          <div className=" w-6 h-6 ">
-            <Gamepad2 width={'100%'} height={'100%'} />
-          </div>
-          {gamerName ? gamerName : 'No-name'}
-        </h2>
-        <GamerPosts path={`/gaming/gamers/${gamer_id}`} dataPosts={data} page={page} pagesPosts={pages} gamerID={gamer_id} />
+      <div className=" w-full lg:max-w-screen-lg flex flex-col items-center">
+        <TitleSection
+          title={gamerName ? gamerName : 'No-name'}
+          icon={Gamepad2}
+          outline
+          borderColor="border-Primary"
+        />
+        <GamerPosts
+          path={`/gaming/gamers/${gamer_id}`}
+          dataPosts={data}
+          page={page}
+          pagesPosts={pages}
+          gamerID={gamer_id}
+        />
       </div>
     </div>
   )

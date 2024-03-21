@@ -6,6 +6,7 @@ import SliderLatestPosts from '@/app/components/SliderLatestPosts'
 import SliderMiniVideoPosts from '@/app/components/SliderMiniVideoPosts'
 import { cleanDataPosts, getRandomPosts } from '@/utils/functions'
 import { CAT_EDITORIAL } from '@/utils/static_data'
+import CardsLatestVideosPosts from "@/app/components/CardsLatestVideoPosts"
 
 export default async function page() {
   const cat = CAT_EDITORIAL.editorial
@@ -27,7 +28,7 @@ export default async function page() {
 
   return (
     <main className=" z-0 relative w-full pt-28 mb-28 px-4 flex flex-col items-center gap-2 ">
-      <section className=" w-screen md:w-5/6 lg:w-4/6 lg:max-w-[900px] h-fit relative top-0 flex flex-col items-center gap-4">
+      <section className=" w-screen md:w-full lg:max-w-screen-lg h-fit relative top-0 flex flex-col items-center gap-4">
         <TitleSection
           icon={Ticket}
           title="Eventos"
@@ -59,6 +60,13 @@ export default async function page() {
               sizeBullets={'default'}
             />
           </>
+        )}
+        {categoryID && (
+          <CardsLatestVideosPosts
+            id={categoryID}
+            qty={4}
+            categorySlug={cat.slug}
+          />
         )}
       </section>
     </main>

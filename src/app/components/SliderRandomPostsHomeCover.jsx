@@ -63,12 +63,12 @@ export default function SliderRandomPostsHomeCover({
   }, [posts, qty, catFiltered])
 
   return (
-    <div className=" z-20 relative top-0 w-screen h-[60vh] min-h-[450px]">
+    <div className=" z-20 relative top-0 w-screen overflow-hidden max-w-screen-2xl xs:min-h-[450px]">
       <SwiperSliderHomeCover
         posts={randomPosts}
-        slidesPerView={1}
+        slidesPerView={1.5}
         delayPerView={4000}
-        spaceBetweenSlides={14}
+        spaceBetweenSlides={20}
         colorBullets={'white'}
         sizeBullets={'default'}
       />

@@ -37,7 +37,7 @@ export default function SwiperSliderPosts({
   }
 
   return (
-    <div className=" w-screen h-fit  ">
+    <div className=" w-full h-fit  ">
       <Swiper
         ref={sliderRef}
         slidesPerView={slidesPerView}
@@ -53,7 +53,7 @@ export default function SwiperSliderPosts({
         pagination={pagination}
         modules={[Autoplay, Navigation]}
         navigation={false}
-        className="mySwiper w-full  max-w-2xl md:max-w-2xl lg:max-w-4xl h-full lg:min-h-[250px] px-0 overflow-hidden flex justify-center items-center gap-6 "
+        className="mySwiper w-full max-w-2xl md:max-w-2xl lg:max-w-4xl h-full lg:min-h-[250px] overflow-hidden  "
       >
         {posts?.map((post) => (
           <SwiperSlide className={` w-full h-fit`} key={post.id}>

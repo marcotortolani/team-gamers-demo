@@ -17,11 +17,11 @@ export default async function GamersPage() {
       <section className=" w-screen md:w-5/6 lg:w-4/6 lg:max-w-[900px] h-fit relative top-0 flex flex-col items-center gap-4">
         <TitleSection
           icon={Gamepad2}
-          title="Gamers"
+          title="Nuestros Gamers"
           outline
           borderColor="border-Primary"
         />
-        <p className=" w-full max-w-[350px] px-8 mb-4 text-White uppercase font-normal text-center">
+        <p className=" w-full max-w-[350px] md:max-w-[450px] px-8 mb-4 text-base md:text-lg lg:text-xl text-White uppercase font-normal text-center">
           ¡Nuestros videos exclusivos te ayudaran a convertirte en el mejor
           gamer!
         </p>
