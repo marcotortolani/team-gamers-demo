@@ -30,7 +30,7 @@ export default async function Home() {
   )
 
   return (
-    <main className=" z-0 relative overflow-x-hidden w-full top-[11rem] md:top-[13rem] lg:top-[16rem] px-4 flex flex-col items-center gap-2 ">
+    <main className=" z-0 relative overflow-x-hidden w-full top-[11rem] md:top-[13rem] lg:top-[16rem] px-4 flex flex-col items-center gap-6 ">
       <SliderRandomPostsHomeCover
         posts={dataPostsFiltered}
         qty={5}
@@ -40,7 +40,7 @@ export default async function Home() {
       <GamingSummary />
       <EditorialesSummary />
       <MusicaSummary />
-      <div className="w-full h-16 md:h-[15rem] lg:h-[22rem]"></div>
+      <div className="w-full h-[12rem] md:h-[15rem] lg:h-[22rem]"></div>
     </main>
   )
 }

@@ -69,7 +69,7 @@ export default function SwiperSliderCoverPosts({
                 styleColor === 'primary'
                   ? 'bg-Primary text-White '
                   : 'bg-Secondary text-Black'
-              } z-0 relative mx-auto w-[90%] max-w-[700px] aspect-[5/4] lg:max-w-2xl lg:aspect-[7/5] flex flex-col items-center justify-between rounded-lg md:rounded-xl lg:rounded-2xl`}
+              } z-0 relative mx-auto w-[95%] xl:w-full max-w-[700px] aspect-[6/6] lg:max-w-2xl lg:aspect-[7/5] flex flex-col items-center justify-between rounded-lg md:rounded-xl lg:rounded-2xl`}
             >
               <div className=" z-0 relative top-0 w-full h-4/5 overflow-hidden rounded-[inherit]  ">
                 {post.images ? (

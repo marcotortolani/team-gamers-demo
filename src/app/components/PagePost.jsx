@@ -51,12 +51,12 @@ export default async function PagePost({ id }) {
             ' mb-2 uppercase font-normal pointer-events-none cursor-default line-clamp-2 text-pretty text-xl md:text-2xl lg:text-3xl text-White text-left  '
           }
         >
-          <span className=" px-2 lg:px-4 pr-4 bg-Secondary box-decoration-clone leading-[35px] lg:leading-[40px] ">
+          <span className=" px-2 lg:px-4 pr-4 bg-Secondary box-decoration-clone leading-[2.2rem] md:leading-[2.6rem] lg:leading-[3.2rem] ">
             {ReactHtmlParser(post[0]?.title)}
           </span>
         </h2>
       </div>
-      <div className=" post-parsed text-base font-normal sm:text-lg md:text-xl lg:text-2xl leading-4 sm:leading-5 md:leading-6 lg:leading-7 ">
+      <div className=" post-parsed text-lg font-normal md:text-xl lg:text-2xl leading-6 md:leading-8 lg:leading-9 ">
         {contentPostParsed}
       </div>
     </section>

@@ -28,12 +28,12 @@ export default async function LongCardsLatestPosts({
         {latestPosts?.map((post, index) => (
           <li
             key={post.id}
-            className={` relative w-full h-full max-h-[200px] md:min-h-[300px] md:max-h-[350px] lg:min-h-[400px] lg:max-h-[500px] p-4 md:p-6 lg:p-8 my-2 mt-0 grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 lg:gap-6 rounded-xl md:rounded-xl lg:rounded-2xl ${
+            className={` relative w-full h-full min-h-[200px] max-h-[200px] md:min-h-[300px] md:max-h-[350px] lg:min-h-[400px] lg:max-h-[500px] p-4 md:p-6 lg:p-8 my-2 mt-0 grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 lg:gap-6 rounded-xl md:rounded-xl lg:rounded-2xl ${
               index % 2 !== 0 ? 'bg-Primary ' : ' bg-Secondary  '
             } `}
           >
             <div
-              className={`relative w-full order-last col-span-1 lg:col-span-2 `}
+              className={`relative w-full h-full order-last col-span-1 lg:col-span-2 `}
             >
               {post.images.length > 0 ? (
                 <Image
@@ -67,7 +67,7 @@ export default async function LongCardsLatestPosts({
               <p
                 className={`${
                   index % 2 !== 0 ? 'text-White' : 'text-Black'
-                } w-full text-xs md:text-xl lg:text-2xl line-clamp-6 md:line-clamp-[7] md:leading-7 lg:line-clamp-[8] lg:leading-9 `}
+                } w-full text-sm md:text-xl lg:text-2xl line-clamp-6 md:line-clamp-[7] md:leading-7 lg:line-clamp-[8] lg:leading-9 `}
               >
                 {ReactHtmlParser(post.excerpt)}
               </p>

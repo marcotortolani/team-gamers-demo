@@ -19,7 +19,7 @@ export default function SliderGamers({ gamersData, miniCards }) {
   const sliderRef = useRef(0)
   
   return (
-    <div className=" z-30 w-full h-full flex flex-col items-center justify-end overflow-hidden ">
+    <div className=" z-30 w-full h-full px-2 flex flex-col items-center justify-end overflow-hidden ">
       <Swiper
         ref={sliderRef}
         slidesPerView={SLIDES_PER_VIEW}

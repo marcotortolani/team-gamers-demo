@@ -49,7 +49,7 @@ export default function SliderMiniVideoPosts({
             <SwiperSlide
               className={` ${i === sliderElements.length - 1 ? 'pr-2 md:pr-4 lg:pr-6' : ''} 
               ${
-                verticalAspect ? ' aspect-[5/6] md:aspect-[4/3]' : 'aspect-video'
+                verticalAspect ? ' aspect-[5/6] md:aspect-[4/3]' : 'aspect-[4/3]'
               } w-full pl-2 md:pl-4 lg:pl-6 h-full relative `}
               key={post.id}
             >
@@ -58,7 +58,7 @@ export default function SliderMiniVideoPosts({
                 className=" w-full h-full  "
               >
                 <div
-                  className={` relative z-0 w-full h-full  min-h-[100px] md:min-h-[180px] rounded-lg `}
+                  className={` relative z-0 w-full h-full  rounded-lg `}
                 >
                   {post.images.length > 0 ? (
                     <Image
@@ -73,7 +73,7 @@ export default function SliderMiniVideoPosts({
                   )}
                 </div>
 
-                <div className=" z-20 w-full h-full flex flex-col items-start justify-end gap-2 absolute bottom-0 ">
+                <div className=" z-20 w-full h-full flex flex-col items-start justify-end gap-2 absolute bottom-0  ">
                   <div className="absolute top-0 left-0 z-30 w-full h-full flex items-center justify-center ">
                     <Image
                       className=" w-auto h-1/4 min-h-[20px] max-h-[60px]"
@@ -84,9 +84,9 @@ export default function SliderMiniVideoPosts({
                     />
                   </div>
                   <h3
-                    className={` z-10 absolute bottom-2 left-2 md:bottom-4 md:left-4 w-[90%] line-clamp-2 text-start font-medium text-xs sm:text-xs md:text-base lg:text-lg text-Black  `}
+                    className={` z-10 absolute bottom-2 left-2 md:bottom-4 md:left-4 w-5/6 line-clamp-2 text-start font-medium text-xs sm:text-xs md:text-base lg:text-lg text-Black  `}
                   >
-                    <span className=" px-2 pr-3 bg-White/90 box-decoration-clone leading-[1.2rem]">
+                    <span className=" px-1 pr-3 bg-White/90 box-decoration-clone leading-[1.4rem] md:leading-[1.8rem]">
                       {post.title}
                     </span>
                   </h3>

@@ -121,7 +121,7 @@ export const CAT_EDITORIAL = {
     slug: 'editorial/retro',
   },
   tecnologia: {
-    name: 'Tecnología',
+    name: 'Tecnologia',
     slug: 'editorial/tecnologia',
   },
 }

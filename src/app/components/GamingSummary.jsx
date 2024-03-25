@@ -80,7 +80,7 @@ export default async function GamingSummary() {
   })
 
   return (
-    <section className=" z-50  w-screen md:w-full lg:max-w-screen-lg h-fit relative top-0 flex flex-col items-center md:gap-4">
+    <section className=" z-50  w-screen md:w-full lg:max-w-screen-lg h-fit relative top-0 flex flex-col items-center gap-4">
       <TitleSummary title="Nuestros Gamers" icon={Gamepad2} />
 
       <SliderGamers

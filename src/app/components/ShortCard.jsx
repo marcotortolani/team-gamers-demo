@@ -9,12 +9,12 @@ export default function ShortCard({ qty, post, miniCard, accentColor }) {
     <li
       className={`${
         qty % 2 !== 0 && qty === index + 1
-          ? 'col-span-2 aspect-[5/3] '
-          : 'col-span-1 aspect-[2/3] '
+          ? 'col-span-2  '
+          : 'col-span-1  '
       } ${
         miniCard
-          ? 'max-h-[150px] md:max-h-[220px] lg:max-h-[260px]  '
-          : ' md:aspect-[4/5] lg:aspect-square'
+          ? 'aspect-[4/4] md:aspect-[5/4]  '
+          : 'aspect-[2/3] md:aspect-[4/5] lg:aspect-square'
       } ${
         accentColor === 'primary' ? 'bg-Primary' : 'bg-Secondary'
       } col-row-1 relative w-full mt-0 rounded-xl md:rounded-xl lg:rounded-2xl `}
@@ -43,12 +43,12 @@ export default function ShortCard({ qty, post, miniCard, accentColor }) {
           <h3
             className={`${
               miniCard
-                ? 'text-xs md:text-sm lg:text-base'
+                ? 'text-sm md:text-lg lg:text-xl'
                 : 'text-base md:text-lg lg:text-xl'
             } text-Black font-semibold line-clamp-2 uppercase text-start `}
           >
             <span
-              className={` bg-White/80 px-1 pr-2 box-decoration-clone leading-[1.5rem] md:leading-[1.7rem] lg:leading-[2.1rem]`}
+              className={` bg-White/80 px-1 pr-2 box-decoration-clone leading-[1.7rem] md:leading-[1.9rem] lg:leading-[2.2rem]`}
             >
               {ReactHtmlParser(post.title)}
             </span>

@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
           ` relative w-screen overflow-scroll overflow-x-hidden scroll-smooth flex flex-col items-center bg-Background `
         }
       >
-        <div className="bg-image-pattern -z-10 absolute top-0 w-screen h-full opacity-30 bg-repeat bg-fill " />
+        <div className="bg-image-pattern -z-10 absolute top-0 w-screen h-full opacity-40 bg-repeat bg-fill " />
         <Header />
         <StateProvider>{children}</StateProvider>
         <DownbarMobile />
