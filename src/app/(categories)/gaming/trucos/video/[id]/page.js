@@ -13,7 +13,7 @@ export default async function VideoPage({ params }) {
   const vimeoNumber = getVimeoNumber({ string: dataVideo?.content.rendered })
 
   return (
-    <div className=" w-full px-4 md:w-5/6 lg:w-4/6 lg:max-w-[900px] flex flex-col items-center">
+    <div className=" w-full px-4  flex flex-col items-center">
       <div className=" w-full aspect-video rounded-md lg:rounded-lg">
         {vimeoNumber && (
           <iframe

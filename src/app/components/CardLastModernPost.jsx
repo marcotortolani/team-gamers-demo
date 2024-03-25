@@ -6,9 +6,9 @@ import ButtonSeePost from './ui/ButtonSeePost'
 
 export default function CardLastModernPost({ post, titleOnly }) {
   return (
-    <div className=" w-full h-fit flex justify-center">
+    <div className=" w-full  h-fit flex justify-center">
       <div
-        className={` relative w-[90%] aspect-square bg-Primary flex flex-col items-center rounded-xl`}
+        className={` relative w-[90%] lg:w-[95%] aspect-square md:aspect-[4/3] lg:aspect-[5/4] xl:aspect-[5/3] bg-Primary flex flex-col items-center rounded-xl`}
       >
         <div className="  relative w-full h-4/5 rounded-[inherit]">
           {post?.images.length > 0 ? (
@@ -23,9 +23,9 @@ export default function CardLastModernPost({ post, titleOnly }) {
             <ImageMissing />
           )}
           <h3
-            className={`absolute bottom-2 left-2 text-Black font-semibold line-clamp-2 uppercase text-start text-lg `}
+            className={`absolute bottom-2 left-2 px-2 text-Black font-semibold line-clamp-2 uppercase text-start text-lg md:text-xl lg:text-2xl `}
           >
-            <span className=" px-2 pr-4 bg-White/80 box-decoration-clone leading-[2rem]">
+            <span className=" px-2 pr-4 bg-White/80 box-decoration-clone leading-[2rem] md:leading-[2.2rem] lg:leading-[2.5rem]">
               {ReactHtmlParser(post?.title)}
             </span>
           </h3>

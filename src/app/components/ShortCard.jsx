@@ -9,11 +9,15 @@ export default function ShortCard({ qty, post, miniCard, accentColor }) {
     <li
       className={`${
         qty % 2 !== 0 && qty === index + 1
-          ? 'col-span-2 aspect-[5/3]'
-          : 'col-span-1 aspect-[2/3]'
-      } ${miniCard ? 'max-h-[150px] md:max-h-[220px] lg:max-h-[260px]' : ''} ${
+          ? 'col-span-2 aspect-[5/3] '
+          : 'col-span-1 aspect-[2/3] '
+      } ${
+        miniCard
+          ? 'max-h-[150px] md:max-h-[220px] lg:max-h-[260px]  '
+          : ' md:aspect-[4/5] lg:aspect-square'
+      } ${
         accentColor === 'primary' ? 'bg-Primary' : 'bg-Secondary'
-      } col-row-1 relative w-full mt-0  rounded-xl md:rounded-xl lg:rounded-2xl `}
+      } col-row-1 relative w-full mt-0 rounded-xl md:rounded-xl lg:rounded-2xl `}
     >
       <div
         className={`${
@@ -38,7 +42,9 @@ export default function ShortCard({ qty, post, miniCard, accentColor }) {
         >
           <h3
             className={`${
-              miniCard ? 'text-xs md:text-sm lg:text-base' : 'text-base md:text-lg lg:text-xl'
+              miniCard
+                ? 'text-xs md:text-sm lg:text-base'
+                : 'text-base md:text-lg lg:text-xl'
             } text-Black font-semibold line-clamp-2 uppercase text-start `}
           >
             <span

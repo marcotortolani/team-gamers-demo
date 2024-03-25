@@ -1,7 +1,6 @@
 import React from 'react'
 import { getPostsByCategoryId } from '@/services/api-content'
 import { getLatestPosts, cleanDataPosts } from '@/utils/functions'
-import SwiperSliderPosts from './SwiperSliderPosts'
 import SwiperSliderModernPosts from './SwiperSliderModernPosts'
 
 export default async function SliderLatestModernPosts({

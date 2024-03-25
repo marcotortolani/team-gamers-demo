@@ -23,12 +23,12 @@ export default async function LongCardsLatestPosts({
   })
 
   return (
-    <div className=" w-full  h-full flex justify-center ">
-      <ul className=" w-full max-w-2xl h-full  flex flex-col items-center gap-2 md:gap-6">
+    <div className=" w-full h-full flex justify-center md:my-6 ">
+      <ul className=" w-full max-w-4xl px-0 md:px-4 lg:px-0 h-full  flex flex-col items-center gap-2 md:gap-6">
         {latestPosts?.map((post, index) => (
           <li
             key={post.id}
-            className={` relative w-full h-full max-h-[200px] md:min-h-[300px] md:max-h-[300px] lg:max-h-[380px] p-4 lg:p-8 my-2 mt-0 grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 lg:gap-6 rounded-xl md:rounded-xl lg:rounded-2xl ${
+            className={` relative w-full h-full max-h-[200px] md:min-h-[300px] md:max-h-[350px] lg:min-h-[400px] lg:max-h-[500px] p-4 md:p-6 lg:p-8 my-2 mt-0 grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 lg:gap-6 rounded-xl md:rounded-xl lg:rounded-2xl ${
               index % 2 !== 0 ? 'bg-Primary ' : ' bg-Secondary  '
             } `}
           >
@@ -50,12 +50,12 @@ export default async function LongCardsLatestPosts({
                 <h3
                   className={`${
                     index % 2 !== 0 ? 'text-White' : 'text-Black'
-                  } font-semibold line-clamp-2 uppercase text-start text-base md:text-lg lg:text-xl `}
+                  } font-semibold line-clamp-2 uppercase text-start text-base md:text-lg lg:text-2xl `}
                 >
                   <span
                     className={`${
                       index % 2 !== 0 ? 'bg-Black/80' : 'bg-White/80'
-                    } px-1 pr-2 box-decoration-clone leading-[1.7rem] md:leading-[1.9rem] lg:leading-[2.1rem]`}
+                    } px-1 pr-2 md:px-2 lg:px-3 box-decoration-clone leading-[1.7rem] md:leading-[2.1rem] lg:leading-[2.5rem]`}
                   >
                     {ReactHtmlParser(post.title)}
                   </span>
@@ -67,7 +67,7 @@ export default async function LongCardsLatestPosts({
               <p
                 className={`${
                   index % 2 !== 0 ? 'text-White' : 'text-Black'
-                } w-full text-xs md:text-lg lg:text-lg line-clamp-6 md:line-clamp-[7] lg:line-clamp-[8] `}
+                } w-full text-xs md:text-xl lg:text-2xl line-clamp-6 md:line-clamp-[7] md:leading-7 lg:line-clamp-[8] lg:leading-9 `}
               >
                 {ReactHtmlParser(post.excerpt)}
               </p>

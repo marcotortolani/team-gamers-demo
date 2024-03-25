@@ -25,7 +25,7 @@ export default async function ShortCardsLatestPosts({
 
   return (
     <div className=" w-full h-full flex justify-center ">
-      <ul className=" w-full max-w-2xl h-full grid grid-cols-2 grid-rows-1  gap-3 md:gap-5 lg:gap-6">
+      <ul className=" w-full max-w-2xl lg:max-w-4xl h-full grid grid-cols-2 grid-rows-1  gap-3 md:gap-5 lg:gap-6">
         {latestPosts?.map((post) => (
           <ShortCard
             key={post.id}

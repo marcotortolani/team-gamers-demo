@@ -7,7 +7,6 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 
 import PaginationBullets from './ui/PaginationBullets'
-import CardLastPost from './CardLastPost'
 import CardLastModernPost from './CardLastModernPost'
 
 SwiperCore.use([Pagination])
@@ -54,7 +53,7 @@ export default function SwiperSliderModernPosts({
         pagination={pagination}
         modules={[Autoplay, Navigation]}
         navigation={false}
-        className="mySwiper w-full   max-w-2xl md:max-w-2xl lg:max-w-4xl h-full lg:min-h-[250px] "
+        className="mySwiper w-full max-w-2xl md:max-w-3xl lg:max-w-5xl h-full lg:min-h-[250px] "
       >
         {posts?.map((post) => (
           <SwiperSlide className={` w-full h-fit `} key={post.id}>

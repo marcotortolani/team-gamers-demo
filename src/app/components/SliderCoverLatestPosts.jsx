@@ -17,10 +17,10 @@ export default async function SliderCoverLatestPosts({
   })
 
   return (
-    <div className=" w-screen h-full ">
+    <div className=" w-screen max-w-screen-2xl h-full ">
       <SwiperSliderCoverPosts
         posts={latestPosts}
-        slidesPerView={1}
+        slidesPerView={1.8}
         delayPerView={3500}
         spaceBetweenSlides={0}
         colorBullets={'white'}

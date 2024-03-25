@@ -96,6 +96,8 @@
   background-color: none;
 }
 .post-parsed img {
+  width: 100%;
+  height: auto;
   border-radius: 0.6rem;
   aspect-ratio: 16/9;
   object-fit: cover;

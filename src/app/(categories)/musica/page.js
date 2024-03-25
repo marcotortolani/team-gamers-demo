@@ -27,11 +27,11 @@ export default async function page() {
 
   // ----------
 
-  const dataVideoPosts = await getPostsByCategoryId({ id: categoryID })
+  const { data } = await getPostsByCategoryId({ id: categoryID })
 
   const qtyVideoElements = 10
   const randomVideoPosts = cleanDataPosts({
-    posts: getRandomPosts({ posts: dataVideoPosts, qty: qtyVideoElements }),
+    posts: getRandomPosts({ posts: data, qty: qtyVideoElements }),
     categorySlug: cat.slug,
   })
   const randomVideoPostsFirstSlice = randomVideoPosts.slice(
@@ -45,7 +45,7 @@ export default async function page() {
 
   return (
     <main className=" z-0 relative w-full pt-28 mb-20 px-4 flex flex-col items-center gap-2 ">
-      <section className=" w-screen md:w-5/6 lg:w-4/6 lg:max-w-[900px] h-fit relative top-0 flex flex-col items-center gap-4">
+      <section className=" w-screen md:w-5/6 lg:w-full lg:max-w-screen-lg h-fit relative top-0 flex flex-col items-center gap-4">
         <TitleSection
           icon={Music}
           title="Música"

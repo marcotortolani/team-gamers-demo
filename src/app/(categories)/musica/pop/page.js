@@ -24,7 +24,6 @@ export default async function page() {
           id={categoryID}
           qty={5}
           categorySlug={cat.slug}
-          paginationHide
         />
       )}
 
