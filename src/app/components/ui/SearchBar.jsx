@@ -1,65 +1,66 @@
-'use client';
-import React from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import ReactHtmlParser from 'react-html-parser';
-import { useState, useEffect } from 'react';
-import { searchData, getCategoryNameByPostId } from '@/services/api-content';
+'use client'
+import React from 'react'
+import { useRouter, usePathname } from 'next/navigation'
+import ReactHtmlParser from 'react-html-parser'
+import { useState, useEffect } from 'react'
+import { searchData } from '@/services/api-content'
 
-import { SearchIcon } from "@/utils/icons";
-import { Loader2 } from 'lucide-react';
+import { SearchIcon } from '@/utils/icons'
+import { Trash2, Loader2 } from 'lucide-react'
 
-export default function SearchBar() {
-  const [inputValue, setInputValue] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
-  const [results, setResults] = useState([]);
-  const router = useRouter();
-  const pathname = usePathname();
+export default function SearchBar({ isVisible }) {
+  const [inputValue, setInputValue] = useState('')
+  const [searchTerm, setSearchTerm] = useState('')
+  const [results, setResults] = useState([])
+  const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
-    if (!searchTerm) return;
+    if (!searchTerm) return
     searchData(searchTerm).then((results) => {
       const resCleaned = results.map((res) => ({
         id: res.id,
         title: res.title.rendered,
-      }));
-      setResults(resCleaned);
-    });
-  }, [searchTerm]);
+      }))
+      setResults(resCleaned)
+    })
+  }, [searchTerm])
 
   useEffect(() => {
-    setInputValue('');
-    setSearchTerm('');
-    setResults([]);
-  }, [pathname]);
+    setInputValue('')
+    setSearchTerm('')
+    setResults([])
+  }, [pathname])
 
   function handleChange(e) {
-    e.preventDefault();
-    setInputValue(e.target.value);
-    setSearchTerm(e.target.value);
+    e.preventDefault()
+    setInputValue(e.target.value)
+    setSearchTerm(e.target.value)
   }
 
   function handleSearch(e) {
-    e.preventDefault();
-    setSearchTerm(inputValue);
+    e.preventDefault()
+    setSearchTerm(inputValue)
+  }
+
+  function handleDelete() {
+    setInputValue('')
+    setSearchTerm('')
   }
 
   function handleClick(id) {
-    getCategoryNameByPostId(id).then((catName) => {
-      setInputValue('');
-      setSearchTerm('');
-      setResults([]);
-      router.push(`/${catName}/${id}`);
-    });
+    setInputValue('')
+    setSearchTerm('')
+    setResults([])
+    router.push(`/${id}`)
   }
 
   return (
-    <div className=" w-2/3 max-w-[400px] lg:max-w-[550px] h-fit min-h-10 flex justify-center">
+    <div className=" z-50 w-2/3 max-w-[400px] lg:max-w-[550px] h-fit min-h-10 flex justify-center">
       <form action="" className=" relative w-full ">
         <input
-          className={
-            ` relative w-full pl-6 py-1 text-sm md:text-base font-light border-White bg-Black text-White border-solid border-2 rounded-lg 
-                outline-none focus:border-Secondary placeholder:text-SecondaryDark/60 `
-          }
+          className={` relative w-full pl-6 py-1 text-sm md:text-base font-light border-White bg-Black text-White border-solid border-2 rounded-lg 
+                outline-none focus:border-Secondary placeholder:text-SecondaryDark/60 `}
           type="text"
           name="search"
           id="search"
@@ -68,8 +69,8 @@ export default function SearchBar() {
           onChange={(e) => handleChange(e)}
         />
         {inputValue.length !== 0 && results.length === 0 ? (
-          <div className="absolute top-0 right-2 px-2 h-full flex items-center animate-spin">
-            <Loader2 color={'gray'} />
+          <div className="absolute top-0 right-0 p-2 w-10 h-full flex items-center animate-spin">
+            <Loader2 color={'#39DFFF'} width="100%" height="100%" />
           </div>
         ) : (
           <button
@@ -79,20 +80,34 @@ export default function SearchBar() {
             <SearchIcon />
           </button>
         )}
+        {inputValue.length !== 0 && (
+          <button
+            onClick={handleDelete}
+            className=" absolute  top-0 right-10 w-10 h-full p-2 flex items-center  "
+          >
+            <Trash2 color="white" width="100%" height="100%" />
+          </button>
+        )}
       </form>
       {results.length > 0 && inputValue && (
-        <div className=" -z-10 absolute top-10 w-full bg-PostButton border-Primary  border-solid border-2 rounded-xl">
-          <ul className=" w-full h-fit p-2 py-1">
+        <div
+          className={`${
+            isVisible ? '' : '  -translate-y-full '
+          } -z-10 absolute top-28 mt-2 md:mt-0 md:top-40  w-[90%] md:max-w-lg lg:max-w-xl transition-all duration-200 ease-in-out bg-Black/80 shadow-lg backdrop-filter backdrop-blur-xl ring-1 ring-gray-600  border-Primary  border-solid border-2 rounded-xl`}
+        >
+          <ul className=" w-full h-fit p-2 py-0">
             {results?.map((result) => (
               <li
                 key={result.id}
-                className="w-full my-3 px-2 bg-Primary hover:bg-Details text-White rounded-lg"
+                className="w-full my-3 px-2 py-0 md:py-1 bg-Primary hover:bg-Details transition-all duration-200 ease-in-out text-White rounded-lg"
               >
                 <button
                   onClick={() => handleClick(result.id)}
-                  className="w-full  overflow-hidden line-clamp-1 text-left hover:cursor-pointer "
+                  className=" w-full h-full  hover:cursor-pointer "
                 >
-                  {ReactHtmlParser(result.title)}
+                  <span className="line-clamp-1 text-left text-sm md:text-lg lg:text-xl">
+                    {ReactHtmlParser(result.title)}
+                  </span>
                 </button>
               </li>
             ))}
@@ -100,5 +115,5 @@ export default function SearchBar() {
         </div>
       )}
     </div>
-  );
+  )
 }

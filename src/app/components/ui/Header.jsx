@@ -53,7 +53,7 @@ export default function Header() {
           </Link>
         </div>
 
-        <SearchBar />
+        <SearchBar isVisible={isNavbarVisible} />
         <DropdownMenu />
       </div>
     </header>
