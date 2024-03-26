@@ -13,7 +13,7 @@ export default async function LongCardsLatestPosts({
   id,
   qty,
   categorySlug,
-  tagExclude = 14,
+  tagExclude = 72,
 }) {
   const { data } = await getPostsByCategoryId({ id, tagExclude: tagExclude })
 

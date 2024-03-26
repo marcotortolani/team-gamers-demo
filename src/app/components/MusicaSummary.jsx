@@ -1,27 +1,22 @@
 import React from 'react'
-import {
-  getCategoryId,
-  getVideoPostsByCategoryId,
-} from '../../services/api-content'
-import { getRandomPosts, cleanDataPosts } from '@/utils/functions'
-import { CATEGORIES, CAT_EDITORIAL } from '@/utils/static_data'
-import { PlayCircleIcon } from 'lucide-react'
+import { getData, getCategoryId } from '../../services/api-content'
+import { CAT_MUSICA } from '@/utils/static_data'
 import SliderCoverLatestPosts from './SliderCoverLatestPosts'
 import ShortCardsLatestPosts from './ShortCardsLatestPosts'
 import LongCardsLatestPosts from './LongCardsLatestPosts'
 import { TitleSummary } from './ui/TitleSummary'
+import { TitleArticle } from "./ui/TitleArticle"
+import { PlayCircleIcon, Sparkles, Mic2Icon } from "lucide-react"
 
 export default async function MusicaSummary() {
-  const cat = CAT_EDITORIAL.editorial
-  const categoryID = await getCategoryId(cat.name)
+  const cat = CAT_MUSICA
+  const categoryID = await getCategoryId(cat.musica.name)
 
-  // const dataVideoPosts = await getVideoPostsByCategoryId({ id: categoryID });
-
-  // const qtyVideoElements = 4;
-  // const randomVideoPosts = cleanDataPosts({
-  //   posts: getRandomPosts({ posts: dataVideoPosts, qty: qtyVideoElements }),
-  //   categorySlug: cat.slug,
-  // });
+  const { data } = await getData(`categories?parent=${categoryID}`)
+  const dataCategories = data.reduce((acc, cat) => {
+    acc[cat.slug] = { id: cat.id, name: cat.name, slug: cat.slug }
+    return acc
+  }, {})
 
   return (
     <section className=" z-50 w-screen md:w-full lg:max-w-screen-lg h-fit relative top-0 flex flex-col items-center gap-8">
@@ -31,25 +26,31 @@ export default async function MusicaSummary() {
         <SliderCoverLatestPosts
           id={categoryID}
           qty={5}
-          categorySlug={cat.slug}
+          categorySlug={cat.musica.slug}
           styleColor="secondary"
         />
       </article>
 
       <article className=" w-full px-4 md:px-0 ">
         {/* subcategoria TRAP */}
+        <TitleArticle title="Trap/Urbano" icon={Mic2Icon} />
         <ShortCardsLatestPosts
-          id={categoryID}
+          id={dataCategories.trap.id}
           qty={4}
-          categorySlug={cat.slug}
+          categorySlug={`${cat.musica.slug}/${dataCategories.trap.slug}`}
           miniCard
           accentColor="primary"
         />
       </article>
 
       <article className="w-full px-4 py-2 ">
-        {/* subcategoria URBANO */}
-        <LongCardsLatestPosts id={categoryID} qty={2} categorySlug={cat.slug} />
+        {/* subcategoria POP */}
+        <TitleArticle title="Pop" icon={Sparkles} />
+        <LongCardsLatestPosts
+          id={dataCategories.pop.id}
+          qty={2}
+          categorySlug={`${cat.musica.slug}/${dataCategories.pop.slug}`}
+        />
       </article>
     </section>
   )

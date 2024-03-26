@@ -14,9 +14,9 @@ export default function CardsLatestVideosPosts({
   const [posts, setPosts] = useState([])
 
   function handleClick() {
-    if (totalPosts - qtyPosts  > 4) {
+    if (totalPosts - qtyPosts > 4) {
       setQtyPosts((prev) => prev + 4)
-    }else{
+    } else {
       setQtyPosts(totalPosts)
     }
   }
@@ -28,7 +28,7 @@ export default function CardsLatestVideosPosts({
     })
   }, [qtyPosts])
 
-  return (
+  return posts.length > 0 ? (
     <div className=" w-full h-full flex flex-col items-center">
       <ul className=" w-full lg:max-w-[900px] h-fit px-4 py-4 lg:my-4 grid grid-cols-2 grid-rows-1  gap-3 md:gap-5 lg:gap-8 select-none">
         {posts?.map((post) => (
@@ -38,7 +38,7 @@ export default function CardsLatestVideosPosts({
           >
             <CardVideo
               post={post}
-              href={categorySlug + `/${post.id}`}
+              href={`/${categorySlug}/${post.id}`}
               verticalAspect={verticalAspect}
             />
           </li>
@@ -46,12 +46,16 @@ export default function CardsLatestVideosPosts({
       </ul>
       <button
         type="button"
-        disabled={qtyPosts === totalPosts}
+        disabled={qtyPosts === totalPosts || posts.length === 0}
         className=" w-fit px-4 py-1 uppercase border-2 border-Secondary disabled:border-gray-900 disabled:bg-gray-400 disabled:text-gray-300 disabled:scale-90 transition-all duration-200 ease-in-out rounded-full text-White"
         onClick={handleClick}
       >
         Cargar más
       </button>
+    </div>
+  ) : (
+    <div className=" w-fit p-4 text-Black md:text-lg lg:text-xl bg-Secondary rounded-lg">
+      No hay contenido para esta categoría
     </div>
   )
 }

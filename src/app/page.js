@@ -1,21 +1,16 @@
 import React from 'react'
 import { getData } from '@/services/api-content'
-import { CATEGORIES } from '@/utils/static_data'
 
 import SliderRandomPostsHomeCover from './components/SliderRandomPostsHomeCover'
 import GamingSummary from './components/GamingSummary'
 import EditorialesSummary from './components/EditorialesSummary'
 import MusicaSummary from './components/MusicaSummary'
-import { cleanDataPosts } from '@/utils/functions'
 
 export default async function Home() {
-  const { data } = await getData('categories?per_page=30')
+  const { data } = await getData('categories?per_page=50')
 
   const categoriesIDExcluded = await data
-    .filter(
-      (cat) =>
-        cat.slug === CATEGORIES.videos.slug || cat.slug === 'sin-categoria'
-    )
+    .filter((cat) => cat.slug === 'videos' || cat.slug === 'sin-categoria')
     .map((cat) => cat.id)
 
   const categoriesIDFiltered = await data

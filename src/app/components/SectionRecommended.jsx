@@ -1,7 +1,7 @@
 import React from 'react'
 import { getCategoryId } from '@/services/api-content'
 import HorizontalLine from './ui/HorizontalLine'
-import CardsLatestVideosPosts from './CardsLatestVideoPosts'
+import ShortCardsLatestPosts from './ShortCardsLatestPosts'
 
 export default async function SectionRecommended({ category, qty }) {
   const categoryID = await getCategoryId(category.name)
@@ -20,12 +20,12 @@ export default async function SectionRecommended({ category, qty }) {
           </h4>
         </div>
 
-        {categoryID !== undefined && (
-          <CardsLatestVideosPosts
+        {categoryID && (
+          <ShortCardsLatestPosts
             id={categoryID}
             qty={qty}
             categorySlug={category.slug}
-            verticalAspect
+            miniCard
           />
         )}
       </div>

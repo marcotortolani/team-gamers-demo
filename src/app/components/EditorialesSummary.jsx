@@ -1,28 +1,28 @@
 import React from 'react'
 import {
+  getData,
   getCategoryId,
-  getVideoPostsByCategoryId,
 } from '../../services/api-content'
-import { getRandomPosts, cleanDataPosts } from '@/utils/functions'
 import { CAT_EDITORIAL } from '@/utils/static_data'
 import { FileText } from 'lucide-react'
 import SliderCoverLatestPosts from './SliderCoverLatestPosts'
 import ShortCardsLatestPosts from './ShortCardsLatestPosts'
 import LongCardsLatestPosts from './LongCardsLatestPosts'
-import CardLastPost from './CardLastPost'
 import { TitleSummary } from './ui/TitleSummary'
+import { TitleArticle } from './ui/TitleArticle'
+import { CircuitBoard } from 'lucide-react'
+import { Gamepad2 } from 'lucide-react'
 
 export default async function EditorialesSummary() {
-  const cat = CAT_EDITORIAL.editorial
-  const categoryID = await getCategoryId(cat.name)
+  const cat = CAT_EDITORIAL
+  const categoryID = await getCategoryId(cat.editorial.name)
 
-  const dataVideoPosts = await getVideoPostsByCategoryId({ id: categoryID })
+  const { data } = await getData(`categories?parent=${categoryID}`)
+  const dataCategories = data.reduce((acc, cat) => {
+    acc[cat.slug] = { id: cat.id, name: cat.name, slug: cat.slug }
+    return acc
+  }, {})
 
-  const qtyVideoElements = 4
-  const randomVideoPosts = cleanDataPosts({
-    posts: getRandomPosts({ posts: dataVideoPosts, qty: qtyVideoElements }),
-    categorySlug: cat.slug,
-  })
 
   return (
     <section className=" z-50 w-screen md:w-5/6 lg:w-4/6 lg:max-w-[900px] h-fit relative top-0 flex flex-col items-center gap-8">
@@ -31,23 +31,29 @@ export default async function EditorialesSummary() {
       <SliderCoverLatestPosts
         id={categoryID}
         qty={5}
-        categorySlug={cat.slug}
+        categorySlug={cat.editorial.slug}
         styleColor="primary"
       />
 
       <article className=" w-full px-4 md:px-0 ">
         {/* subcategoria VIDEOJUEGOS */}
+        <TitleArticle title="Videojuegos" icon={Gamepad2} />
         <ShortCardsLatestPosts
-          id={categoryID}
+          id={dataCategories.videojuegos.id}
           qty={2}
-          categorySlug={cat.slug}
+          categorySlug={`${cat.editorial.slug}/${dataCategories.videojuegos.slug}`}
           accentColor="primary"
         />
       </article>
 
       <article className="w-full px-4 py-2 md:px-0 ">
         {/* subcategoria TECNOLOGIA */}
-        <LongCardsLatestPosts id={categoryID} qty={2} categorySlug={cat.slug} />
+        <TitleArticle title="Tecnología" icon={CircuitBoard} />
+        <LongCardsLatestPosts
+          id={dataCategories.tecnologia.id}
+          qty={2}
+          categorySlug={`${cat.editorial.slug}/${dataCategories.tecnologia.slug}`}
+        />
       </article>
     </section>
   )

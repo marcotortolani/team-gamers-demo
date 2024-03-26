@@ -8,7 +8,7 @@ import LongCardsLatestPosts from '@/app/components/LongCardsLatestPosts'
 import ShortCardsLatestPosts from '@/app/components/ShortCardsLatestPosts'
 
 export default async function page() {
-  const cat = CAT_EDITORIAL.editorial
+  const cat = CAT_EDITORIAL.retro
   const categoryID = await getCategoryId(cat.name)
   return (
     <main className=" z-0 relative w-full pt-28 mb-20 px-4 flex flex-col items-center gap-4 ">

@@ -58,6 +58,7 @@ export async function getPostsByCategoryId({
   id,
   perPage = 10,
   tagExclude = 0,
+  tags = 0,
 }) {
   const { data, posts, pages } = await getData(
     `posts?per_page=${perPage}&categories=${id}&tags_exclude=${tagExclude}`
@@ -84,10 +85,12 @@ export async function getVideoPostsByCategoryId({
   page = 1,
   parentID = 0,
 }) {
-  const { data } = await getData(
-    `posts?per_page=${perPage}&page=${page}&categories=${id}&parent=${parentID}`
+  const videoTag = 72
+  const { data, pages } = await getData(
+    `posts?per_page=${perPage}&page=${page}&categories=${id}&parent=${parentID}&tags=${videoTag}`
   )
-  return data
+
+  return { data, pages }
 }
 
 export async function searchData(slug) {

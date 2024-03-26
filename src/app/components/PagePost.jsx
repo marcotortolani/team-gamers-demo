@@ -22,7 +22,7 @@ export default async function PagePost({ id }) {
   })
 
   return (
-    <section className=" w-full md:w-5/6 lg:w-4/6 lg:max-w-4xl flex flex-col items-center gap-4">
+    <section className=" w-full lg:max-w-4xl flex flex-col items-center gap-4">
       <div
         className={` bg-Primary w-full aspect-video relative flex flex-col items-center justify-center rounded-lg lg:rounded-xl`}
       >

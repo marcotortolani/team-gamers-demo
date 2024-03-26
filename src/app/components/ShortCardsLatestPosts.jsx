@@ -1,12 +1,7 @@
 import React from 'react'
-import Image from 'next/image'
-import ReactHtmlParser from 'react-html-parser'
-
 import { getPostsByCategoryId } from '@/services/api-content.js'
 import { getLatestPosts, cleanDataPosts } from '@/utils/functions.js'
 import ShortCard from './ShortCard.jsx'
-
-//const tagIDVideoPost = 2;
 
 export default async function ShortCardsLatestPosts({
   id,
@@ -14,7 +9,7 @@ export default async function ShortCardsLatestPosts({
   categorySlug,
   miniCard,
   accentColor,
-  tagExclude = 2,
+  tagExclude = 72,
 }) {
   const { data } = await getPostsByCategoryId({ id, tagExclude: tagExclude })
 
@@ -24,7 +19,7 @@ export default async function ShortCardsLatestPosts({
   })
 
   return (
-    <div className=" w-full h-full flex justify-center ">
+    <div className=" w-full h-full mt-4 flex justify-center ">
       <ul className=" w-full max-w-2xl lg:max-w-4xl h-full grid grid-cols-2 grid-rows-1  gap-3 md:gap-5 lg:gap-6">
         {latestPosts?.map((post) => (
           <ShortCard

@@ -26,6 +26,7 @@ export default function SliderMiniVideoPosts({
 }) {
   const sliderRef = useRef(0)
 
+
   return (
     <div className=" w-screen lg:max-w-screen-lg  h-full  ">
       {sliderElements.length > 0 && (
@@ -47,9 +48,13 @@ export default function SliderMiniVideoPosts({
         >
           {sliderElements?.map((post, i) => (
             <SwiperSlide
-              className={` ${i === sliderElements.length - 1 ? 'pr-2 md:pr-4 lg:pr-6' : ''} 
+              className={` ${
+                i === sliderElements.length - 1 ? 'pr-2 md:pr-4 lg:pr-6' : ''
+              } 
               ${
-                verticalAspect ? ' aspect-[5/6] md:aspect-[4/3]' : 'aspect-[4/3]'
+                verticalAspect
+                  ? ' aspect-[5/6] md:aspect-[4/3]'
+                  : 'aspect-[4/3]'
               } w-full pl-2 md:pl-4 lg:pl-6 h-full relative `}
               key={post.id}
             >
@@ -57,9 +62,7 @@ export default function SliderMiniVideoPosts({
                 href={`/${post.category}/${post.id}`}
                 className=" w-full h-full  "
               >
-                <div
-                  className={` relative z-0 w-full h-full  rounded-lg `}
-                >
+                <div className={` relative z-0 w-full h-full  rounded-lg `}>
                   {post.images.length > 0 ? (
                     <Image
                       className={` w-full h-auto object-cover rounded-[inherit]`}

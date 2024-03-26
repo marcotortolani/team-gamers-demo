@@ -36,7 +36,6 @@ export default function SwiperSliderHomeCover({
       return null
     },
   }
-  console.log(posts)
 
   useEffect(() => {
     if (slidePosts.length === 0) {

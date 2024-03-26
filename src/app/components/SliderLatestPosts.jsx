@@ -16,7 +16,7 @@ export default async function SliderLatestPosts({
     categorySlug,
   })
 
-  return (
+  return latestPosts.length > 0 ? (
     <SwiperSliderPosts
       posts={latestPosts}
       slidesPerView={1}
@@ -26,5 +26,5 @@ export default async function SliderLatestPosts({
       sizeBullets={'default'}
       paginationHide={paginationHide}
     />
-  )
+  ) : null
 }
