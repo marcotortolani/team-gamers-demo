@@ -1,11 +1,10 @@
 import React from 'react'
-import { CAT_EDITORIAL } from '@/utils/static_data'
+import { CAT_EDITORIAL as cat } from '@/utils/static_data'
 import SectionRecommended from '@/app/components/SectionRecommended'
 import PagePost from '@/app/components/PagePost'
 
 export default function page({ params }) {
   const { id } = params
-  const cat = CAT_EDITORIAL.editorial
 
   return (
     <main

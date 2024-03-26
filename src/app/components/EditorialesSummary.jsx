@@ -3,7 +3,7 @@ import {
   getData,
   getCategoryId,
 } from '../../services/api-content'
-import { CAT_EDITORIAL } from '@/utils/static_data'
+import { CAT_EDITORIAL as cat } from '@/utils/static_data'
 import { FileText } from 'lucide-react'
 import SliderCoverLatestPosts from './SliderCoverLatestPosts'
 import ShortCardsLatestPosts from './ShortCardsLatestPosts'
@@ -14,9 +14,7 @@ import { CircuitBoard } from 'lucide-react'
 import { Gamepad2 } from 'lucide-react'
 
 export default async function EditorialesSummary() {
-  const cat = CAT_EDITORIAL
   const categoryID = await getCategoryId(cat.editorial.name)
-
   const { data } = await getData(`categories?parent=${categoryID}`)
   const dataCategories = data.reduce((acc, cat) => {
     acc[cat.slug] = { id: cat.id, name: cat.name, slug: cat.slug }

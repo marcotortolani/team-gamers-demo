@@ -15,8 +15,6 @@ export default function Header() {
   const [lowerPosition, setLowerPosition] = useState(0)
   const pathname = usePathname()
 
-  console.log(pathname)
-
   const handleScroll = useCallback(() => {
     const scrollPosition = window.scrollY
 

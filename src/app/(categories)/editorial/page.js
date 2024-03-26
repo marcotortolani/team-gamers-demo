@@ -1,6 +1,10 @@
 import React from 'react'
-import { CAT_EDITORIAL } from '@/utils/static_data'
-import { getCategoryId, getPostsByCategoryId } from '@/services/api-content'
+import { CAT_EDITORIAL as cat } from '@/utils/static_data'
+import {
+  getCategoryId,
+  getData,
+  getPostsByCategoryId,
+} from '@/services/api-content'
 import { cleanDataPosts, getRandomPosts } from '@/utils/functions'
 import { FileText, Gamepad2, Joystick, CircuitBoard } from 'lucide-react'
 
@@ -12,9 +16,12 @@ import LongCardsLatestPosts from '@/app/components/LongCardsLatestPosts'
 import ShortCardsLatestPosts from '@/app/components/ShortCardsLatestPosts'
 
 export default async function page() {
-  const cat = CAT_EDITORIAL.editorial
-  const categoryID = await getCategoryId(cat.name)
-
+  const categoryID = await getCategoryId(cat.editorial.name)
+  const { data } = await getData(`categories?parent=${categoryID}`)
+  const dataCategories = data.reduce((acc, cat) => {
+    acc[cat.slug] = { id: cat.id, name: cat.name, slug: cat.slug }
+    return acc
+  }, {})
   // ---- data gamers ----
 
   // aca habria que tomar la informacion de los gamers (incluyendo la imagen destacada de cada uno)
@@ -27,21 +34,21 @@ export default async function page() {
 
   // ----------
 
-  const { data } = await getPostsByCategoryId({ id: categoryID })
+  //const { data } = await getPostsByCategoryId({ id: categoryID })
 
-  const qtyVideoElements = 10
-  const randomVideoPosts = cleanDataPosts({
-    posts: getRandomPosts({ posts: data, qty: qtyVideoElements }),
-    categorySlug: cat.slug,
-  })
-  const randomVideoPostsFirstSlice = randomVideoPosts.slice(
-    0,
-    parseInt(qtyVideoElements / 2)
-  )
-  const randomVideoPostsSecondSlice = randomVideoPosts.slice(
-    parseInt(qtyVideoElements / 2),
-    qtyVideoElements
-  )
+  // const qtyVideoElements = 10
+  // const randomVideoPosts = cleanDataPosts({
+  //   posts: getRandomPosts({ posts: data, qty: qtyVideoElements }),
+  //   categorySlug: cat.slug,
+  // })
+  // const randomVideoPostsFirstSlice = randomVideoPosts.slice(
+  //   0,
+  //   parseInt(qtyVideoElements / 2)
+  // )
+  // const randomVideoPostsSecondSlice = randomVideoPosts.slice(
+  //   parseInt(qtyVideoElements / 2),
+  //   qtyVideoElements
+  // )
 
   return (
     <main className=" z-0 relative w-full pt-28 mb-20 px-4 flex flex-col items-center gap-2 ">
@@ -55,7 +62,7 @@ export default async function page() {
         <SliderCoverLatestPosts
           id={categoryID}
           qty={5}
-          categorySlug={cat.slug}
+          categorySlug={cat.editorial.slug}
           styleColor="primary"
         />
       </section>
@@ -65,9 +72,9 @@ export default async function page() {
 
         {categoryID && (
           <SliderLatestModernPosts
-            id={categoryID}
+            id={dataCategories.videojuegos.id}
             qty={5}
-            categorySlug={cat.slug}
+            categorySlug={`${cat.editorial.slug}/${dataCategories.videojuegos.slug}`}
             paginationHide
           />
         )}
@@ -75,22 +82,24 @@ export default async function page() {
         {/* subcategoria VIDEOJUEGOS */}
         {categoryID && (
           <LongCardsLatestPosts
-            id={categoryID}
-            qty={2}
-            categorySlug={cat.slug}
+            id={dataCategories.videojuegos.id}
+            qty={5}
+            page={2}
+            categorySlug={`${cat.editorial.slug}/${dataCategories.videojuegos.slug}`}
           />
         )}
 
         {/* subcategoria VIDEOJUEGOS */}
-        {categoryID && (
+        {/* {categoryID && (
           <ShortCardsLatestPosts
-            id={categoryID}
+            id={dataCategories.videojuegos.id}
             qty={4}
-            categorySlug={cat.slug}
+            page={2}
+            categorySlug={`${cat.editorial.slug}/${dataCategories.videojuegos.slug}`}
             // miniCard
             accentColor="secondary"
           />
-        )}
+        )} */}
       </section>
 
       <section className=" mt-6 w-full py-2 flex flex-col items-center gap-4">
@@ -98,28 +107,30 @@ export default async function page() {
 
         {categoryID && (
           <SliderLatestModernPosts
-            id={categoryID}
+            id={dataCategories.retro.id}
             qty={5}
-            categorySlug={cat.slug}
+            categorySlug={`${cat.editorial.slug}/${dataCategories.retro.slug}`}
             paginationHide
           />
         )}
 
         {/* subcategoria RETRO */}
-        {categoryID && (
+        {/* {categoryID && (
           <LongCardsLatestPosts
-            id={categoryID}
+            id={dataCategories.retro.id}
             qty={2}
-            categorySlug={cat.slug}
+            page={2}
+            categorySlug={`${cat.editorial.slug}/${dataCategories.retro.slug}`}
           />
-        )}
+        )} */}
 
         {/* subcategoria RETRO */}
         {categoryID && (
           <ShortCardsLatestPosts
-            id={categoryID}
+            id={dataCategories.retro.id}
             qty={4}
-            categorySlug={cat.slug}
+            page={2}
+            categorySlug={`${cat.editorial.slug}/${dataCategories.retro.slug}`}
             // miniCard
             accentColor="secondary"
           />
@@ -131,9 +142,9 @@ export default async function page() {
 
         {categoryID && (
           <SliderLatestModernPosts
-            id={categoryID}
+            id={dataCategories.tecnologia.id}
             qty={5}
-            categorySlug={cat.slug}
+            categorySlug={`${cat.editorial.slug}/${dataCategories.tecnologia.slug}`}
             paginationHide
           />
         )}
@@ -141,14 +152,15 @@ export default async function page() {
         {/* subcategoria TECNOLOGIA */}
         {categoryID && (
           <LongCardsLatestPosts
-            id={categoryID}
-            qty={2}
-            categorySlug={cat.slug}
+            id={dataCategories.tecnologia.id}
+            qty={4}
+            page={2}
+            categorySlug={`${cat.editorial.slug}/${dataCategories.tecnologia.slug}`}
           />
         )}
 
         {/* subcategoria TECNOLOGIA */}
-        {categoryID && (
+        {/* {categoryID && (
           <ShortCardsLatestPosts
             id={categoryID}
             qty={4}
@@ -156,7 +168,7 @@ export default async function page() {
             // miniCard
             accentColor="secondary"
           />
-        )}
+        )} */}
       </section>
     </main>
   )

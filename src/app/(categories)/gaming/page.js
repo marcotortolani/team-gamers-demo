@@ -2,53 +2,36 @@ import React from 'react'
 import SliderGamers from '@/app/components/SliderGamers'
 import SliderLatestPosts from '@/app/components/SliderLatestPosts'
 import SliderMiniVideoPosts from '@/app/components/SliderMiniVideoPosts'
-import { CAT_EDITORIAL } from '@/utils/static_data'
-import {
-  getCategoryId,
-  getData,
-  getPostsByCategoryId,
-} from '@/services/api-content'
+import { CAT_GAMERS as cat } from '@/utils/static_data'
+import { getData, getCategoryId } from '@/services/api-content'
 import { cleanDataPosts, getRandomPosts } from '@/utils/functions'
-import { Gamepad2, Ticket } from 'lucide-react'
-import { Wand2 } from 'lucide-react'
+import { Gamepad2, Ticket, Wand2 } from 'lucide-react'
 import SliderLatestTricks from '@/app/components/SliderLatestTricks'
 import CardsLatestVideosPosts from '@/app/components/CardsLatestVideoPosts'
 import { TitleSection } from '@/app/components/ui/TitleSection'
 
 export default async function page() {
-  const cat = CAT_EDITORIAL.editorial
-  const categoryID = await getCategoryId(cat.name)
+  const categoryID = await getCategoryId(cat.gaming.name)
+  const { data } = await getData(`categories?parent=${categoryID}`)
 
-  const gamersID = await getCategoryId('gamers')
-  const gamersRes = await getData(`categories?parent=${gamersID}&per_page=30`)
+  const dataCategories = data.reduce((acc, cat) => {
+    acc[cat.slug] = { id: cat.id, name: cat.name, slug: cat.slug }
+    return acc
+  }, {})
 
-  // ---- data gamers ----
+  const { data: gamersData } = await getData(
+    `categories?parent=${dataCategories.gamers.id}&per_page=10`
+  )
 
-  // aca habria que tomar la informacion de los gamers (incluyendo la imagen destacada de cada uno)
-  // y pasarla al componente Slider, pero genera conflicto porque internamente en CardGamer
-  // tambien hay un fetch para poder conseguir una imagen en el ultimo post del gamerID
-
-  //const gamersID = await getCategoryId('videos')
-  // const { data } = await getData('categories?per_page=50')
-  // const gamersCategories = data.filter((cat) => cat.parent === gamersID)
-
-  // ----------
-
-  const { data } = await getPostsByCategoryId({ id: categoryID })
-
-  const qtyVideoElements = 10
+  const videoTag = 72
+  const { data: videosEventos } = await getData(
+    `posts?categories=${dataCategories.eventos.id}&tags=${videoTag}`
+  )
+  const qtyVideoElements = 6
   const randomVideoPosts = cleanDataPosts({
-    posts: getRandomPosts({ posts: data, qty: qtyVideoElements }),
-    categorySlug: cat.slug,
+    posts: getRandomPosts({ posts: videosEventos, qty: qtyVideoElements }),
+    categorySlug: dataCategories.eventos.slug,
   })
-  const randomVideoPostsFirstSlice = randomVideoPosts.slice(
-    0,
-    parseInt(qtyVideoElements / 2)
-  )
-  const randomVideoPostsSecondSlice = randomVideoPosts.slice(
-    parseInt(qtyVideoElements / 2),
-    qtyVideoElements
-  )
 
   return (
     <main className=" z-0 relative w-full pt-28 mb-20 px-4 flex flex-col items-center gap-2 ">
@@ -58,53 +41,52 @@ export default async function page() {
           ¡Nuestros videos exclusivos te ayudaran a convertirte en el mejor
           gamer!
         </p>
-        <SliderGamers gamersData={gamersRes?.data} />
+        <SliderGamers gamersData={gamersData} />
       </section>
 
       <section className=" mt-6 w-full py-2 flex flex-col items-center gap-4 md:gap-6 lg:gap-8">
         <TitleSection icon={Ticket} title="Eventos" />
 
-        {categoryID !== undefined && (
-          <SliderLatestPosts id={categoryID} qty={5} categorySlug={cat.slug} />
+        {dataCategories?.eventos.id && (
+          <SliderLatestPosts
+            id={dataCategories.eventos.id}
+            qty={5}
+            categorySlug={`${cat.gaming.slug}/${dataCategories.eventos.slug}`}
+          />
         )}
 
-        {randomVideoPosts && (
-          <>
-            <SliderMiniVideoPosts
-              sliderElements={randomVideoPostsFirstSlice}
-              slidesPerView={2.25}
-              spaceBetweenSlides={5}
-              delayPerView={4000}
-              colorBullets={'default'}
-              sizeBullets={'default'}
-              verticalAspect
-            />
-            <SliderMiniVideoPosts
-              sliderElements={randomVideoPostsSecondSlice}
-              slidesPerView={2.5}
-              spaceBetweenSlides={5}
-              delayPerView={2500}
-              colorBullets={'default'}
-              sizeBullets={'default'}
-              verticalAspect
-            />
-          </>
+        {randomVideoPosts.length > 0 ? (
+          <SliderMiniVideoPosts
+            sliderElements={randomVideoPosts}
+            slidesPerView={2.25}
+            spaceBetweenSlides={5}
+            delayPerView={2500}
+            colorBullets={'default'}
+            sizeBullets={'default'}
+          />
+        ) : (
+          <div className=" w-fit p-4 text-Black md:text-lg lg:text-xl bg-Secondary rounded-lg">
+            No hay contenido para esta categoría
+          </div>
         )}
       </section>
 
       <section className=" mt-6 w-full py-2 flex flex-col items-center gap-4 md:gap-6 lg:gap-8">
         <TitleSection icon={Wand2} title="Trucos" />
 
-        {categoryID !== undefined && (
-          <SliderLatestTricks id={categoryID} qty={5} categorySlug={cat.slug} />
+        {dataCategories?.trucos.id && (
+          <SliderLatestTricks
+            id={dataCategories.trucos.id}
+            qty={5}
+            categorySlug={`${cat.gaming.slug}/${dataCategories.trucos.slug}`}
+          />
         )}
 
-        {categoryID !== undefined && (
+        {dataCategories?.trucos.id && (
           <CardsLatestVideosPosts
-            id={categoryID}
+            id={dataCategories.trucos.id}
             qty={4}
-            categorySlug={cat.slug}
-            verticalAspect
+            categorySlug={`${cat.gaming.slug}/${dataCategories.trucos.slug}`}
           />
         )}
       </section>

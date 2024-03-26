@@ -7,11 +7,16 @@ export default async function ShortCardsLatestPosts({
   id,
   qty,
   categorySlug,
+  page,
   miniCard,
   accentColor,
   tagExclude = 72,
 }) {
-  const { data } = await getPostsByCategoryId({ id, tagExclude: tagExclude })
+  const { data } = await getPostsByCategoryId({
+    id,
+    page,
+    tagExclude,
+  })
 
   const latestPosts = cleanDataPosts({
     posts: getLatestPosts({ posts: data, qty: qty }),

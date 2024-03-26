@@ -1,6 +1,5 @@
 import React from 'react'
 import { getData } from '@/services/api-content'
-
 import SliderRandomPostsHomeCover from './components/SliderRandomPostsHomeCover'
 import GamingSummary from './components/GamingSummary'
 import EditorialesSummary from './components/EditorialesSummary'

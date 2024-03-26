@@ -2,14 +2,12 @@ import React from 'react'
 import { getDataPostById } from '@/services/api-content'
 import { getVimeoNumber } from '@/utils/functions'
 import SectionRecommended from '@/app/components/SectionRecommended'
-import { CAT_EDITORIAL } from '@/utils/static_data'
+import { CAT_GAMERS as cat } from '@/utils/static_data'
 import ReactHtmlParser from 'react-html-parser'
 
 export default async function VideoPage({ params }) {
   const { id } = params
-  const cat = CAT_EDITORIAL.editorial
   const dataVideo = await getDataPostById(id)
-  //const imageHeader = getImageHeaderPost(dataVideo)
   const vimeoNumber = getVimeoNumber({ string: dataVideo?.content.rendered })
 
   return (
@@ -42,7 +40,7 @@ export default async function VideoPage({ params }) {
           {ReactHtmlParser(dataVideo?.title.rendered)}
         </h3>
       </div>
-      <SectionRecommended category={cat} qty={2} />
+      <SectionRecommended category={cat.trucos} qty={2} />
     </div>
   )
 }

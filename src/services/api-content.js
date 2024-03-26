@@ -56,12 +56,13 @@ export async function getCategoryId(categoryName) {
 
 export async function getPostsByCategoryId({
   id,
+  page = 1,
   perPage = 10,
   tagExclude = 0,
   tags = 0,
 }) {
   const { data, posts, pages } = await getData(
-    `posts?per_page=${perPage}&categories=${id}&tags_exclude=${tagExclude}`
+    `posts?per_page=${perPage}&page=${page}&categories=${id}&tags_exclude=${tagExclude}`
   )
   return { data, posts, pages }
 }

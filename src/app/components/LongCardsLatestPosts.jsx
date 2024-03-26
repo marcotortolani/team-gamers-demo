@@ -12,10 +12,11 @@ import ButtonSeePost from './ui/ButtonSeePost.jsx'
 export default async function LongCardsLatestPosts({
   id,
   qty,
+  page,
   categorySlug,
   tagExclude = 72,
 }) {
-  const { data } = await getPostsByCategoryId({ id, tagExclude: tagExclude })
+  const { data } = await getPostsByCategoryId({ id, page, tagExclude })
 
   const latestPosts = cleanDataPosts({
     posts: getLatestPosts({ posts: data, qty: qty }),

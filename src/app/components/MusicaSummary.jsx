@@ -1,6 +1,6 @@
 import React from 'react'
 import { getData, getCategoryId } from '../../services/api-content'
-import { CAT_MUSICA } from '@/utils/static_data'
+import { CAT_MUSICA as cat } from '@/utils/static_data'
 import SliderCoverLatestPosts from './SliderCoverLatestPosts'
 import ShortCardsLatestPosts from './ShortCardsLatestPosts'
 import LongCardsLatestPosts from './LongCardsLatestPosts'
@@ -9,9 +9,7 @@ import { TitleArticle } from "./ui/TitleArticle"
 import { PlayCircleIcon, Sparkles, Mic2Icon } from "lucide-react"
 
 export default async function MusicaSummary() {
-  const cat = CAT_MUSICA
   const categoryID = await getCategoryId(cat.musica.name)
-
   const { data } = await getData(`categories?parent=${categoryID}`)
   const dataCategories = data.reduce((acc, cat) => {
     acc[cat.slug] = { id: cat.id, name: cat.name, slug: cat.slug }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { getCategoryId, getData } from '../../services/api-content'
 import { getRandomPosts, cleanDataPosts } from '@/utils/functions'
-import { CAT_GAMERS } from '@/utils/static_data'
+import { CAT_GAMERS as cat } from '@/utils/static_data'
 import { Gamepad2, Ticket, Wand2 } from 'lucide-react'
 import SliderGamers from './SliderGamers'
 import SliderLatestPosts from './SliderLatestPosts'
@@ -12,7 +12,6 @@ import { TitleSummary } from './ui/TitleSummary'
 import { TitleArticle } from './ui/TitleArticle'
 
 export default async function GamingSummary() {
-  const cat = CAT_GAMERS
   const categoryID = await getCategoryId(cat.gaming.name)
   const { data } = await getData(`categories?parent=${categoryID}`)
 

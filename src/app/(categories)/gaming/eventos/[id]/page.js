@@ -1,11 +1,10 @@
 import React from 'react'
-import { CAT_GAMERS } from '@/utils/static_data'
+import { CAT_GAMERS as cat } from '@/utils/static_data'
 import SectionRecommended from '@/app/components/SectionRecommended'
 import PagePost from '@/app/components/PagePost'
 
 export default function page({ params }) {
   const { id } = params
-  const cat = CAT_GAMERS.eventos
 
   return (
     <main
