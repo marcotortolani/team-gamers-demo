@@ -1,9 +1,6 @@
 import React from 'react'
 import { CAT_EDITORIAL as cat } from '@/utils/static_data'
-import {
-  getCategoryId,
-  getData,
-} from '@/services/api-content'
+import { getCategoryId, getData } from '@/services/api-content'
 import { FileText, Gamepad2, Joystick, CircuitBoard } from 'lucide-react'
 
 import { TitleSection } from '@/app/components/ui/TitleSection'
@@ -133,9 +130,9 @@ export default async function page() {
         {/* subcategoria TECNOLOGIA */}
         {/* {categoryID && (
           <ShortCardsLatestPosts
-            id={categoryID}
+            id={dataCategories.tecnologia.id}
             qty={4}
-            categorySlug={cat.slug}
+            categorySlug={`${cat.editorial.slug}/${dataCategories.tecnologia.slug}`}
             // miniCard
             accentColor="secondary"
           />
