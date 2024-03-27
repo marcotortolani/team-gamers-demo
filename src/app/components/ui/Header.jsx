@@ -43,7 +43,7 @@ export default function Header() {
         lowerPosition >= 50
           ? 'bg-white/20 shadow-md backdrop-filter backdrop-blur-md ring-1 ring-gray-600'
           : 'bg-transparent'
-      } z-50  rounded-b-xl  pb-2 transition-all duration-300 ease-in-out fixed w-screen  h-fit flex justify-center`}
+      } z-[200] rounded-b-xl  pb-2 transition-all duration-300 ease-in-out fixed w-screen  h-fit flex justify-center`}
     >
       <div className="  w-full flex flex-col items-center justify-center gap-3 md:gap-4 lg:gap-6 ">
         <div className="w-full h-auto py-4 bg-Primary flex items-center justify-center ">

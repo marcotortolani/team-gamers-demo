@@ -38,7 +38,7 @@ export default function ButtonLikeFav({ post, color }) {
     <button
       id={buttonID}
       onClick={handleClick}
-      className=" w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 "
+      className=" z-0 w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 "
     >
       <HeartIcon liked={isLiked} color={color} />
     </button>
