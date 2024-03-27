@@ -32,10 +32,18 @@ function cleanDataPosts({ posts, catFiltered }) {
         // }
       })
 
+    const findSlugById = (categoryId) => {
+      const category = catFiltered.find((cat) => cat.id === categoryId)
+      return category ? category.slug : null
+    }
+
+    const categoryParent = post.categories
+      .map((categoryId) => findSlugById(categoryId))
+      .filter(Boolean)
+
     data.push({
       id: post.id,
-      category: catFiltered.filter((cat) => cat.id === post.categories[0])[0]
-        .slug,
+      category: categoryParent,
       title: post.title.rendered,
       excerpt: pExcerpt[0],
       image: imgArray[0],

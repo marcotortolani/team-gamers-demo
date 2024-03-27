@@ -6,7 +6,7 @@ import EditorialesSummary from './components/EditorialesSummary'
 import MusicaSummary from './components/MusicaSummary'
 
 export default async function Home() {
-  const { data } = await getData('categories?per_page=50')
+  const { data } = await getData('categories?per_page=50&parent=0')
 
   const categoriesIDExcluded = await data
     .filter((cat) => cat.slug === 'videos' || cat.slug === 'sin-categoria')
