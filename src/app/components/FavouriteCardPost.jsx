@@ -41,8 +41,8 @@ export default function FavouriteCardPost() {
 export function FavouriteCard({ post, index }) {
   return (
     <div
-      className={` relative w-full h-full max-h-[200px] md:min-h-[300px] md:max-h-[300px] lg:min-h-[320px] lg:max-h-[380px] p-4 lg:p-8 my-2 mt-0 grid grid-cols-2 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6 rounded-xl md:rounded-xl lg:rounded-2xl ${
-        index % 2 !== 0 ? 'bg-Primary ' : ' bg-Secondary  '
+      className={`relative w-full min-w-[250px] xs:min-w-[300px] md:min-w-[500px] lg:min-w-[700px] h-full max-h-[200px] md:min-h-[250px] md:max-h-[300px] lg:min-h-[320px] lg:max-h-[380px] p-4 lg:p-8 my-2 mt-0 grid grid-cols-2 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6 rounded-xl md:rounded-xl lg:rounded-2xl ${
+        index % 2 !== 0 ? ' bg-Primary ' : ' bg-Secondary  '
       } `}
     >
       <div
@@ -82,13 +82,13 @@ export function FavouriteCard({ post, index }) {
         </div>
       </div>
 
-      <div className=" relative col-span-1 lg:col-span-2 h-full flex flex-col gap-2 md:gap-2 lg:gap-4 ">
+      <div className=" relative col-span-1 lg:col-span-2 w-full h-full flex flex-col gap-2 md:gap-2 lg:gap-4 ">
         <p
           className={`${
             index % 2 !== 0 ? 'text-White' : 'text-Black'
-          } overflow-hidden text-sm md:text-base lg:text-lg line-clamp-[6] md:line-clamp-[7] lg:line-clamp-[7] `}
+          } w-full overflow-hidden text-sm md:text-base lg:text-lg line-clamp-[6] md:line-clamp-[7] lg:line-clamp-[7] `}
         >
-          {ReactHtmlParser(post.excerpt)}
+          {post.excerpt ? ReactHtmlParser(post.excerpt) : 'Sin descripción'}
         </p>
 
         <div className=" z-20 absolute bottom-0 w-full h-1/6 flex items-center justify-center">
