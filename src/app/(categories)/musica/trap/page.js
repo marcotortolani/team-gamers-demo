@@ -1,17 +1,18 @@
 import React from 'react'
 import { Mic2Icon } from 'lucide-react'
 import { TitleSection } from '@/app/components/ui/TitleSection'
-import { CAT_EDITORIAL } from '@/utils/static_data'
+import { CAT_MUSICA as cat } from '@/utils/static_data'
 import { getCategoryId } from '@/services/api-content'
 import SliderLatestModernPosts from '@/app/components/SliderLatestModernPosts'
 import LongCardsLatestPosts from '@/app/components/LongCardsLatestPosts'
 import ShortCardsLatestPosts from '@/app/components/ShortCardsLatestPosts'
 
 export default async function page() {
-  const cat = CAT_EDITORIAL.editorial
-  const categoryID = await getCategoryId(cat.name)
+  const categoryID = await getCategoryId(cat.trap.name)
+
   return (
     <main className=" z-0 relative w-full pt-28 mb-20 px-4 flex flex-col items-center gap-4 ">
+      {/* subcategoria TRAP/URBANO */}
       <TitleSection
         icon={Mic2Icon}
         title="Trap/Urbano"
@@ -23,25 +24,26 @@ export default async function page() {
         <SliderLatestModernPosts
           id={categoryID}
           qty={5}
-          categorySlug={cat.slug}
+          categorySlug={cat.trap.slug}
         />
       )}
 
-      {/* subcategoria TRAP/URBANO */}
       {categoryID && (
-        <LongCardsLatestPosts id={categoryID} qty={2} categorySlug={cat.slug} />
+        <LongCardsLatestPosts
+          id={categoryID}
+          categorySlug={cat.trap.slug}
+        />
       )}
 
-      {/* subcategoria TRAP/URBANO */}
-      {categoryID && (
+      {/* {categoryID && (
         <ShortCardsLatestPosts
           id={categoryID}
           qty={4}
-          categorySlug={cat.slug}
+          categorySlug={cat.trap.slug}
           // miniCard
           accentColor="secondary"
         />
-      )}
+      )} */}
     </main>
   )
 }

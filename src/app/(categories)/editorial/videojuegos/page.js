@@ -1,17 +1,18 @@
 import React from 'react'
 import { Gamepad2 } from 'lucide-react'
 import { TitleSection } from '@/app/components/ui/TitleSection'
-import { CAT_EDITORIAL } from "@/utils/static_data"
-import { getCategoryId } from "@/services/api-content"
-import SliderLatestModernPosts from "@/app/components/SliderLatestModernPosts"
-import LongCardsLatestPosts from "@/app/components/LongCardsLatestPosts"
-import ShortCardsLatestPosts from "@/app/components/ShortCardsLatestPosts"
+import { CAT_EDITORIAL as cat } from '@/utils/static_data'
+import { getCategoryId } from '@/services/api-content'
+import SliderLatestModernPosts from '@/app/components/SliderLatestModernPosts'
+import LongCardsLatestPosts from '@/app/components/LongCardsLatestPosts'
+import ShortCardsLatestPosts from '@/app/components/ShortCardsLatestPosts'
 
 export default async function page() {
-  const cat = CAT_EDITORIAL.editorial
-  const categoryID = await getCategoryId(cat.name)
+  const categoryID = await getCategoryId(cat.videojuegos.name)
+
   return (
     <main className=" z-0 relative w-full pt-28 mb-20 px-4 flex flex-col items-center gap-4 ">
+      {/* subcategoria VIDEOJUEGOS */}
       <TitleSection
         icon={Gamepad2}
         title="Videojuegos"
@@ -22,24 +23,28 @@ export default async function page() {
       {categoryID && (
         <SliderLatestModernPosts
           id={categoryID}
-          qty={5}
-          categorySlug={cat.slug}
+          qty={10}
+          categorySlug={cat.videojuegos.slug}
           paginationHide
         />
       )}
 
-      {/* subcategoria VIDEOJUEGOS */}
       {categoryID && (
-        <LongCardsLatestPosts id={categoryID} qty={2} categorySlug={cat.slug} />
+        <LongCardsLatestPosts
+          id={categoryID}
+          qty={10}
+          page={2}
+          categorySlug={cat.videojuegos.slug}
+        />
       )}
 
-      {/* subcategoria VIDEOJUEGOS */}
       {categoryID && (
         <ShortCardsLatestPosts
           id={categoryID}
-          qty={4}
-          categorySlug={cat.slug}
-          // miniCard
+          qty={10}
+          page={3}
+          categorySlug={cat.videojuegos.slug}
+          miniCard
           accentColor="secondary"
         />
       )}

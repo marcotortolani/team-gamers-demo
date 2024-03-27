@@ -22,33 +22,6 @@ export default async function page() {
     acc[cat.slug] = { id: cat.id, name: cat.name, slug: cat.slug }
     return acc
   }, {})
-  // ---- data gamers ----
-
-  // aca habria que tomar la informacion de los gamers (incluyendo la imagen destacada de cada uno)
-  // y pasarla al componente Slider, pero genera conflicto porque internamente en CardGamer
-  // tambien hay un fetch para poder conseguir una imagen en el ultimo post del gamerID
-
-  //const gamersID = await getCategoryId('videos')
-  // const { data } = await getData('categories?per_page=50')
-  // const gamersCategories = data.filter((cat) => cat.parent === gamersID)
-
-  // ----------
-
-  //const { data } = await getPostsByCategoryId({ id: categoryID })
-
-  // const qtyVideoElements = 10
-  // const randomVideoPosts = cleanDataPosts({
-  //   posts: getRandomPosts({ posts: data, qty: qtyVideoElements }),
-  //   categorySlug: cat.slug,
-  // })
-  // const randomVideoPostsFirstSlice = randomVideoPosts.slice(
-  //   0,
-  //   parseInt(qtyVideoElements / 2)
-  // )
-  // const randomVideoPostsSecondSlice = randomVideoPosts.slice(
-  //   parseInt(qtyVideoElements / 2),
-  //   qtyVideoElements
-  // )
 
   return (
     <main className=" z-0 relative w-full pt-28 mb-20 px-4 flex flex-col items-center gap-2 ">
