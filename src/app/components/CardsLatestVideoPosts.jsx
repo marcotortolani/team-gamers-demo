@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { CardVideo } from './CardVideo'
 import { fetchingData } from '@/services/fetchingData'
 
@@ -12,6 +12,10 @@ export default function CardsLatestVideosPosts({
   const [qtyPosts, setQtyPosts] = useState(qty)
   const [totalPosts, setTotalPosts] = useState()
   const [posts, setPosts] = useState([])
+
+  const buttonIsDisable = useMemo(() => {
+    return parseInt(qtyPosts) === parseInt(totalPosts) || posts.length === 0
+  }, [qtyPosts, totalPosts, posts])
 
   function handleClick() {
     if (totalPosts - qtyPosts > 4) {
@@ -46,7 +50,7 @@ export default function CardsLatestVideosPosts({
       </ul>
       <button
         type="button"
-        disabled={qtyPosts === totalPosts || posts.length === 0}
+        disabled={buttonIsDisable}
         className=" w-fit px-4 py-1 uppercase border-2 border-Secondary disabled:border-gray-900 disabled:bg-gray-400 disabled:text-gray-300 disabled:scale-90 transition-all duration-200 ease-in-out rounded-full text-White"
         onClick={handleClick}
       >
