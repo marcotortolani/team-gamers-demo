@@ -12,7 +12,7 @@ import ButtonLikeFav from './ui/ButtonLikeFav'
 
 export default async function PagePost({ id }) {
   const dataPost = await getDataPostById(id)
-  const categoryData = await getDataCategoryByPostId(id)
+  const categoryData = await getDataCategoryByPostId(`${id}&parent=0`)
 
   const contentPostParsed = ReactHtmlParser(dataPost?.content.rendered)
 
