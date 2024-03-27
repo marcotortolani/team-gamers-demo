@@ -89,11 +89,11 @@ export async function getVideoPostsByCategoryId({
   parentID = 0,
 }) {
   const videoTag = 72
-  const { data, pages } = await getData(
+  const { data, pages, posts } = await getData(
     `posts?per_page=${perPage}&page=${page}&categories=${id}&parent=${parentID}&tags=${videoTag}`
   )
 
-  return { data, pages }
+  return { data, pages, posts }
 }
 
 export async function searchData(slug) {
