@@ -2,33 +2,35 @@
 import { API_CONTENT } from '../config/config'
 
 export async function getData(slug) {
-  const res = await fetch(API_CONTENT + slug, {
-    method: 'GET',
-    mode: 'cors',
-    credentials: 'omit',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-
-  const data = await res.json()
-
-  if (!res.ok) {
+  let res
+  try {
+    res = await fetch(API_CONTENT + slug, {
+      method: 'GET',
+      mode: 'cors',
+      credentials: 'omit',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  } catch (err) {
+    console.log(err)
     throw new Error(`Error ${res.status}: ${res.statusText}`)
-  }
+  } finally {
+    const data = await res.json()
 
-  const totalPosts = res.headers.get('X-WP-Total')
-    ? res.headers.get('X-WP-Total')
-    : 0
+    const totalPosts = res.headers.get('X-WP-Total')
+      ? res.headers.get('X-WP-Total')
+      : 0
 
-  const totalPages = res.headers.get('X-WP-TotalPages')
-    ? res.headers.get('X-WP-TotalPages')
-    : 0
+    const totalPages = res.headers.get('X-WP-TotalPages')
+      ? res.headers.get('X-WP-TotalPages')
+      : 0
 
-  return {
-    data,
-    posts: totalPosts,
-    pages: totalPages,
+    return {
+      data,
+      posts: totalPosts,
+      pages: totalPages,
+    }
   }
 }
 
