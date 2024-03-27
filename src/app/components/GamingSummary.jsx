@@ -63,11 +63,7 @@ export default async function GamingSummary() {
             colorBullets={'default'}
             sizeBullets={'default'}
           />
-        ) : (
-          <div className=" w-fit p-4 text-Black md:text-lg lg:text-xl bg-Secondary rounded-lg">
-            No hay contenido para esta categoría
-          </div>
-        )}
+        ) : null}
       </article>
 
       <article className=" w-full py-2 flex flex-col md:items-center gap-4">

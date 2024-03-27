@@ -5,12 +5,11 @@ import { getCategoryId, getData } from '@/services/api-content'
 import SliderLatestPosts from '@/app/components/SliderLatestPosts'
 import SliderMiniVideoPosts from '@/app/components/SliderMiniVideoPosts'
 import { cleanDataPosts, getRandomPosts } from '@/utils/functions'
-import { CAT_GAMERS } from '@/utils/static_data'
+import { CAT_GAMERS as cat } from '@/utils/static_data'
 import CardsLatestVideosPosts from '@/app/components/CardsLatestVideoPosts'
 
 export default async function page() {
-  const cat = CAT_GAMERS.eventos
-  const categoryID = await getCategoryId(cat.name)
+  const categoryID = await getCategoryId(cat.eventos.name)
 
   const videoTag = 72
   const { data: videosEventos } = await getData(
@@ -19,7 +18,7 @@ export default async function page() {
   const qtyVideoElements = 6
   const randomVideoPosts = cleanDataPosts({
     posts: getRandomPosts({ posts: videosEventos, qty: qtyVideoElements }),
-    categorySlug: cat.slug,
+    categorySlug: cat.eventos.slug,
   })
 
   return (
@@ -36,7 +35,7 @@ export default async function page() {
           <SliderLatestPosts
             id={categoryID}
             qty={5}
-            categorySlug={`gaming/${cat.slug}`}
+            categorySlug={`${cat.gaming.slug}/${cat.eventos.slug}`}
           />
         )}
 
@@ -54,7 +53,7 @@ export default async function page() {
           <CardsLatestVideosPosts
             id={categoryID}
             qty={4}
-            categorySlug={cat.slug}
+            categorySlug={`${cat.gaming.slug}/${cat.eventos.slug}`}
           />
         )}
       </section>

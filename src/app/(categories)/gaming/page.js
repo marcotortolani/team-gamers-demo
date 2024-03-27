@@ -64,11 +64,7 @@ export default async function page() {
             colorBullets={'default'}
             sizeBullets={'default'}
           />
-        ) : (
-          <div className=" w-fit p-4 text-Black md:text-lg lg:text-xl bg-Secondary rounded-lg">
-            No hay contenido para esta categoría
-          </div>
-        )}
+        ) : null}
       </section>
 
       <section className=" mt-6 w-full py-2 flex flex-col items-center gap-4 md:gap-6 lg:gap-8">

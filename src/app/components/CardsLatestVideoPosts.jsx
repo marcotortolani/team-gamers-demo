@@ -57,9 +57,5 @@ export default function CardsLatestVideosPosts({
         Cargar más
       </button>
     </div>
-  ) : (
-    <div className=" w-fit p-4 text-Black md:text-lg lg:text-xl bg-Secondary rounded-lg">
-      No hay contenido para esta categoría
-    </div>
-  )
+  ) : null
 }
