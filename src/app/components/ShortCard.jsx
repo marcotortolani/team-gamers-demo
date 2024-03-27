@@ -4,13 +4,11 @@ import ReactHtmlParser from 'react-html-parser'
 import ImageMissing from './ImageMissing'
 import ButtonSeePost from './ui/ButtonSeePost'
 
-export default function ShortCard({ qty, post, miniCard, accentColor }) {
+export default function ShortCard({ index, qty, post, miniCard, accentColor }) {
   return (
     <li
       className={`${
-        qty % 2 !== 0 && qty === index + 1
-          ? 'col-span-2  '
-          : 'col-span-1  '
+        qty % 2 !== 0 && qty === index + 1 ? 'col-span-2  ' : 'col-span-1  '
       } ${
         miniCard
           ? 'aspect-[4/4] md:aspect-[5/4]  '
