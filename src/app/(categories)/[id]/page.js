@@ -3,6 +3,7 @@ import PagePost from '@/app/components/PagePost'
 
 export default function page({ params }) {
   const { id } = params
+  console.log(id)
 
   return (
     <main

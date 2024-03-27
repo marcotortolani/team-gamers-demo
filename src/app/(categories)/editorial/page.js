@@ -3,9 +3,7 @@ import { CAT_EDITORIAL as cat } from '@/utils/static_data'
 import {
   getCategoryId,
   getData,
-  getPostsByCategoryId,
 } from '@/services/api-content'
-import { cleanDataPosts, getRandomPosts } from '@/utils/functions'
 import { FileText, Gamepad2, Joystick, CircuitBoard } from 'lucide-react'
 
 import { TitleSection } from '@/app/components/ui/TitleSection'
