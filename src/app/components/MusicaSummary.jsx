@@ -5,8 +5,8 @@ import SliderCoverLatestPosts from './SliderCoverLatestPosts'
 import ShortCardsLatestPosts from './ShortCardsLatestPosts'
 import LongCardsLatestPosts from './LongCardsLatestPosts'
 import { TitleSummary } from './ui/TitleSummary'
-import { TitleArticle } from "./ui/TitleArticle"
-import { PlayCircleIcon, Sparkles, Mic2Icon } from "lucide-react"
+import { TitleArticle } from './ui/TitleArticle'
+import { PlayCircleIcon, Sparkles, Mic2Icon } from 'lucide-react'
 
 export default async function MusicaSummary() {
   const categoryID = await getCategoryId(cat.musica.name)

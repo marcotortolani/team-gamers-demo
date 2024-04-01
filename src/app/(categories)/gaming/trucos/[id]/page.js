@@ -5,7 +5,7 @@ import PagePost from '@/app/components/PagePost'
 
 export default function page({ params }) {
   const { id } = params
-  
+
   return (
     <main
       className={`z-0 text-White mt-0 w-full h-full min-h-screen px-4 flex flex-col items-center gap-4`}

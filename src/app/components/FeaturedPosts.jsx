@@ -8,7 +8,6 @@ import { getPostsByCategoryId } from '@/services/api-content';
 
 import ButtonSeePost from './ui/ButtonSeePost';
 
-import { poppinsReg400 } from '@/utils/fonts';
 import iconVideo from '../../../public/assets/icons/IconoVideo2.webp';
 import ImageMissing from './ImageMissing';
 
@@ -90,7 +89,6 @@ export default async function FeaturedPosts({
               )}
               <h3
                 className={
-                  poppinsReg400.className +
                   ` w-full text-start text-[0.8rem] sm:text-sm md:text-base lg:text-lg break-words sm:break-normal text-EpaWhite text-shadow-sm leading-3 shadow-black `
                 }
               >

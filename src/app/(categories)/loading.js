@@ -1,5 +1,5 @@
-import React from 'react';
-import { Skeleton } from '@/app/components-old/ui/skeleton';
+import React from 'react'
+import { Skeleton } from '@/app/components/ui/skeleton'
 
 export default function loading() {
   return (
@@ -34,5 +34,5 @@ export default function loading() {
 
       <div className="w-full h-20"></div>
     </main>
-  );
+  )
 }

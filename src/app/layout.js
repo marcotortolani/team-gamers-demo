@@ -4,6 +4,7 @@ import { StateProvider } from '@/providers/StateProvider'
 import DownbarMobile from './components/ui/DownbarMobile'
 import Header from './components/ui/Header'
 import Footer from './components/ui/Footer'
+// import { oswald } from "@/utils/fonts"
 
 const oswald = Oswald({ subsets: ['latin'] })
 

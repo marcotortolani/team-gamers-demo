@@ -13,7 +13,7 @@ SwiperCore.use([Pagination])
 // const SIZE_BULLETS = 'default';
 const SLIDES_PER_VIEW = 3
 const DELAY_PER_VIEW = 2500
-const SPACE_BETWEEN_SLIDES = 0
+const SPACE_BETWEEN_SLIDES = 5
 
 export default function SliderGamers({ gamersData, miniCards }) {
   const sliderRef = useRef(0)

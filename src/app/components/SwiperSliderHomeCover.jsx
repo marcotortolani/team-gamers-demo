@@ -73,15 +73,16 @@ export default function SwiperSliderHomeCover({
               <div className=" -z-10 relative top-0 w-full h-full  overflow-hidden rounded-2xl md:rounded-3xl lg:rounded-4xl ">
                 {post.image ? (
                   <Image
-                    className={`${
-                      indexPag === index + 1 ? '.animation-image-bg' : ''
-                    }  relative w-full h-auto lg:w-auto lg:h-full object-cover rounded-[inherit]`}
+                    className={`  relative w-full h-auto lg:w-auto lg:h-full rounded-[inherit]`}
                     src={post.image}
                     fill
                     priority
-                    sizes="(max-width: 100vw)"
-                    alt="Background Image"
-                    style={{ animationDuration: `${delayPerView + 5000}ms` }}
+                    sizes="(min-width: 180px), 80vw, 100vw"
+                    alt={ReactHtmlParser(post.title)}
+                    style={{
+                      objectFit: 'cover',
+                      animationDuration: `${delayPerView + 5000}ms`,
+                    }}
                   />
                 ) : (
                   <ImageMissing />
@@ -90,7 +91,9 @@ export default function SwiperSliderHomeCover({
 
               <span
                 className={`${
-                  index % 2 === 0 ? 'bg-Primary text-White' : 'bg-Secondary text-Black'
+                  index % 2 === 0
+                    ? 'bg-Primary text-White'
+                    : 'bg-Secondary text-Black'
                 } absolute top-2 left-2 xs:top-4 xs:left-4 md:top-8 md:left-8  px-4 py-1 text-sm md:text-base uppercase rounded-full`}
               >
                 {post.category}

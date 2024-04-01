@@ -15,7 +15,8 @@ export default function CardLastPost({ post, titleOnly }) {
           {post?.images.length > 0 ? (
             <Image
               className={` w-auto h-full md:w-full md:h-auto object-cover rounded-lg md:rounded-xl`}
-              fill={true}
+              fill
+              loading="lazy"
               sizes="(max-width: 350px)"
               src={post?.images[0]}
               alt={`Image ${post?.title}`}
@@ -23,9 +24,6 @@ export default function CardLastPost({ post, titleOnly }) {
           ) : (
             <ImageMissing />
           )}
-          {/* <div className=" z-0 absolute w-full h-full flex items-center justify-center ">
-            <PlayCircleIcon color="white" size={60} />
-          </div> */}
           <span className=" absolute top-3 left-3 md:top-4 md:left-4 lg:top-6 lg:left-6 px-2 py-1 text-xs md:text-sm lg:text-base text-White bg-Black border-2 border-Secondary rounded-full ">
             Recién agregado
           </span>

@@ -2,7 +2,6 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { poppinsReg500, openSans } from '@/utils/fonts';
 
 export default function error({ error }) {
   return (
@@ -11,7 +10,6 @@ export default function error({ error }) {
         <div className='relative w-2/3 h-1/2 p-4 lg:min-h-[200px] flex flex-col items-center justify-center gap-2 bg-EpaPrimaryDark rounded-2xl'>
           <span
             className={
-              openSans.className +
               ' text-4xl uppercase font-semibold text-EpaWhite'
             }
           >
@@ -19,7 +17,6 @@ export default function error({ error }) {
           </span>
           <h2
             className={
-              poppinsReg500.className +
               ' px-10 text-center text-xl text-EpaWhite'
             }
           >
@@ -31,7 +28,6 @@ export default function error({ error }) {
         </div>
         <Link
           className={
-            poppinsReg500.className +
             ' px-4 py-2 font-semibold bg-EpaSecondary rounded-lg'
           }
           href={'/'}

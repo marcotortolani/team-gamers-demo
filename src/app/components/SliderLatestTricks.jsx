@@ -22,9 +22,5 @@ export default async function SliderLatestTricks({ id, qty, categorySlug }) {
       sizeBullets={'default'}
       titleOnly
     />
-  ) : (
-    <div className=" w-fit p-4 text-Black md:text-lg lg:text-xl bg-Secondary rounded-lg">
-      No hay contenido para esta categoría
-    </div>
-  )
+  ) : null
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Skeleton } from '@/app/components-old/ui/skeleton'
+import { Skeleton } from '@/app/components/ui/skeleton'
 import HorizontalLine from '@/app/components/ui/HorizontalLine'
 
 export default function loading() {

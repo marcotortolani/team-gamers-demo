@@ -19,7 +19,7 @@ export async function CardGamer({ path, gamerData, miniCard }) {
         >
           <h4
             className={`${
-              miniCard ? ' text-lg lg:text-xl text-shadow' : ' text-lg md:text-2xl text-shadow'
+              miniCard ? ' text-sm xs:text-lg lg:text-xl text-shadow' : ' text-lg md:text-2xl text-shadow'
             }  w-5/6 line-clamp-2  flex items-center justify-center uppercase  shadow-Black font-extrabold text-center overflow-hidden cursor-default pointer-events-none text-White`}
           >
             {gamerData.name}

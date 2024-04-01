@@ -29,10 +29,7 @@ export default async function page() {
       )}
 
       {categoryID && (
-        <LongCardsLatestPosts
-          id={categoryID}
-          categorySlug={cat.trap.slug}
-        />
+        <LongCardsLatestPosts id={categoryID} categorySlug={cat.trap.slug} />
       )}
 
       {/* {categoryID && (

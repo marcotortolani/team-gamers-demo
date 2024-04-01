@@ -1,8 +1,5 @@
 import React from 'react'
-import {
-  getData,
-  getCategoryId,
-} from '../../services/api-content'
+import { getData, getCategoryId } from '../../services/api-content'
 import { CAT_EDITORIAL as cat } from '@/utils/static_data'
 import { FileText } from 'lucide-react'
 import SliderCoverLatestPosts from './SliderCoverLatestPosts'
@@ -20,7 +17,6 @@ export default async function EditorialesSummary() {
     acc[cat.slug] = { id: cat.id, name: cat.name, slug: cat.slug }
     return acc
   }, {})
-
 
   return (
     <section className=" z-50 w-screen md:w-5/6 lg:w-4/6 lg:max-w-[900px] h-fit relative top-0 flex flex-col items-center gap-8">

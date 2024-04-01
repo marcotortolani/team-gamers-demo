@@ -26,6 +26,8 @@ export default function ShortCard({ index, qty, post, miniCard, accentColor }) {
           <Image
             className={` absolute w-full h-full  object-center object-cover  rounded-[inherit]`}
             fill={true}
+            
+            
             sizes="(max-width: 350px)"
             src={post.images[0]}
             alt={`Image ${post.title}`}

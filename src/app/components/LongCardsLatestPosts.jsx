@@ -40,6 +40,7 @@ export default async function LongCardsLatestPosts({
                 <Image
                   className={` absolute w-full h-full  object-center object-cover  rounded-lg md:rounded-xl lg:rounded-2xl`}
                   fill
+                  
                   sizes="(max-width: 350px)"
                   src={post.images[0]}
                   alt={`Image ${post.title}`}
