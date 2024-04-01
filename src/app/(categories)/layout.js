@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers'
-import SubscribeCard from '../components-old/SubscribeCard'
+import SubscribeCard from '../components/SubscribeCard'
 import { tokenActiveUser } from '@/utils/userAuth'
 
 export default function layout({ children }) {
