@@ -75,8 +75,9 @@ export default function SwiperSliderHomeCover({
                   <Image
                     className={`  relative w-full h-auto lg:w-auto lg:h-full rounded-[inherit]`}
                     src={post.image}
+                    as="image"
                     fill
-                    priority
+                    priority={index === 0}
                     sizes="(min-width: 180px), 80vw, 100vw"
                     alt={ReactHtmlParser(post.title)}
                     style={{
