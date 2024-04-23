@@ -74,7 +74,7 @@ export default function SearchBar({ isVisible }) {
           </div>
         ) : (
           <button
-            name="submit search"
+            aria-label="submit search"
             onClick={handleSearch}
             className=" absolute w-10 top-0 right-2 p-2 h-full flex items-center  "
           >

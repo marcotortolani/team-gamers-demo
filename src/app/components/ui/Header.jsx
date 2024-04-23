@@ -59,8 +59,18 @@ export default function Header() {
               />
             </Link>
             <div className=" flex items-center justify-center gap-4">
-              <IconTab href="/gaming/gamers" icon={Gamepad2} path={pathname} />
-              <IconTab href="/favoritos" icon={HeartIcon} path={pathname} />
+              <IconTab
+                title="Gamers section"
+                href="/gaming/gamers"
+                icon={Gamepad2}
+                path={pathname}
+              />
+              <IconTab
+                title="Favourites section"
+                href="/favoritos"
+                icon={HeartIcon}
+                path={pathname}
+              />
             </div>
           </div>
         </div>
@@ -72,7 +82,7 @@ export default function Header() {
   )
 }
 
-export function IconTab({ href, icon, path }) {
+export function IconTab({ title, href, icon, path }) {
   const IconComponent = icon
   const isActive = path === href || (href === '/' && path === '')
   return (
@@ -81,6 +91,7 @@ export function IconTab({ href, icon, path }) {
         isActive ? 'bg-Black' : null
       } hidden lg:flex w-9 h-9 p-[0.35rem] transition-colors duration-200 ease-in-out items-center justify-center rounded-md`}
       href={href}
+      aria-label={title}
     >
       <IconComponent color="white" width="100%" height="100%" />
     </Link>
