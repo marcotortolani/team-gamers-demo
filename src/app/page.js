@@ -1,9 +1,15 @@
 import React from 'react'
+import dynamic from 'next/dynamic'
 import { getData } from '@/services/api-content'
-import SliderRandomPostsHomeCover from './components/SliderRandomPostsHomeCover'
-import GamingSummary from './components/GamingSummary'
-import EditorialesSummary from './components/EditorialesSummary'
-import MusicaSummary from './components/MusicaSummary'
+const SliderRandomPostsHomeCover = dynamic(() =>
+  import('./components/SliderRandomPostsHomeCover')
+)
+
+const GamingSummary = dynamic(() => import('./components/GamingSummary'))
+const EditorialesSummary = dynamic(() =>
+  import('./components/EditorialesSummary')
+)
+const MusicaSummary = dynamic(() => import('./components/MusicaSummary'))
 
 export default async function Home() {
   const { data } = await getData('categories?per_page=50&parent=0')

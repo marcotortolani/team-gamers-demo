@@ -1,9 +1,11 @@
-import './globals.css'
 import { Oswald } from 'next/font/google'
+import dynamic from 'next/dynamic'
 import { StateProvider } from '@/providers/StateProvider'
-import DownbarMobile from './components/ui/DownbarMobile'
-import Header from './components/ui/Header'
-import Footer from './components/ui/Footer'
+
+const Header = dynamic(() => import('./components/ui/Header'))
+const Footer = dynamic(() => import('./components/ui/Footer'))
+const DownbarMobile = dynamic(() => import('./components/ui/DownbarMobile'))
+import './globals.css'
 
 const oswald = Oswald({ subsets: ['latin'] })
 
