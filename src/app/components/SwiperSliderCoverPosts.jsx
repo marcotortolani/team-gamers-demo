@@ -77,7 +77,7 @@ export default function SwiperSliderCoverPosts({
                     className={` z-0 relative w-full h-auto lg:w-auto lg:h-full object-cover rounded-[inherit]`}
                     src={post.images[0]}
                     fill
-                    priority
+                    priority={index === 0}
                     sizes="(max-width: 90vw)"
                     alt="Background Image"
                     style={{ animationDuration: `${delayPerView + 5000}ms` }}
