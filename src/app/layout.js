@@ -4,7 +4,7 @@ import { StateProvider } from '@/providers/StateProvider'
 
 const Header = dynamic(() => import('./components/ui/Header'))
 const Footer = dynamic(() => import('./components/ui/Footer'))
-const DownbarMobile = dynamic(() => import('./components/ui/D ownbarMobile'))
+const DownbarMobile = dynamic(() => import('./components/ui/DownbarMobile'))
 import './globals.css'
 
 const oswald = Oswald({ subsets: ['latin'] })
