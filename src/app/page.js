@@ -1,15 +1,22 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import { getData } from '@/services/api-content'
-const SliderRandomPostsHomeCover = dynamic(() =>
-  import('./components/SliderRandomPostsHomeCover')
+import Loading from './components/Loading'
+const SliderRandomPostsHomeCover = dynamic(
+  () => import('./components/SliderRandomPostsHomeCover'),
+  { loading: () => <Loading /> }
 )
 
-const GamingSummary = dynamic(() => import('./components/GamingSummary'))
-const EditorialesSummary = dynamic(() =>
-  import('./components/EditorialesSummary')
+const GamingSummary = dynamic(() => import('./components/GamingSummary'), {
+  loading: () => <Loading />,
+})
+const EditorialesSummary = dynamic(
+  () => import('./components/EditorialesSummary'),
+  { loading: () => <Loading /> }
 )
-const MusicaSummary = dynamic(() => import('./components/MusicaSummary'))
+const MusicaSummary = dynamic(() => import('./components/MusicaSummary'), {
+  loading: () => <Loading />,
+})
 
 export default async function Home() {
   const { data } = await getData('categories?per_page=50&parent=0')
