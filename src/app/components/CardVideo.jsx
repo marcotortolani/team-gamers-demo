@@ -5,8 +5,7 @@ import ReactHtmlParser from 'react-html-parser'
 import { PlayCircleIcon } from 'lucide-react'
 import ImageMissing from './ImageMissing'
 
-export function CardVideo({ post, href, verticalAspect }) {
-  
+export function CardVideo({ post, index, href, verticalAspect }) {
   return (
     <Link className="w-full h-full" href={href}>
       <div className=" relative z-0 w-full h-full rounded-md md:rounded-lg lg:rounded-xl">
@@ -18,14 +17,14 @@ export function CardVideo({ post, href, verticalAspect }) {
             width={200}
             height={80}
             src={post?.images[0]}
-            loading="lazy"
+            priority={index === 0}
             alt={`Image ${post?.title}`}
           />
         ) : (
           <ImageMissing />
         )}
         <div className=" z-10 absolute top-0 w-full h-full md:px-10 lg:px-16 flex items-center justify-center bg-black/30 rounded-[inherit] ">
-          <PlayCircleIcon color="white" size={verticalAspect ? "30%" : "20%"} />
+          <PlayCircleIcon color="white" size={verticalAspect ? '30%' : '20%'} />
         </div>
       </div>
       <div className=" z-20 w-full h-full p-2 absolute bottom-0  pointer-events-none select-none">
