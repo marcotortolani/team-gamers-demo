@@ -55,9 +55,9 @@ export default function SwiperSliderPosts({
         navigation={false}
         className="mySwiper w-full max-w-2xl md:max-w-2xl lg:max-w-4xl h-full lg:min-h-[250px] overflow-hidden  "
       >
-        {posts?.map((post) => (
+        {posts?.map((post, index) => (
           <SwiperSlide className={` w-full h-fit`} key={post.id}>
-            <CardLastPost post={post} titleOnly={titleOnly} />
+            <CardLastPost post={post} index={index} titleOnly={titleOnly} />
           </SwiperSlide>
         ))}
       </Swiper>

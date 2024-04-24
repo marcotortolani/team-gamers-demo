@@ -4,7 +4,7 @@ import Image from 'next/image'
 import ImageMissing from './ImageMissing'
 import ReactHtmlParser from 'react-html-parser'
 
-export default function CardLastPost({ post, titleOnly }) {
+export default function CardLastPost({ post, index, titleOnly }) {
   return (
     <Link
       className=" relative w-full h-fit "
@@ -16,7 +16,7 @@ export default function CardLastPost({ post, titleOnly }) {
             <Image
               className={` w-auto h-full md:w-full md:h-auto object-cover rounded-lg md:rounded-xl`}
               fill
-              loading="lazy"
+              priority={index === 0}
               sizes="(max-width: 350px)"
               src={post?.images[0]}
               alt={`Image ${post?.title}`}
