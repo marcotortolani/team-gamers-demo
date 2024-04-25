@@ -48,7 +48,7 @@ export default function Header() {
       <div className="  w-full flex flex-col items-center justify-center gap-3 md:gap-4 lg:gap-6 ">
         <div className="w-full h-auto py-4 bg-Primary flex items-center justify-center ">
           <div className=" w-full max-w-2xl flex items-center justify-center lg:justify-between">
-            <IconTab href="/" icon={HomeIcon} path={pathname} />
+            <IconTab href="/" title="Home section" icon={HomeIcon} path={pathname} />
             <Link href={'/'} className=" w-2/5 max-w-[250px] h-auto">
               <Image
                 width={250}
