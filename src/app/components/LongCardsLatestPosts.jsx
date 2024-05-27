@@ -24,12 +24,12 @@ export default async function LongCardsLatestPosts({
   })
 
   return (
-    <div className=" w-full h-full flex justify-center md:my-6 ">
+    <div className=" w-full h-full flex justify-center my-2 md:my-6 ">
       <ul className=" w-full max-w-4xl px-0 md:px-4 lg:px-0 h-full  flex flex-col items-center gap-2 md:gap-6">
         {latestPosts?.map((post, index) => (
           <li
             key={post.id}
-            className={` relative w-full h-full min-h-[200px] max-h-[200px] md:min-h-[300px] md:max-h-[350px] lg:min-h-[400px] lg:max-h-[500px] p-4 md:p-6 lg:p-8 my-2 mt-0 grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 lg:gap-6 rounded-xl md:rounded-xl lg:rounded-2xl ${
+            className={` relative w-full h-[40vh] min-h-[200px] max-h-[200px] md:min-h-[300px] md:max-h-[350px] lg:min-h-[400px] lg:max-h-[500px] p-4 md:p-6 lg:p-8 my-2 mt-0 grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 lg:gap-6 rounded-xl md:rounded-xl lg:rounded-2xl ${
               index % 2 !== 0 ? 'bg-Primary ' : ' bg-Secondary  '
             } `}
           >
@@ -40,7 +40,6 @@ export default async function LongCardsLatestPosts({
                 <Image
                   className={` absolute w-full h-full  object-center object-cover  rounded-lg md:rounded-xl lg:rounded-2xl`}
                   fill
-                  
                   sizes="(max-width: 350px)"
                   src={post.images[0]}
                   alt={`Image ${post.title}`}
