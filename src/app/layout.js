@@ -1,6 +1,6 @@
 import { Oswald } from 'next/font/google'
 import dynamic from 'next/dynamic'
-import { StateProvider } from '@/providers/StateProvider'
+import Providers from '@/providers/Providers'
 
 const Header = dynamic(() => import('./components/ui/Header'))
 const Footer = dynamic(() => import('./components/ui/Footer'))
@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
       >
         <div className="bg-image-pattern -z-10 absolute top-0 w-screen h-full opacity-40 bg-repeat bg-fill " />
         <Header />
-        <StateProvider>{children}</StateProvider>
+        <Providers>{children}</Providers>
         <DownbarMobile />
         <Footer />
       </body>

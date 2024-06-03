@@ -16,6 +16,7 @@ export async function validateUser(hash) {
     //       hash=0 -> leer cookie(hashID)
     //       hash!=0 -> crear cookie(hashID)
 
+    const userIsAuth = await getValidationEndpoint(hash);
     // evaluar hash param
     if (hash === 0) {
       const resHashID = await getValidationToken(tokenHashID.name);
@@ -25,7 +26,6 @@ export async function validateUser(hash) {
       );
     }
 
-    const userIsAuth = await getValidationEndpoint(hash);
   }
 
   // if (res === 'authorized') return;

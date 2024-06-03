@@ -1,8 +1,6 @@
 'use client';
 import React, { createContext, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
 import useLocalStorage from '@/hooks/useLocalStorage';
-import { validateUser } from '@/utils/userAuth';
 
 const StateContext = createContext();
 const favouritePostsInitial = [];
@@ -13,11 +11,9 @@ function StateProvider({ children }) {
     []
   );
   const stateValues = { favouritePosts, setFavouritePosts };
-  const searchParams = useSearchParams();
-  const hash = searchParams.get('hash') || 0;
+
   
   useEffect(() => {
-    //validateUser(hash);
 
     if (!favouritePosts) {
       setFavouritePosts(favouritePostsInitial);
