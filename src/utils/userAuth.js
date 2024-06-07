@@ -4,10 +4,10 @@ const tokenHashID = { name: 'hashID', expireDays: 365 };
 export const tokenActiveUser = { name: 'enabledUser', expireDays: 1 };
 
 export async function validateUser(hash) {
-  console.log(hash);
+  //console.log(hash);
   const resActiveUser = await getValidationToken(tokenActiveUser.name);
 
-  console.log(resActiveUser);
+  //console.log(resActiveUser);
   if (resActiveUser.ok && resActiveUser.value) return;
 
   if (!resActiveUser.ok || !resActiveUser.value) {

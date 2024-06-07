@@ -12,9 +12,9 @@ function ValidationProvider({ children }) {
   const hash = searchParams.get('hash') || 0
 
   useEffect(() => {
-    if (validateUser(hash)) {
-      setValidAccess(true)
-    }
+    // if (validateUser(hash)) {
+    //   setValidAccess(true)
+    // }
   }, [hash])
 
   return (
