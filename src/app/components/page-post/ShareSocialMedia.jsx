@@ -4,19 +4,21 @@ import {
   FacebookShareButton,
   TwitterShareButton,
   WhatsappShareButton,
-  WhatsappIcon,
   TelegramShareButton,
-  TelegramIcon,
 } from 'react-share'
 
-import { FacebookIcon, XtwitterIcon } from '@/utils/icons'
+import {
+  FacebookIcon,
+  XtwitterIcon,
+  WhatsappIcon,
+  TelegramIcon,
+} from '@/utils/icons'
 
-export default function ShareSocialMedia({ post }) {
+export default function ShareSocialMedia({ title, category }) {
   const [url, setUrl] = useState('')
 
   useEffect(() => {
     setUrl(window.location.href)
-    //setUrl('http://www.google.com')
   }, [])
   return (
     <div className=" flex items-center justify-center flex-wrap gap-2">
@@ -25,22 +27,22 @@ export default function ShareSocialMedia({ post }) {
       </FacebookShareButton>
       <TwitterShareButton
         url={url}
-        title={post?.title}
-        hashtags={['teamgamers', 'gamers', 'streaming', post?.category]}
+        title={title}
+        hashtags={['teamgamers', 'gamers', 'streaming', category]}
       >
         <XtwitterIcon w={30} h={30} />
       </TwitterShareButton>
       <WhatsappShareButton
         url={url}
-        title={`Mirá este post de Team Gamers: ${post?.title}`}
+        title={`Mirá este post de Team Gamers: ${title}`}
       >
-        <WhatsappIcon size={40} borderRadius={100} />
+        <WhatsappIcon w={30} h={30} />
       </WhatsappShareButton>
       <TelegramShareButton
         url={url}
-        title={`Mirá este post de Team Gamers: ${post?.title}`}
+        title={`Mirá este post de Team Gamers: ${title}`}
       >
-        <TelegramIcon size={40} borderRadius={100} />
+        <TelegramIcon w={30} h={30} />
       </TelegramShareButton>
     </div>
   )
