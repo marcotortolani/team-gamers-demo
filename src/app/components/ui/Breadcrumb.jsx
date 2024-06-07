@@ -3,6 +3,7 @@ import React from 'react'
 import { Poppins } from 'next/font/google'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { HomeIcon } from 'lucide-react'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -14,11 +15,6 @@ const poppins = Poppins({
 
 export default function Breadcrumb({ homeElement, separator }) {
   const paths = usePathname()
-  //console.log(paths.split("/"));
-  // const pathArray = paths.split("/");
-  // const pathPostId = pathArray[pathArray.length - 1];
-  // console.log(pathPostId);
-
   const pathNames = paths
     .split('/')
     .map((path) => (path === '' ? homeElement : path))
@@ -26,13 +22,15 @@ export default function Breadcrumb({ homeElement, separator }) {
 
   return (
     <div className={poppins.className + ' z-20  w-full h-10 flex md:p-0  '}>
-      <ul className=" w-full h-full flex">
+      <ul className=" w-full h-full flex flex-wrap">
         {pathNames.map((el, i) => (
-          <li key={i} className=" flex items-center">
+          <li key={i} className=" my-1 flex items-center">
             <Link
               className={`${
                 i % 2 !== 0 ? 'bg-SecondaryDarker' : ' bg-Primary'
-              }  text-White px-4 py-1 capitalize font-medium text-sm md:text-base cursor-pointer rounded-full`}
+              } ${
+                el === 'Home' ? 'px-1 ' : 'px-4'
+              } text-White  py-1 capitalize font-medium text-xs md:text-base cursor-pointer rounded-full`}
               href={`${
                 i === 0
                   ? '/'
@@ -44,7 +42,16 @@ export default function Breadcrumb({ homeElement, separator }) {
               }`}
               target="_self"
             >
-              {el}
+              {el === 'Home' ? (
+                <>
+                  <div className=" w-5 h-5 p-[0.1rem] aspect-square flex md:hidden items-center justify-center">
+                    <HomeIcon />
+                  </div>
+                  <span className=" hidden md:flex md:px-4">{el}</span>
+                </>
+              ) : (
+                el
+              )}
             </Link>
             {i + 1 < pathNames.length && (
               <span className=" mx-1 text-lg font-normal  ">{separator}</span>
