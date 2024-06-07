@@ -3,14 +3,13 @@ import { getData, getCategoryId } from '@/services/api-content'
 import { Gamepad2 } from 'lucide-react'
 import CardsGamers from '@/app/components/CardsGamers'
 import { TitleSection } from '@/app/components/ui/TitleSection'
+import { CAT_GAMERS as cat } from '@/utils/static_data'
 
 export default async function GamersPage() {
   // este nombre de categoria en realidad es "gamers" pero no
   // esta funcionando, puede ser algo de cache en los cambios
-  const gamersID = await getCategoryId('gamers')
-  const { data } = await getData(
-    `categories?parent=${gamersID}&per_page=30`
-  )
+  const gamersID = await getCategoryId(cat?.gamers.name)
+  const { data } = await getData(`categories?parent=${gamersID}&per_page=30`)
 
   return (
     <main className=" z-0 relative w-full pt-28 mb-24 px-4 flex flex-col items-center gap-2 ">
@@ -26,7 +25,7 @@ export default async function GamersPage() {
           gamer!
         </p>
 
-        <CardsGamers gamersData={data} path={'/gaming/gamers/'} />
+        <CardsGamers gamersData={data} path={`/${cat.gamers.slug}`} />
       </section>
     </main>
   )

@@ -35,7 +35,7 @@ export default async function page() {
           <SliderLatestPosts
             id={categoryID}
             qty={5}
-            categorySlug={`${cat.gaming.slug}/${cat.eventos.slug}`}
+            categorySlug={cat.eventos.slug}
           />
         )}
 

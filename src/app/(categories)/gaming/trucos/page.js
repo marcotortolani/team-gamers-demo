@@ -13,7 +13,7 @@ export default async function page() {
         <SliderLatestTricks
           id={categoryID}
           qty={5}
-          categorySlug="gaming/trucos/"
+          categorySlug={cat.trucos.slug}
         />
       )}
 

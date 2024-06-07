@@ -55,7 +55,10 @@ export default async function PagePost({ id, children }) {
           <button className=" aspect-square h-full" type="">
             <ShareLinkIcon />
           </button> */}
-          <ShareSocialMedia post={post[0]} />
+          <ShareSocialMedia
+            title={post[0].title}
+            category={post[0].category}
+          />
         </div>
         {elements.map((el, i) => (
           <React.Fragment key={i}>

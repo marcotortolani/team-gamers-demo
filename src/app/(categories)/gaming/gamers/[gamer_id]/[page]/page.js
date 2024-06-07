@@ -6,6 +6,7 @@ import {
 import { Gamepad2 } from 'lucide-react'
 import GamerPosts from '@/app/components/GamerPosts'
 import { TitleSection } from '@/app/components/ui/TitleSection'
+import { CAT_GAMERS as cat } from '@/utils/static_data'
 
 export default async function page({ params }) {
   const { gamer_id, page } = params
@@ -27,7 +28,7 @@ export default async function page({ params }) {
           borderColor="border-Primary"
         />
         <GamerPosts
-          path={`/gaming/gamers/${gamer_id}`}
+          path={`/${cat.gamers.slug}/${gamer_id}`}
           dataPosts={data}
           page={page}
           pagesPosts={pages}
