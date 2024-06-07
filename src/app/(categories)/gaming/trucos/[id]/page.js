@@ -1,19 +1,14 @@
 import React from 'react'
 import { CAT_GAMERS as cat } from '@/utils/static_data'
 import SectionRecommended from '@/app/components/SectionRecommended'
-import PagePost from '@/app/components/PagePost'
+import PagePost from '@/app/components/page-post/PagePost'
 
 export default function page({ params }) {
   const { id } = params
 
   return (
-    <main
-      className={`z-0 text-White mt-0 w-full h-full min-h-screen px-4 flex flex-col items-center gap-4`}
-    >
-      <PagePost id={id} />
-      <SectionRecommended category={cat.trucos} qty={2} />
-
-      <div className="w-full h-20"></div>
-    </main>
+    <PagePost id={id}>
+      <SectionRecommended category={cat.gaming} qty={4} />
+    </PagePost>
   )
 }

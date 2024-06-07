@@ -10,7 +10,7 @@ import {
 import ImageMissing from './ImageMissing'
 import ButtonLikeFav from './ui/ButtonLikeFav'
 
-export default async function PagePost({ id }) {
+export default async function PagePostNew({ id }) {
   const dataPost = await getDataPostById(id)
   const categoryData = await getDataCategoryByPostId(`${id}&parent=0`)
 
@@ -22,9 +22,9 @@ export default async function PagePost({ id }) {
   })
 
   return (
-    <section className=" w-full lg:max-w-4xl flex flex-col items-center gap-4">
+    <section className=" w-full lg:max-w-4xl bg-white flex flex-col items-center gap-4">
       <div
-        className={` bg-Primary w-full aspect-video relative flex flex-col items-center justify-center rounded-lg lg:rounded-xl`}
+        className={` w-full aspect-video relative flex flex-col items-center justify-center rounded-lg lg:rounded-xl`}
       >
         {post[0].images.length > 0 ? (
           <div className=" w-full h-full  rounded-[inherit]">

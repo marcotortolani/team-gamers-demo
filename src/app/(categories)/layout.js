@@ -8,5 +8,5 @@ export default function layout({ children }) {
   const childrenAuth =
     activeUser && activeUser?.value === 'true' ? children : <SubscribeCard />
 
-  return <div className=" mt-16 md:mt-24 lg:mt-32 w-full h-full relative ">{childrenAuth}</div>
+  return <div className=" mt-16 md:mt-24 lg:mt-32 w-full h-full flex flex-col items-center relative ">{childrenAuth}</div>
 }

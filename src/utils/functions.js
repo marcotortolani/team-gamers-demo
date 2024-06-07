@@ -84,7 +84,7 @@ export function getImageHeaderPost(postData) {
 
   // process the content and return the first image from an array
   let imgArray = []
-  
+
   postData?.content.rendered
     .split('</p>')
     .map((item) => item.trim())
@@ -110,3 +110,122 @@ export function getVimeoNumber({ string }) {
 }
 
 export function cleanDataSearch() {}
+
+export function processDataRendered(content) {
+  const imagePattern =
+    /<img\s+[^>]*class=["'][^"']*imagen[^"']*["'][^>]*\s+src=["'](.+?)["'][^>]*>/g
+  const imageFeaturedPattern =
+    /<img\s+[^>]*class=["'][^"']*img-destacada[^"']*["'][^>]*\s+src=["'](.+?)["'][^>]*>/g
+  const imageSliderPattern =
+    /<img\s+[^>]*class=["'][^"']*slider[^"']*["'][^>]*\s+src=["'](.+?)["'][^>]*>/g
+  const headingTitlePattern = /<h1\s+class=["']titulo["']>(.*?)<\/h1>/
+  const headingDestacado1Pattern = /<h2\s+class=["']destacado-1["']>(.*?)<\/h2>/
+  const headingDestacado2Pattern = /<h2\s+class=["']destacado-2["']>(.*?)<\/h2>/
+  const paragraphPattern = /<p>(.*?)<\/p>/
+  const listPattern = /<ul\s+class=["']lista["']>(.*?)<\/ul>/
+  const listItemPattern = /<li>(.*?)<\/li>/g
+  const bajadaPattern = /<p\s+class=["']bajada["']>(.*?)<\/p>/
+
+  const imagesSlider = []
+  const elements = []
+
+  // Regex pattern to match HTML tags and content
+  const fragmentPattern =
+    /(<img\s+[^>]*\/?>)|(<(?:h[1-6]|p|ul|li)[^>]*>[\s\S]*?<\/(?:h[1-6]|p|li)>|<\/?ul>)/gis
+
+  const fragments = content.match(fragmentPattern).filter(Boolean)
+
+  // Process the fragments to combine <ul> and its contents into a single element
+  const processedFragments = []
+  let ulContent = ''
+
+  fragments.forEach((fragment) => {
+    if (fragment.startsWith('<ul')) {
+      ulContent = fragment // Start collecting <ul> content
+    } else if (fragment.startsWith('</ul')) {
+      ulContent += fragment // End collecting <ul> content
+      processedFragments.push(
+        ulContent
+          .replace('\n', '')
+          .replace('\n<p>&nbsp;</p>', '')
+          .replace('<p>&nbsp;</p>', '')
+      ) // Push the combined <ul> content without the &nbsp; paragraph
+      ulContent = '' // Reset for next <ul>
+    } else if (ulContent) {
+      ulContent += fragment // Continue collecting <ul> content
+    } else {
+      processedFragments.push(fragment) // Non-<ul> content
+    }
+  })
+
+  let inList = false
+  let currentList = []
+
+  processedFragments.forEach((fragment) => {
+    let match
+
+    // Process Images from class "slider"
+    if ((match = imageSliderPattern.exec(fragment))) {
+      imagesSlider.push(match[1])
+      imageSliderPattern.lastIndex = 0 // Reset regex index
+    }
+
+    // Process "bajada"
+    if ((match = bajadaPattern.exec(fragment))) {
+      elements.push({ type: 'bajada', content: match[1] })
+    }
+    // Process "img-destacada"
+    if ((match = imageFeaturedPattern.exec(fragment))) {
+      elements.push({ type: 'img-destacada', content: match[1] })
+    }
+    // Process regular images with class name "imagen"
+    if ((match = imagePattern.exec(fragment))) {
+      elements.push({ type: 'imagen', content: match[1] })
+    }
+    // Process h1
+    if ((match = headingTitlePattern.exec(fragment))) {
+      elements.push({ type: 'titulo', content: match[1] })
+    }
+    // Process "destacado-1"
+    if ((match = headingDestacado1Pattern.exec(fragment))) {
+      elements.push({ type: 'destacado-1', content: match[1] })
+    }
+    // Process "destacado-2"
+    if ((match = headingDestacado2Pattern.exec(fragment))) {
+      elements.push({ type: 'destacado-2', content: match[1] })
+    }
+
+    // Process Unordered Lists
+    if ((match = listPattern.exec(fragment))) {
+      inList = true
+      currentList = []
+      let listItemMatch
+      while ((listItemMatch = listItemPattern.exec(match[1]))) {
+        const listItemContent = listItemMatch[1].match(
+          /<strong>(.*?)<\/strong>(.*)/s
+        )
+        if (listItemContent) {
+          currentList.push({
+            title: listItemContent[1].trim(),
+            content: listItemContent[2].trim(),
+          })
+        } else {
+          currentList.push({ title: '', content: listItemMatch[1].trim() })
+        }
+      }
+      elements.push({ type: 'lista', content: currentList })
+      listPattern.lastIndex = 0 // Reset regex index
+    }
+    if (inList && fragment.startsWith('</ul>')) {
+      inList = false
+    }
+    // Process Paragraphs
+    if ((match = paragraphPattern.exec(fragment))) {
+      // Avoid paragraphs with <img/>
+      if (!/<img\s+.*?>/.test(fragment)) {
+        elements.push({ type: 'paragraph', content: match[1] })
+      }
+    }
+  })
+  return { imagesSlider, elements }
+}

@@ -41,6 +41,7 @@ module.exports = {
         PrimaryDark: '#774D7D',
         Secondary: '#39DFFF',
         SecondaryDark: '#2AB3CD',
+        SecondaryDarker: '#2597ad',
         White: '#FFFFFF',
         Black: '#000000',
         Accent: '#023859',
@@ -55,6 +56,9 @@ module.exports = {
       },
       screens: {
         xs: '320px',
+      },
+      fontFamily: {
+        oswaldItalic: ['OswaldHeavyItalic', 'sans-serif'],
       },
     },
   },

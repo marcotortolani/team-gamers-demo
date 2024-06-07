@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'OswaldHeavyItalic';
+  src: url('../../public/assets/fonts/Oswald-Heavy-Italic.otf')
+    format('opentype');
+  font-display: swap;
+}
+
 .bg-image-pattern {
   background-image: url('../../public/assets/img/bg-pattern.webp');
 }
@@ -30,6 +37,7 @@ ol li {
   list-style: none;
   font-weight: 300;
 }
+
 
 @media (min-width: 550px) {
   .post-parsed img {
