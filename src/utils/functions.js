@@ -27,9 +27,6 @@ export function cleanDataPosts({
           const image = element.match(/src="(.*?)"/)[1].replaceAll('"', '')
           imgArray.push(image)
         }
-        // else if (element !== "") {
-        //   pArray.push(element);
-        // }
       })
 
     data.push({
@@ -99,31 +96,27 @@ export function getImageHeaderPost(postData) {
 }
 
 export function getVimeoNumber({ string }) {
-  // Expresión regular para encontrar el número después de "vimeo.com/"
-  const regex = /vimeo.com\/(\d+)/
-  // Aplicar la expresión regular a la cadena
-  //const match = string.match(regex);
+  // Regular expression to find the number after "vimeo.com"
+  // Apply the regular expression to the string
 
   const match = string.match(/src="https:\/\/player.vimeo.com\/video\/(\d+)\?/)
-  // Verificar si se encontró el número
+  // Verify if has match
   return match && match[1] ? match[1] : null
 }
 
-export function cleanDataSearch() {}
-
 export function processDataRendered(content) {
   const imagePattern =
-    /<img\s+[^>]*class=["'][^"']*imagen[^"']*["'][^>]*\s+src=["'](.+?)["'][^>]*>/g
+    /<img[^>]*(?:class=["'][^"']*imagen[^"']*["'][^>]*src=["']([^"']+)["']|src=["']([^"']+)["'][^>]*class=["'][^"']*imagen[^"']*["'])[^>]*>/i
   const imageFeaturedPattern =
-    /<img\s+[^>]*class=["'][^"']*img-destacada[^"']*["'][^>]*\s+src=["'](.+?)["'][^>]*>/g
+    /<img\s+[^>]*class=["'][^"']*img-destacada[^"']*["'][^>]*src=["'](.+?)["'][^>]*>|<img\s+[^>]*src=["'](.+?)["'][^>]*class=["'][^"']*img-destacada[^"']*["'][^>]*>/i
   const imageSliderPattern =
-    /<img\s+[^>]*class=["'][^"']*slider[^"']*["'][^>]*\s+src=["'](.+?)["'][^>]*>/g
+    /<img[^>]*(?:class=["'][^"']*slider[^"']*["'][^>]*src=["'](.+?)["']|src=["'](.+?)["'][^>]*class=["'][^"']*slider[^"']*["'])[^>]*>/i
   const headingTitlePattern = /<h1\s+class=["']titulo["']>(.*?)<\/h1>/
   const headingDestacado1Pattern = /<h2\s+class=["']destacado-1["']>(.*?)<\/h2>/
   const headingDestacado2Pattern = /<h2\s+class=["']destacado-2["']>(.*?)<\/h2>/
-  const paragraphPattern = /<p>(.*?)<\/p>/
-  const listPattern = /<ul\s+class=["']lista["']>(.*?)<\/ul>/
-  const listItemPattern = /<li>(.*?)<\/li>/g
+  const paragraphPattern = /<p[^>]*\bclass=["']parrafo["'][^>]*>(.*?)<\/p>/
+  const listPattern = /<ul\s+class=["']lista["']>(.*?)<\/ul>/s
+  const listItemPattern = /<li>(.*?)<\/li>/gs
   const bajadaPattern = /<p\s+class=["']bajada["']>(.*?)<\/p>/
 
   const imagesSlider = []
@@ -158,30 +151,16 @@ export function processDataRendered(content) {
     }
   })
 
-  let inList = false
-  let currentList = []
-
-  processedFragments.forEach((fragment) => {
+  processedFragments.forEach((frag) => {
+    // clean fragments with <br/> tag
+    const fragment = frag.replace(/<br\s*\/?>/gi, '')
     let match
-
-    // Process Images from class "slider"
-    if ((match = imageSliderPattern.exec(fragment))) {
-      imagesSlider.push(match[1])
-      imageSliderPattern.lastIndex = 0 // Reset regex index
-    }
 
     // Process "bajada"
     if ((match = bajadaPattern.exec(fragment))) {
       elements.push({ type: 'bajada', content: match[1] })
     }
-    // Process "img-destacada"
-    if ((match = imageFeaturedPattern.exec(fragment))) {
-      elements.push({ type: 'img-destacada', content: match[1] })
-    }
-    // Process regular images with class name "imagen"
-    if ((match = imagePattern.exec(fragment))) {
-      elements.push({ type: 'imagen', content: match[1] })
-    }
+
     // Process h1
     if ((match = headingTitlePattern.exec(fragment))) {
       elements.push({ type: 'titulo', content: match[1] })
@@ -195,10 +174,11 @@ export function processDataRendered(content) {
       elements.push({ type: 'destacado-2', content: match[1] })
     }
 
-    // Process Unordered Lists
+    // Process Unordered Lists with "lista" class name
+    let inList
     if ((match = listPattern.exec(fragment))) {
       inList = true
-      currentList = []
+      let currentList = []
       let listItemMatch
       while ((listItemMatch = listItemPattern.exec(match[1]))) {
         const listItemContent = listItemMatch[1].match(
@@ -214,18 +194,51 @@ export function processDataRendered(content) {
         }
       }
       elements.push({ type: 'lista', content: currentList })
-      listPattern.lastIndex = 0 // Reset regex index
     }
+
     if (inList && fragment.startsWith('</ul>')) {
       inList = false
     }
-    // Process Paragraphs
+  
+    // Process Paragraphs & Images inside of Paragraphs
     if ((match = paragraphPattern.exec(fragment))) {
-      // Avoid paragraphs with <img/>
+      // Filter common paragraphs & images inside of paragraphs
       if (!/<img\s+.*?>/.test(fragment)) {
         elements.push({ type: 'paragraph', content: match[1] })
+      } else {
+        const imageElement = fragment.replace(/<\/?p>/g, '')
+
+        // Images with "imagen" class name
+        if (imagePattern.test(imageElement)) {
+          const srcPattern = /<img[^>]*\ssrc=["']([^"']+)["'][^>]*>/i
+          const match = srcPattern.exec(imageElement)
+          if (match) {
+            const srcValue = match[1]
+            elements.push({ type: 'imagen', content: srcValue })
+          }
+        }
+
+        // Images with "img-destacada" class name
+        if (imageFeaturedPattern.test(imageElement)) {
+          const srcPattern = /<img[^>]*\ssrc=["']([^"']+)["'][^>]*>/i
+          const match = srcPattern.exec(imageElement)
+          if (match) {
+            const srcValue = match[1]
+            elements.push({ type: 'img-destacada', content: srcValue })
+          }
+        }
+
+        //Images with "slider" class name
+        if (imageSliderPattern.test(imageElement)) {
+          const srcPattern = /<img[^>]*\ssrc=["']([^"']+)["'][^>]*>/i
+          const match = srcPattern.exec(imageElement)
+          if (match) {
+            imagesSlider.push(match[1])
+          }
+        }
       }
     }
   })
+
   return { imagesSlider, elements }
 }
