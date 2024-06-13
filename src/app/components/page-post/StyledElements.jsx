@@ -58,7 +58,7 @@ function Bajada({ content }) {
     <p
       className={
         poppins.className +
-        ' w-full font-normal text-left text-sm md:text-base lg:text-lg text-Black '
+        ' w-full font-normal text-left text-base md:text-lg lg:text-xl text-Black '
       }
     >
       {ReactHtmlParser(contentStyled)}
@@ -103,7 +103,7 @@ function Paragraph({ content }) {
     <p
       className={
         poppins.className +
-        ' font-normal text-sm md:text-base lg:text-lg text-Black'
+        ' font-normal text-[13px] md:text-[15px] lg:text-[17px] text-Black'
       }
     >
       {ReactHtmlParser(contentStyled)}
