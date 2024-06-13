@@ -32,7 +32,7 @@ export default function Footer() {
         </p>
       </div>
       <Link
-        href={'http://ve.movistar.teamgamers.club/tyc/'}
+        href={'http://dinamic.ve.movistar.teamgamers.club/tyc/'}
         className=" h-1/4 uppercase text-xs md:text-sm lg:text-base text-Secondary hover:text-SecondaryDark underline"
       >
         Términos y Condiciones
