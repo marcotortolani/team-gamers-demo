@@ -11,6 +11,7 @@ export async function getData(slug) {
       headers: {
         'Content-Type': 'application/json',
       },
+      cache: 'no-store',
     })
   } catch (err) {
     console.log(err)
