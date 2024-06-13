@@ -13,6 +13,15 @@ export const metadata = {
   title: 'Team Gamers',
   description:
     'Portal de contenido para gamers. Diseñado y desarrollado por Media Moob',
+  openGraph: {
+    title: 'Team Gamers',
+    description:
+      'Portal de contenido para gamers. Diseñado y desarrollado por Media Moob',
+    url: 'https://ve.movistar.teamgamers.club/',
+    siteName: 'TeamGamers',
+    locale: 'es_ES',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({ children }) {
