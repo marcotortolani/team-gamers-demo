@@ -114,7 +114,7 @@ export function processDataRendered(content) {
   const headingTitlePattern = /<h1\s+class=["']titulo["']>(.*?)<\/h1>/
   const headingDestacado1Pattern = /<h2\s+class=["']destacado-1["']>(.*?)<\/h2>/
   const headingDestacado2Pattern = /<h2\s+class=["']destacado-2["']>(.*?)<\/h2>/
-  const paragraphPattern = /<p[^>]*\bclass=["']parrafo["'][^>]*>(.*?)<\/p>/
+  const paragraphPattern = /<p[^>]*\bclass=["']parrafo["'][^>]*>(.*?)<\/p>/s
   const listPattern = /<ul\s+class=["']lista["']>(.*?)<\/ul>/s
   const listItemPattern = /<li>(.*?)<\/li>/gs
   const bajadaPattern = /<p\s+class=["']bajada["']>(.*?)<\/p>/
@@ -127,11 +127,9 @@ export function processDataRendered(content) {
     /(<img\s+[^>]*\/?>)|(<(?:h[1-6]|p|ul|li)[^>]*>[\s\S]*?<\/(?:h[1-6]|p|li)>|<\/?ul>)/gis
 
   const fragments = content.match(fragmentPattern).filter(Boolean)
-
   // Process the fragments to combine <ul> and its contents into a single element
   const processedFragments = []
   let ulContent = ''
-
   fragments.forEach((fragment) => {
     if (fragment.startsWith('<ul')) {
       ulContent = fragment // Start collecting <ul> content
@@ -199,7 +197,7 @@ export function processDataRendered(content) {
     if (inList && fragment.startsWith('</ul>')) {
       inList = false
     }
-  
+
     // Process Paragraphs & Images inside of Paragraphs
     if ((match = paragraphPattern.exec(fragment))) {
       // Filter common paragraphs & images inside of paragraphs
