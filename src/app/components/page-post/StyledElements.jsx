@@ -113,13 +113,13 @@ function Paragraph({ content }) {
 
 function Destacado({ color, content }) {
   return (
-    <h3
+    <h2
       className={`${
         color === 'primary' ? 'bg-Primary' : 'bg-SecondaryDarker'
       } w-screen md:max-w-full px-6 py-4 font-oswaldItalic  text-White text-base md:text-lg lg:text-2xl`}
     >
       {ReactHtmlParser(content)}
-    </h3>
+    </h2>
   )
 }
 
