@@ -1,4 +1,5 @@
-import React from 'react';
+import Link from 'next/link'
+import React from 'react'
 
 export default function SubscribeCard() {
   return (
@@ -6,12 +7,13 @@ export default function SubscribeCard() {
       <p className=" px-4 text-center">
         Este contenido está bloqueado, es necesario suscribirse.
       </p>
-      <button
+      <Link
+        href={'http://dinamic.ve.movistar.teamgamers.club/landing/'}
+        target="_blank"
         className=" font-semibold px-4 py-2 bg-Details rounded-lg"
-        type="button"
       >
         Suscribirme
-      </button>
+      </Link>
     </div>
-  );
+  )
 }
