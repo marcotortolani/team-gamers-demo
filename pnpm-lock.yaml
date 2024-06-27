@@ -38,6 +38,9 @@ dependencies:
   next:
     specifier: 14.0.3
     version: 14.0.3(react-dom@18.2.0)(react@18.2.0)
+  next-crypto:
+    specifier: ^1.0.8
+    version: 1.0.8
   postcss:
     specifier: 8.4.29
     version: 8.4.29
@@ -2047,6 +2050,10 @@ packages:
 
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
+    dev: false
+
+  /next-crypto@1.0.8:
+    resolution: {integrity: sha512-6VcrH+xFuuCRGCdDMjFFibhJ97c4s+J/6SEV73RUYJhh38MDW4WXNZNTWIMZBq0B29LOIfAQ0XA37xGUZZCCjA==}
     dev: false
 
   /next@14.0.3(react-dom@18.2.0)(react@18.2.0):
