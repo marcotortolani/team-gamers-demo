@@ -1,6 +1,6 @@
 {
-  "name": "epa-mujer-demo",
-  "version": "0.1.0",
+  "name": "team-gamers-demo",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -25,6 +25,7 @@
     "react-dom": "18.2.0",
     "react-html-parser": "^2.0.2",
     "react-share": "^5.1.0",
+    "sharp": "^0.33.4",
     "swiper": "^10.3.1",
     "tailwind-merge": "^2.0.0",
     "tailwindcss": "3.3.3",
