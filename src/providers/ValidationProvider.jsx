@@ -1,24 +1,22 @@
 'use client'
-import React, { createContext, useState, useEffect } from 'react'
-import { useSearchParams } from 'next/navigation'
-import useLocalStorage from '@/hooks/useLocalStorage'
+import React, { createContext, useEffect } from 'react'
 import { validateUser } from '@/utils/userAuth'
 
 const ValidationContext = createContext()
 
 function ValidationProvider({ children }) {
-  const [validAccess, setValidAccess] = useState(false)
-  const searchParams = useSearchParams()
-  const hash = searchParams.get('hash') || 0
+  function getParam() {
+    return window.location.href.split('/?')[1] || null
+  }
+
 
   useEffect(() => {
-    // if (validateUser(hash)) {
-    //   setValidAccess(true)
-    // }
-  }, [hash])
+    const hashID = getParam()
+    validateUser(hashID)
+  }, [])
 
   return (
-    <ValidationContext.Provider value={validAccess}>
+    <ValidationContext.Provider value={''}>
       {children}
     </ValidationContext.Provider>
   )

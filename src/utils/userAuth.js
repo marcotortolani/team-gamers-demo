@@ -1,74 +1,66 @@
-import { ENDPOINT_VALIDATION_HASH } from '../config/config';
+import { ENDPOINT_VALIDATION_HASH } from '../config/config'
 
-const tokenHashID = { name: 'hashID', expireDays: 365 };
-export const tokenActiveUser = { name: 'enabledUser', expireDays: 1 };
+const tokenHashID = { name: 'hashID', expireDays: 365 }
+export const tokenActiveUser = { name: 'enabledUser', expireDays: 1 }
+export const tokenActiveTrial = { name: 'trial', expireDays: 10 }
 
-export async function validateUser(hash) {
-  //console.log(hash);
-  const resActiveUser = await getValidationToken(tokenActiveUser.name);
-
-  //console.log(resActiveUser);
-  if (resActiveUser.ok && resActiveUser.value) return;
-
-  if (!resActiveUser.ok || !resActiveUser.value) {
-    // no existe el token, ha caducado o no está habilitado
-    // leer el hash, si
-    //       hash=0 -> leer cookie(hashID)
-    //       hash!=0 -> crear cookie(hashID)
-
-    const userIsAuth = await getValidationEndpoint(hash);
-    // evaluar hash param
-    if (hash === 0) {
-      const resHashID = await getValidationToken(tokenHashID.name);
-    } else {
-      createValidationToken({ authValue: userIsAuth, hash: hash }).then((res) =>
-        console.log(res)
-      );
-    }
-
+export async function validateUser(hashID) {
+  // primera vez que se accede
+  const userExist = await getToken(tokenActiveUser.name)
+  const trial = await getToken(tokenActiveTrial.name)
+  if (!userExist.ok && !trial.ok) {
+    const req = { trialValue: 3 }
+    createTrialToken(req)
   }
 
-  // if (res === 'authorized') return;
-  // if (res === 'unauthorized') {
-  //   const userIsAuth = await getValidationEndpoint(hash);
+  if (hashID) {
+    const userIsAuth = await getValidationEndpoint(hashID)
+    createToken({ authValue: userIsAuth, hash: hashID })
+  }
 
-  //   if (userIsAuth) {
-  //     createValidationToken({ authValue: true, hash: hash }).then((res) => {
-  //       console.log('Usuario validado');
-  //       console.log(res);
-  //     });
-  //   }
-  // }
-}
+  // revisar cookies -> token active user
+  const resActiveUser = await getToken(tokenActiveUser.name)
 
-export async function getValidationEndpoint(hash) {
-  if (hash === 1234) {
-    return true;
+  // existe el user token y es válido
+  if (resActiveUser.ok && resActiveUser.value === 'true') return
+
+  // no existe el user token o no es válido
+  // leer token hashID
+  const resHashID = await getToken(tokenHashID.name)
+
+  if (resHashID.ok && resHashID.value) {
+    const userIsAuth = await getValidationEndpoint(resHashID.value)
+    createToken({ authValue: userIsAuth, hash: resHashID.value })
   } else {
-    return false;
+    createToken({ authValue: false, hash: 0 })
   }
-
-  //const res = await fetch(ENDPOINT_VALIDATION_HASH + `?hash=${hash}`);
-  if (res.ok) {
-    return true;
-  }
-  return false;
 }
 
-export async function getValidationToken(tokenName) {
+export async function getValidationEndpoint(hashID) {
+  const res = await fetch(ENDPOINT_VALIDATION_HASH + hashID)
+  const data = await res.json()
+  if (data.success) {
+    return data.isValid
+  }
+
+  console.log('ERROR: ', res.errorMessage)
+  return false
+}
+
+export async function getToken(tokenName) {
   const res = await fetch(`/api/validation/?token=${tokenName}`, {
     method: 'GET',
-  });
+  })
 
   if (!res.ok) {
-    return { ok: false, value: 'no-token' };
+    return { ok: false, value: 'no-token' }
   }
 
-  const tokenData = await res.json();
-  return { ok: true, value: tokenData };
+  const tokenData = await res.json()
+  return { ok: true, value: tokenData.value }
 }
 
-export async function createValidationToken(req) {
+export async function createToken(req) {
   const res = await fetch('/api/validation', {
     method: 'POST',
     headers: {
@@ -76,7 +68,34 @@ export async function createValidationToken(req) {
       Accept: 'application/json',
     },
     body: JSON.stringify(req),
-  });
+  })
 
-  return res.ok;
+  return res.ok
+}
+
+
+
+export async function getTrialToken() {
+  const res = await fetch(`/api/trial/`, {
+    method: 'GET',
+  })
+
+  if (!res.ok) {
+    return { ok: false, value: 'no-token' }
+  }
+
+  const tokenData = await res.json()
+  return { ok: true, value: tokenData.value }
+}
+
+export async function createTrialToken(req) {
+  const res = await fetch('/api/trial/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(req),
+  })
+  return res.ok
 }
