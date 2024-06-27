@@ -39,7 +39,8 @@ export default function Footer() {
       </Link>
       <Link
         href={'http://dinamic.ve.movistar.teamgamers.club/landing/'}
-        className=" h-1/4 uppercase text-[0.6rem] md:text-xs lg:text-sm text-Secondary hover:text-SecondaryDark underline"
+        target="_blank"
+        className=" h-1/4 uppercase text-xs md:text-sm lg:text-base text-Secondary hover:text-SecondaryDark underline"
       >
         Suscripción
       </Link>
