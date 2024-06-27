@@ -1,18 +1,22 @@
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
+import NextCrypto from 'next-crypto'
+
+const crypto = new NextCrypto('user enabled')
 
 const tokenHashID = { name: 'hashID', expireDays: 365 }
 const tokenActiveUser = { name: 'enabledUser', expireDays: 1 }
+const oneDay = 24 * 60 * 60 * 1000
 
 // CREATE new validation token on cookies
 export async function POST(req) {
   const { authValue, hash } = await req.json()
 
-  const oneDay = 24 * 60 * 60 * 1000
+  const encryptedValue = await crypto.encrypt(authValue)
 
   cookies().set({
     name: tokenActiveUser.name,
-    value: authValue,
+    value: encryptedValue,
     expires: Date.now() + oneDay * tokenActiveUser.expireDays,
     secure: true,
     sameSite: 'strict',
@@ -48,8 +52,12 @@ export async function GET(req) {
     )
   }
 
+  const userEnabled = await crypto.decrypt(tokenStored.value).then((res) => {
+    return res
+  })
+
   return NextResponse.json(
-    { value: tokenStored.value },
+    { value: userEnabled },
     {
       status: 200,
       statusText: 'Autorizado',

@@ -16,6 +16,17 @@ export async function validateUser(hashID) {
   if (hashID) {
     const userIsAuth = await getValidationEndpoint(hashID)
     createToken({ authValue: userIsAuth, hash: hashID })
+  } else {
+    // no existe hashID por parametro
+    // leer token hashID
+    const resHashID = await getToken(tokenHashID.name)
+
+    if (resHashID.ok && resHashID.value) {
+      const userIsAuth = await getValidationEndpoint(resHashID.value)
+      createToken({ authValue: userIsAuth, hash: resHashID.value })
+    } else {
+      createToken({ authValue: false, hash: 0 })
+    }
   }
 
   // revisar cookies -> token active user
@@ -23,17 +34,6 @@ export async function validateUser(hashID) {
 
   // existe el user token y es válido
   if (resActiveUser.ok && resActiveUser.value === 'true') return
-
-  // no existe el user token o no es válido
-  // leer token hashID
-  const resHashID = await getToken(tokenHashID.name)
-
-  if (resHashID.ok && resHashID.value) {
-    const userIsAuth = await getValidationEndpoint(resHashID.value)
-    createToken({ authValue: userIsAuth, hash: resHashID.value })
-  } else {
-    createToken({ authValue: false, hash: 0 })
-  }
 }
 
 export async function getValidationEndpoint(hashID) {
@@ -72,8 +72,6 @@ export async function createToken(req) {
 
   return res.ok
 }
-
-
 
 export async function getTrialToken() {
   const res = await fetch(`/api/trial/`, {

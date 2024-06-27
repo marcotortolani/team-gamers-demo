@@ -1,16 +1,22 @@
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
+import NextCrypto from 'next-crypto'
+
+const crypto = new NextCrypto('trial')
 
 const tokenActiveTrial = { name: 'trial', expireDays: 1 }
 // CREATE trial token on cookies
 export async function POST(req) {
   const { trialValue } = await req.json()
 
+  const encrypted = await crypto.encrypt(trialValue)
+  // const decrypted = await crypto.decrypted(encrypt)
+
   const oneDay = 24 * 60 * 60 * 1000
 
   cookies().set({
     name: tokenActiveTrial.name,
-    value: trialValue,
+    value: encrypted,
     expires: Date.now() + oneDay * tokenActiveTrial.expireDays,
     secure: true,
     sameSite: 'strict',
