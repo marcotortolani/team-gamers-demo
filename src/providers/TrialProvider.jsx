@@ -6,7 +6,7 @@ import NextCrypto from 'next-crypto'
 const cryptoTrial = new NextCrypto('trial')
 const TrialContext = createContext()
 
-async function TrialProvider({ children }) {
+function TrialProvider({ children }) {
   const [trialToken, setTrialToken] = useState({ ok: false, value: '0' })
   const activeTrialNumber = parseInt(trialToken?.value)
 
@@ -15,8 +15,8 @@ async function TrialProvider({ children }) {
     createTrialToken(req).catch((err) => console.log(err))
   }
 
-  async function getDecryptedTrial(dataCrypted) {
-    await cryptoTrial.decrypt(dataCrypted.value).then((res) => {
+  function getDecryptedTrial(dataCrypted) {
+    cryptoTrial.decrypt(dataCrypted.value).then((res) => {
       setTrialToken({ ok: dataCrypted.ok, value: res })
     })
   }
