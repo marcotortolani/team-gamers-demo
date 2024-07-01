@@ -1,6 +1,8 @@
 'use server'
 import { API_CONTENT } from '../config/config'
 
+const REVALIDATE_CACHE = 3600 * 24
+
 export async function getData(slug) {
   let res
   try {
@@ -11,7 +13,7 @@ export async function getData(slug) {
       headers: {
         'Content-Type': 'application/json',
       },
-      cache: 'no-store',
+      next: { revalidate: REVALIDATE_CACHE },
     })
   } catch (err) {
     console.log(err)
