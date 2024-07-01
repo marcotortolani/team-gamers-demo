@@ -1,7 +1,7 @@
 'use server'
 import { API_CONTENT } from '../config/config'
 
-const REVALIDATE_CACHE = 3600 * 24
+const REVALIDATE_CACHE = 3600 * 12
 
 export async function getData(slug) {
   let res
