@@ -1,17 +1,16 @@
 'use client'
 import React, { createContext, useEffect } from 'react'
-import { validateUser } from '@/utils/userAuth'
+import { validateUser } from '@/app/actions/auth'
 
 const ValidationContext = createContext()
 
 function ValidationProvider({ children }) {
-  function getParam() {
+  const getHashID = () => {
     return window.location.href.split('/?')[1] || null
   }
 
-
   useEffect(() => {
-    const hashID = getParam()
+    const hashID = getHashID()
     validateUser(hashID)
   }, [])
 
