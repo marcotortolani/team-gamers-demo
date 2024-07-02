@@ -1,33 +1,37 @@
 'use client'
 import React, { createContext, useEffect, useState } from 'react'
-import { getTrialToken, createTrialToken } from '@/utils/userAuth'
-import NextCrypto from 'next-crypto'
+import {
+  getTrialValue,
+  updateTrialValue,
+} from '@/app/actions/auth'
+import SubscribeCard from '@/app/components/SubscribeCard'
 
-const cryptoTrial = new NextCrypto('trial')
 const TrialContext = createContext()
 
 function TrialProvider({ children }) {
-  const [trialToken, setTrialToken] = useState({ ok: false, value: '0' })
-  const activeTrialNumber = parseInt(trialToken?.value)
-
-  if (activeTrialNumber > 0) {
-    const req = { trialValue: activeTrialNumber - 1 }
-    createTrialToken(req).catch((err) => console.log(err))
-  }
-
-  function getDecryptedTrial(dataCrypted) {
-    cryptoTrial.decrypt(dataCrypted.value).then((res) => {
-      setTrialToken({ ok: dataCrypted.ok, value: res })
-    })
-  }
+  const [trialToken, setTrialToken] = useState(0)
 
   useEffect(() => {
-    getTrialToken().then((res) => {
-      getDecryptedTrial(res)
-    })
+    async function fetchTrialValue() {
+      const value = await getTrialValue()
+      setTrialToken(value)
+      if (value > 0) {
+        updateTrialToken()
+      }
+    }
+    fetchTrialValue()
   }, [])
 
-  return <TrialContext.Provider value={''}>{children}</TrialContext.Provider>
+  async function updateTrialToken() {
+    const value = await getTrialValue()
+    return await updateTrialValue(value - 1)
+  }
+
+  return (
+    <TrialContext.Provider value={{ trialToken, updateTrialToken }}>
+      {trialToken > 0 ? children : <SubscribeCard />}
+    </TrialContext.Provider>
+  )
 }
 
 export { TrialContext, TrialProvider }

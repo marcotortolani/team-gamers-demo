@@ -61,3 +61,24 @@ async function createTrialToken(trialValue) {
   const encryptedTrial = await cryptoTrial.encrypt(trialValue.toString())
   cookieStore.set('trial', encryptedTrial, { httpOnly: true, secure: true })
 }
+
+export async function getTrialValue() {
+  const cookieStore = cookies()
+  const trial = cookieStore.get('trial')
+  if (trial) {
+    const decryptedValue = await cryptoTrial.decrypt(trial.value)
+    return parseInt(decryptedValue, 10)
+  }
+  return 0
+}
+
+export async function updateTrialValue(newValue) {
+  const cookieStore = cookies()
+  const encryptedTrial = await cryptoTrial.encrypt(newValue.toString())
+  cookieStore.set('trial', encryptedTrial, { 
+    httpOnly: true, 
+    secure: true,
+    maxAge: 60 * 60 * 24 * 10 // 10 días
+  })
+  return newValue
+}

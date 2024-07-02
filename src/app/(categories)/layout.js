@@ -9,23 +9,26 @@ const cryptoTrial = new NextCrypto('trial')
 export default async function Layout({ children }) {
   const cookieStore = cookies()
   const activeUser = cookieStore.get('enabledUser')
-  const activeTrial = cookieStore.get('trial')
+  //const activeTrial = cookieStore.get('trial')
 
   let userEnabled = false
-  let userTrial = 0
+  //let userTrial = 0
 
   if (activeUser) {
     userEnabled = (await cryptoUser.decrypt(activeUser.value)) === 'true'
   }
 
-  if (activeTrial) {
-    userTrial = parseInt(await cryptoTrial.decrypt(activeTrial.value), 10)
-  }
+  // if (activeTrial) {
+  //   userTrial = parseInt(await cryptoTrial.decrypt(activeTrial.value), 10)
+  // }
+
+  //console.log(userTrial)
 
   const ChildrenAuth = () => {
     if (userEnabled) return children
-    if (userTrial > 0) return <TrialProvider>{children}</TrialProvider>
-    return <SubscribeCard />
+    // if (userTrial > 0) return <TrialProvider>{children}</TrialProvider>
+    // return <SubscribeCard />
+    return <TrialProvider>{children}</TrialProvider>
   }
 
   return (
