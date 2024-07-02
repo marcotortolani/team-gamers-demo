@@ -7,3 +7,6 @@ export const ENDPOINT_LANDING = URL_CONTENT_BASE + 'api/v1/landing/'
 
 export const ENDPOINT_VALIDATION_HASH =
   'http://ws.movistar.ve.moob.club:13076/api/v1/subscriptions/isValid/'
+
+// export const ENDPOINT_VALIDATION_HASH =
+//   URL_CONTENT_BASE + 'api/v1/validate_hash/'
