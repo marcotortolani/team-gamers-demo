@@ -14,6 +14,7 @@ export async function getData(slug) {
         'Content-Type': 'application/json',
       },
       next: { revalidate: REVALIDATE_CACHE },
+      cache: 'no-store',
     })
   } catch (err) {
     console.log(err)
