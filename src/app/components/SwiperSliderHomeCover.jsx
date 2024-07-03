@@ -25,7 +25,6 @@ export default function SwiperSliderHomeCover({
   const [indexPag, setIndexPag] = useState(0)
   const [slidePosts, setSlidePosts] = useState([])
   const sliderRef = useRef(0)
-
   const qtyBullets = Object.keys(posts).length - parseInt(slidesPerView) + 1
 
   const pagination = {

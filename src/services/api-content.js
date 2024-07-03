@@ -13,7 +13,7 @@ export async function getData(slug) {
       headers: {
         'Content-Type': 'application/json',
       },
-      next: { revalidate: REVALIDATE_CACHE },
+      // next: { revalidate: REVALIDATE_CACHE },
       cache: 'no-store',
     })
   } catch (err) {

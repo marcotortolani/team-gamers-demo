@@ -20,20 +20,24 @@ const MusicaSummary = dynamic(() => import('./components/MusicaSummary'), {
 
 export default async function Home() {
   const { data } = await getData('categories?per_page=50&parent=0')
+  const { data: tagsData } = await getData('tags')
+
+  const videoTagID = await tagsData.filter((tag) =>
+    tag.slug.includes('video')
+  )[0].id
 
   const categoriesIDExcluded = await data
-    .filter((cat) => cat.slug === 'videos' || cat.slug === 'sin-categoria')
+    .filter((cat) => cat.slug.includes('video') || cat.slug === 'sin-categoria')
     .map((cat) => cat.id)
 
   const categoriesIDFiltered = await data
-    .filter((cat) => cat.slug !== 'videos')
+    .filter((cat) => !cat.slug.includes('video'))
     .filter((cat) => cat.slug !== 'sin-categoria')
     .map((cat) => ({ id: cat.id, slug: cat.slug }))
 
   const stringIDExcluded = await categoriesIDExcluded.join(',')
-
   const { data: dataPostsFiltered } = await getData(
-    `posts?per_page=10&categories_exclude=${stringIDExcluded}`
+    `posts?per_page=10&categories_exclude=${stringIDExcluded}&tags_exclude=${videoTagID}`
   )
 
   return (

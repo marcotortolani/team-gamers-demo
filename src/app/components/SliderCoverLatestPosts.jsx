@@ -1,5 +1,5 @@
 import React from 'react'
-import { getPostsByCategoryId } from '@/services/api-content'
+import { getData, getPostsByCategoryId } from '@/services/api-content'
 import { getLatestPosts, cleanDataPosts } from '@/utils/functions'
 import SwiperSliderCoverPosts from './SwiperSliderCoverPosts'
 
@@ -9,7 +9,12 @@ export default async function SliderCoverLatestPosts({
   categorySlug,
   styleColor,
 }) {
-  const { data } = await getPostsByCategoryId({ id })
+  const { data: tagsData } = await getData('tags')
+  const videoTagID = await tagsData.filter((tag) =>
+    tag.slug.includes('video')
+  )[0].id
+
+  const { data } = await getPostsByCategoryId({ id, tagExclude: videoTagID })
 
   const latestPosts = cleanDataPosts({
     posts: getLatestPosts({ posts: data, qty: qty }),

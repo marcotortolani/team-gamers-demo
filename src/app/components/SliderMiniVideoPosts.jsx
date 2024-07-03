@@ -26,7 +26,6 @@ export default function SliderMiniVideoPosts({
 }) {
   const sliderRef = useRef(0)
 
-
   return (
     <div className=" w-screen lg:max-w-screen-lg  h-full  ">
       {sliderElements.length > 0 && (
@@ -54,7 +53,7 @@ export default function SliderMiniVideoPosts({
               ${
                 verticalAspect
                   ? ' aspect-[5/6] md:aspect-[4/3]'
-                  : 'aspect-[4/3]'
+                  : 'aspect-video'
               } w-full pl-2 md:pl-4 lg:pl-6 h-full relative `}
               key={post.id}
             >
