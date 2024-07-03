@@ -105,6 +105,9 @@ export function getVimeoNumber({ string }) {
 }
 
 export function processDataRendered(content) {
+  if (typeof content !== 'string') return ''
+  if (content.length === 0) return ''
+
   const imagePattern =
     /<img[^>]*(?:class=["'][^"']*imagen[^"']*["'][^>]*src=["']([^"']+)["']|src=["']([^"']+)["'][^>]*class=["'][^"']*imagen[^"']*["'])[^>]*>/i
   const imageFeaturedPattern =
