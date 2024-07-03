@@ -7,7 +7,7 @@ const Footer = dynamic(() => import('./components/ui/Footer'))
 const DownbarMobile = dynamic(() => import('./components/ui/DownbarMobile'))
 import './globals.css'
 
-const oswald = Oswald({ subsets: ['latin'] })
+const oswald = Oswald({ subsets: ['latin'], preload: true })
 
 export const metadata = {
   title: 'Team Gamers',
