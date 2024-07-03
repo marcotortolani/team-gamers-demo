@@ -47,12 +47,21 @@ export default function Header() {
     >
       <div className="  w-full flex flex-col items-center justify-center gap-3 md:gap-4 lg:gap-6 ">
         <div className="w-full h-auto py-4 bg-Primary flex items-center justify-center ">
-          <div className=" w-full max-w-2xl flex items-center justify-center lg:justify-between">
-            <IconTab href="/" title="Home section" icon={HomeIcon} path={pathname} />
-            <Link href={'/'} className=" w-2/5 max-w-[250px] h-auto">
+          <div className=" w-full max-w-2xl h-fit flex items-center justify-center lg:justify-between">
+            <IconTab
+              href="/"
+              title="Home section"
+              icon={HomeIcon}
+              path={pathname}
+            />
+            <Link
+              href={'/'}
+              className=" relative w-full max-w-[250px] h-[3rem] md:h-[3.5rem] lg:h-[4rem] cursor-pointer"
+            >
               <Image
+                className=" mx-auto w-auto h-full"
                 width={250}
-                height={100}
+                height={64}
                 src={logoHorizontal}
                 alt="Logo Horizontal Team Gamers"
                 priority

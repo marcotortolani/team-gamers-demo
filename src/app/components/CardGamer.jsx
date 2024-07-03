@@ -28,8 +28,9 @@ export function CardGamer({ path, gamerData, miniCard }) {
         >
           {!imageError && (
             <Image
-              className="z-10 absolute top-0 w-full h-auto object-cover rounded-[inherit]"
+              className="z-10 absolute top-0 w-auto h-full object-cover rounded-[inherit]"
               fill
+              sizes="(max-width:300px)"
               src={imageGamer}
               alt={`${gamerData.name} Gamer Image`}
               onError={handleImageError}
