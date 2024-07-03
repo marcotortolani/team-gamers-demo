@@ -2,7 +2,7 @@ import React from 'react'
 import ReactHtmlParser from 'react-html-parser'
 import ShareSocialMedia from './ShareSocialMedia'
 import Breadcrumb from '../ui/Breadcrumb'
-//import ButtonLikeFav from '../ui/ButtonLikeFav'
+import ButtonLikeFav from "../ui/ButtonLikeFav"
 import { processDataRendered } from '@/utils/functions'
 import StyledElements from './StyledElements'
 
@@ -10,17 +10,15 @@ import { getImageHeaderPost } from '@/utils/functions'
 
 export default async function VideoPost({ dataVideo, vimeoNumber, children }) {
   const image = getImageHeaderPost(dataVideo)
-  // const dataFavourite = {
-  //   id: dataVideo?.id,
-  //   category: 'videos/1',
-  //   title: dataVideo?.title.rendered,
-  //   excerpt: dataVideo?.excerpt.rendered,
-  //   images: [image],
-  // }
-  const dataRendered =
-    '<div style="padding: 56.25% 0 0 0; position: relative;"><iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" title="TG_México_Alex_Super Mario 64" src="https://player.vimeo.com/video/796305657?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0"></iframe></div>\n<p><script src="https://player.vimeo.com/api/player.js"></script></p>\n<p><img src="https://s3-sa-east-1.amazonaws.com/producto.teamgamers/wp-content/uploads/2023/12/alex-mario64-2.jpg" /></p>\n<p class="bajada">Dicen que la imitación es la forma más sincera de adulación que existe. Y parece ser que los <span>creadores de Stumble Guys es lo que tenían en mente</span> cuando quisieron apostar a caballo ganador tratando de emular uno de los juegos más populares que se lanzaron en plena pandemia, Fall Guys. El título de Kitka Games comparte planteamiento y humor, y adictivo como es, queremos repasar con vosotros cómo conseguir las gemas, que son la moneda premium del juego, y para qué sirven.</p>'
+  const dataFavourite = {
+    id: dataVideo?.id,
+    category: 'videos/1',
+    title: dataVideo?.title.rendered,
+    excerpt: dataVideo?.excerpt.rendered,
+    images: [image],
+  }
 
-  const { elements } = processDataRendered(dataRendered)
+  const { elements } = processDataRendered(dataVideo?.excerpt.rendered)
 
   return (
     <main
@@ -28,7 +26,7 @@ export default async function VideoPost({ dataVideo, vimeoNumber, children }) {
     >
       <div className="z-50 top-0 m-2 right-0 w-full lg:max-w-4xl h-10 flex items-center justify-between">
         <Breadcrumb homeElement={'Home'} separator={'>'} />
-        {/* <ButtonLikeFav color="#000" post={dataFavourite} /> */}
+        <ButtonLikeFav color="#000" post={dataFavourite} />
       </div>
       <section className=" w-full lg:max-w-4xl flex flex-col items-center gap-4">
         <h1
@@ -63,7 +61,7 @@ export default async function VideoPost({ dataVideo, vimeoNumber, children }) {
             ></iframe>
           )}
         </div>
-        {elements.map((el) => (
+        {elements?.map((el) => (
           <StyledElements key={el.content} el={el} />
         ))}
       </section>

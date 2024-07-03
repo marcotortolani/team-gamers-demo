@@ -43,7 +43,7 @@ export default function CardsLatestVideosPosts({
             <CardVideo
               post={post}
               index={index}
-              href={`/${categorySlug}/${post.id}`}
+              href={`/${categorySlug}/video/${post.id}`}
               verticalAspect={verticalAspect}
             />
           </li>
