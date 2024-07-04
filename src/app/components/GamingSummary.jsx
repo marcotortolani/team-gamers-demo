@@ -31,7 +31,7 @@ export default async function GamingSummary() {
   const qtyVideoElements = 6
   const randomVideoPosts = cleanDataPosts({
     posts: getRandomPosts({ posts: videosEventos, qty: qtyVideoElements }),
-    categorySlug: dataCategories.eventos.slug,
+    categorySlug: `${cat.gaming.slug}/${dataCategories.eventos.slug}`,
   })
 
   return (

@@ -26,6 +26,8 @@ export default function SliderMiniVideoPosts({
 }) {
   const sliderRef = useRef(0)
 
+  console.log(sliderElements);
+
   return (
     <div className=" w-screen lg:max-w-screen-lg  h-full  ">
       {sliderElements.length > 0 && (
@@ -58,7 +60,7 @@ export default function SliderMiniVideoPosts({
               key={post.id}
             >
               <Link
-                href={`/${post.category}/${post.id}`}
+                href={`/${post.category}/video/${post.id}`}
                 className=" w-full h-full  "
               >
                 <div className={` relative z-0 w-full h-full  rounded-lg `}>
