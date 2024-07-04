@@ -56,6 +56,7 @@ module.exports = {
       },
       screens: {
         xs: '320px',
+        xsm: '380px',
       },
       fontFamily: {
         oswaldItalic: ['OswaldHeavyItalic', 'sans-serif'],

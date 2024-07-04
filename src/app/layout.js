@@ -6,6 +6,7 @@ const Header = dynamic(() => import('./components/ui/Header'))
 const Footer = dynamic(() => import('./components/ui/Footer'))
 const DownbarMobile = dynamic(() => import('./components/ui/DownbarMobile'))
 import './globals.css'
+import ChatBot from './components/ChatBot'
 
 const oswald = Oswald({ subsets: ['latin'], preload: true })
 
@@ -30,13 +31,14 @@ export default function RootLayout({ children }) {
       <body
         className={
           oswald.className +
-          ` relative w-screen overflow-scroll overflow-x-hidden scroll-smooth flex flex-col items-center bg-Background `
+          ` z-20 relative w-screen overflow-scroll overflow-x-hidden scroll-smooth flex flex-col items-center bg-Background `
         }
       >
         <div className="bg-image-pattern -z-50 absolute top-0 w-screen h-full opacity-40 bg-repeat bg-fill " />
         <Header />
         <Providers>{children}</Providers>
         <DownbarMobile />
+        <ChatBot />
         <Footer />
       </body>
     </html>
