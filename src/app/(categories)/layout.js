@@ -32,7 +32,7 @@ export default async function Layout({ children }) {
   }
 
   return (
-    <div className="mt-16 md:mt-24 lg:mt-32 w-full h-full flex flex-col items-center relative">
+    <div className=" z-0 mt-16 md:mt-24 lg:mt-32 w-full h-full flex flex-col items-center relative">
       <ChildrenAuth />
     </div>
   )

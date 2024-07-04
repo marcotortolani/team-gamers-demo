@@ -7,7 +7,7 @@ const { logoHorizontal } = configSiteStatic.images
 export default function Footer() {
   return (
     <footer
-      className={` z-40 w-full min-h-[160px] max-h-[250px] py-4 mb-20 bg-Primary  flex flex-col items-center justify-around gap-2`}
+      className={` -z-20 w-full min-h-[160px] max-h-[250px] py-4 mb-20 bg-Primary  flex flex-col items-center justify-around gap-2`}
     >
       <div className="w-full max-w-[200px] h-1/4 sm:h-2/5 md:h-1/3 flex items-center justify-center  cursor-default pointer-events-none">
         <Link
