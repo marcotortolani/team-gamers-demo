@@ -26,8 +26,6 @@ export default function SliderMiniVideoPosts({
 }) {
   const sliderRef = useRef(0)
 
-  console.log(sliderElements);
-
   return (
     <div className=" w-screen lg:max-w-screen-lg  h-full  ">
       {sliderElements.length > 0 && (
