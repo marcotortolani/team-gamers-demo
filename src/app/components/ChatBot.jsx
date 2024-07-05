@@ -10,7 +10,7 @@ const poppins = Poppins({
   preload: true,
 })
 
-const URL_CHATBOT = 'http://test.moob.club:8000/IA/ve/movistar/teamgamers/chat/'
+const URL_CHATBOT = 'https://test.moob.club:8002/IA/ve/movistar/teamgamers/chat/'
 
 export default function ChatBot() {
   const [chatOpen, setChatOpen] = useState(false)
