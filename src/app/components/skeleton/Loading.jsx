@@ -1,5 +1,5 @@
 import HorizontalLine from '@/app/components/ui/HorizontalLine'
-import SectionSkeleton from './components/skeleton/SectionSkeleton'
+import SectionSkeleton from "./SectionSkeleton"
 
 export default function Loading() {
   return (
