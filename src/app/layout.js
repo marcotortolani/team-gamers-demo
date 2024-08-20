@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
       <body
         className={
           oswald.className +
-          ` -z-20 relative w-screen overflow-scroll overflow-x-hidden scroll-smooth flex flex-col items-center bg-Background `
+          ` z-20 relative w-screen overflow-scroll overflow-x-hidden scroll-smooth flex flex-col items-center bg-Background `
         }
       >
         <div className="bg-image-pattern -z-50 absolute top-0 w-screen h-full opacity-40 bg-repeat bg-fill " />
