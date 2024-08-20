@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { configSiteStatic } from '../../../../configSiteStatic.js'
+import { URL_LANDING_SUBS } from "@/config/config.js"
 const { logoHorizontal } = configSiteStatic.images
 
 export default function Footer() {
@@ -32,13 +33,13 @@ export default function Footer() {
         </p>
       </div>
       <Link
-        href={'/tyc/'}
+        href={'/terminos/'}
         className=" h-1/4 uppercase text-xs md:text-sm lg:text-base text-Secondary hover:text-SecondaryDark underline"
       >
         Términos y Condiciones
       </Link>
       <Link
-        href={'http://dinamic.ve.movistar.teamgamers.club/landing/'}
+        href={URL_LANDING_SUBS}
         target="_blank"
         className=" h-1/4 uppercase text-xs md:text-sm lg:text-base text-Secondary hover:text-SecondaryDark underline"
       >
