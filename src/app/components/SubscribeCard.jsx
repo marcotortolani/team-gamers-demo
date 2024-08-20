@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React from 'react'
+import { URL_LANDING_SUBS } from '@/config/config'
 
 export default function SubscribeCard() {
   return (
@@ -8,7 +8,7 @@ export default function SubscribeCard() {
         Este contenido está bloqueado, es necesario suscribirse.
       </p>
       <Link
-        href={'http://dinamic.ve.movistar.teamgamers.club/landing/'}
+        href={URL_LANDING_SUBS}
         target="_blank"
         className=" font-semibold px-4 py-2 bg-Details rounded-lg"
       >
