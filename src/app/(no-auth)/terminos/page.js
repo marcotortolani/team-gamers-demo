@@ -228,7 +228,7 @@ const TitleStyled = ({ children }) => (
 
 const Title2Styled = ({ children }) => (
   <h2
-    className={` w-screen md:max-w-full font-oswaldItalic uppercase  text-Black text-xl md:text-lg lg:text-2xl`}
+    className={` w-full md:max-w-full font-oswaldItalic uppercase  text-Black text-xl md:text-lg lg:text-2xl`}
   >
     {children}
   </h2>
