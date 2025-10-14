@@ -7,5 +7,3 @@ export const ENDPOINT_VALIDATION_HASH =
 
 export const URL_LANDING_SUBS =
   'http://dinamic.ve.movistar.teamgamers.club/landing/'
-// export const ENDPOINT_VALIDATION_HASH =
-//   'http://ws.movistar.ve.moob.club:13076/api/v1/subscriptions/isValid/'
