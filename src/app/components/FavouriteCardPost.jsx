@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useContext } from 'react'
 import { StateContext } from '@/providers/StateProvider'
-import ReactHtmlParser from 'react-html-parser'
+import parse from 'html-react-parser'
 import ButtonLikeFav from './ui/ButtonLikeFav.jsx'
 
 import ImageMissing from './ImageMissing.jsx'
@@ -70,7 +70,7 @@ export function FavouriteCard({ post, index }) {
                 index % 2 !== 0 ? 'bg-Black/80' : 'bg-White/80'
               } px-1 pr-2 box-decoration-clone leading-[1.7rem]`}
             >
-              {ReactHtmlParser(post.title)}
+              {parse(post.title || '')}
             </span>
           </h3>
           <div className=" absolute top-2 right-2 w-10 md:w-12 lg:w-14 flex items-center justify-center bg-Black/80 rounded-full p-2 md:px-0 lg:p-2">
@@ -88,7 +88,7 @@ export function FavouriteCard({ post, index }) {
             index % 2 !== 0 ? 'text-White' : 'text-Black'
           } w-full overflow-hidden text-sm md:text-base lg:text-lg line-clamp-[6] md:line-clamp-[7] lg:line-clamp-[7] `}
         >
-          {post.excerpt ? ReactHtmlParser(post.excerpt) : 'Sin descripción'}
+          {post.excerpt ? parse(post.excerpt) : 'Sin descripción'}
         </p>
 
         <div className=" z-20 absolute bottom-0 w-full h-1/6 flex items-center justify-center">

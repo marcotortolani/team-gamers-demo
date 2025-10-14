@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactHtmlParser from 'react-html-parser'
+import parse from 'html-react-parser'
 import { cleanDataPosts, processDataRendered } from '@/utils/functions'
 import {
   getDataPostById,
@@ -16,7 +16,7 @@ export default async function PagePost({ id, children }) {
   const dataPost = await getDataPostById(id)
   const categoryData = await getDataCategoryByPostId(`${id}&parent=0`)
   const dataRendered = dataPost?.content.rendered
-  
+
   const { imagesSlider, elements } = processDataRendered(dataRendered)
 
   const post = cleanDataPosts({
@@ -38,7 +38,7 @@ export default async function PagePost({ id, children }) {
             ' w-full uppercase font-oswaldItalic pointer-events-none cursor-default text-[1.8rem] leading-[2rem] md:text-3xl lg:text-4xl text-Black text-left  '
           }
         >
-          {ReactHtmlParser(post[0]?.title)}
+          {parse(post[0]?.title || '')}
         </h1>
         <div className=" z-20 w-full h-8 flex items-center justify-start gap-4">
           <ShareSocialMedia title={post[0].title} category={post[0].category} />

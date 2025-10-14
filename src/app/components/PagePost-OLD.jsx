@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import ReactHtmlParser from 'react-html-parser'
+import parse from 'html-react-parser'
 import { cleanDataPosts } from '@/utils/functions'
 import {
   getDataPostById,
@@ -14,7 +14,7 @@ export default async function PagePostNew({ id }) {
   const dataPost = await getDataPostById(id)
   const categoryData = await getDataCategoryByPostId(`${id}&parent=0`)
 
-  const contentPostParsed = ReactHtmlParser(dataPost?.content.rendered)
+  const contentPostParsed = parse(dataPost?.content.rendered || '')
 
   const post = cleanDataPosts({
     posts: new Array(dataPost),
@@ -52,7 +52,7 @@ export default async function PagePostNew({ id }) {
           }
         >
           <span className=" px-2 lg:px-4 pr-4 bg-Secondary box-decoration-clone leading-[2.2rem] md:leading-[2.6rem] lg:leading-[3.2rem] ">
-            {ReactHtmlParser(post[0]?.title)}
+            {parse(post[0]?.title || '')}
           </span>
         </h2>
       </div>

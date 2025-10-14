@@ -5,8 +5,6 @@ import Image from 'next/image'
 
 export function CardGamer({ path, gamerData, miniCard }) {
   const [imageError, setImageError] = useState(false)
-  //const imageGamer = `https://raw.githubusercontent.com/marcotortolani/team-gamers-images/main/gamers/${gamerData.slug}.webp`
-  const imageGamer = `https://s3.sa-east-1.amazonaws.com/teamgamers.club/wp-content/uploads/2024/ve-movistar-images-main/gamers/${gamerData.slug}.webp`
 
   function handleImageError() {
     setImageError(true)
@@ -32,7 +30,7 @@ export function CardGamer({ path, gamerData, miniCard }) {
               className="z-10 absolute top-0 w-auto h-full object-cover rounded-[inherit]"
               fill
               sizes="(max-width:300px)"
-              src={imageGamer}
+              src={gamerData?.image || ''}
               alt={`${gamerData.name} Gamer Image`}
               onError={handleImageError}
             />

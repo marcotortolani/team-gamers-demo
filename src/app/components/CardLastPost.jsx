@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import ImageMissing from './ImageMissing'
-import ReactHtmlParser from 'react-html-parser'
+import parse from 'html-react-parser'
 
 export default function CardLastPost({ post, index, titleOnly }) {
   return (
@@ -34,7 +34,7 @@ export default function CardLastPost({ post, index, titleOnly }) {
             className={`text-White font-semibold line-clamp-1 uppercase text-start text-2xl md:text-3xl `}
           >
             <span className=" px-2 pr-4 md:pr-6 bg-Black box-decoration-clone leading-[3rem]">
-              {ReactHtmlParser(post?.title)}
+              {parse(post?.title || '')}
             </span>
           </h3>
           {!titleOnly && (
@@ -44,7 +44,7 @@ export default function CardLastPost({ post, index, titleOnly }) {
               }
             >
               <span className="px-2 pr-4 bg-White/90 box-decoration-clone leading-[2rem] md:leading-[2.3rem] lg:leading-[2.6rem]">
-                {ReactHtmlParser(post?.excerpt)}
+                {parse(post?.excerpt || '')}
               </span>
             </p>
           )}

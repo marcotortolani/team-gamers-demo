@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import ReactHtmlParser from 'react-html-parser'
+import parse from 'html-react-parser'
 
 import { getPostsByCategoryId } from '@/services/api-content.js'
 import { getLatestPosts, cleanDataPosts } from '@/utils/functions.js'
@@ -58,7 +58,7 @@ export default async function LongCardsLatestPosts({
                       index % 2 !== 0 ? 'bg-Black/80' : 'bg-White/80'
                     } px-1 pr-2 md:px-2 lg:px-3 box-decoration-clone leading-[1.7rem] md:leading-[2.1rem] lg:leading-[2.5rem]`}
                   >
-                    {ReactHtmlParser(post.title)}
+                    {parse(post.title || '')}
                   </span>
                 </h3>
               </div>
@@ -70,7 +70,7 @@ export default async function LongCardsLatestPosts({
                   index % 2 !== 0 ? 'text-White' : 'text-Black'
                 } w-full text-sm md:text-xl lg:text-2xl line-clamp-6 md:line-clamp-[7] md:leading-7 lg:line-clamp-[8] lg:leading-9 `}
               >
-                {ReactHtmlParser(post.excerpt)}
+                {parse(post.excerpt || '')}
               </p>
 
               <div className=" z-20 bottom-0 w-full h-1/6 flex items-center justify-center">

@@ -1,29 +1,29 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import ReactHtmlParser from 'react-html-parser';
+import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import parse from 'html-react-parser'
 
-import { cleanDataPosts, getRandomPosts } from '@/utils/functions';
-import { getPostsByCategoryId } from '@/services/api-content';
+import { cleanDataPosts, getRandomPosts } from '@/utils/functions'
+import { getPostsByCategoryId } from '@/services/api-content'
 
-import ButtonSeePost from './ui/ButtonSeePost';
+import ButtonSeePost from './ui/ButtonSeePost'
 
-import iconVideo from '../../../public/assets/icons/IconoVideo2.webp';
-import ImageMissing from './ImageMissing';
+import iconVideo from '../../../public/assets/icons/IconoVideo2.webp'
+import ImageMissing from './ImageMissing'
 
 const gridColumns = {
   2: 'grid-cols-2 grid-rows-1',
   3: 'grid-cols-2 grid-rows-1 sm:grid-cols-3',
   4: 'grid-cols-3 grid-rows-2 sm:grid-rows-1',
   5: 'grid-cols-3 grid-rows-2 sm:grid-rows-1',
-};
+}
 
 const gridElem = {
   2: ' col-span-1 row-span-1',
   3: ' col-span-1 row-span-1',
   4: ' col-span-2 row-span-1 sm:col-span-1',
   5: ' col-span-2 row-span-1 sm:col-span-1',
-};
+}
 
 export default async function FeaturedPosts({
   type,
@@ -32,12 +32,12 @@ export default async function FeaturedPosts({
   categorySlug,
   tagExclude,
 }) {
-  const dataPosts = await getPostsByCategoryId({ id, tagExclude });
+  const dataPosts = await getPostsByCategoryId({ id, tagExclude })
 
   const featuredPosts = cleanDataPosts({
     posts: getRandomPosts({ posts: dataPosts, qty: qty }),
     categorySlug: categorySlug,
-  });
+  })
 
   return (
     <div className=" w-full h-full md:my-4 ">
@@ -88,11 +88,9 @@ export default async function FeaturedPosts({
                 </Link>
               )}
               <h3
-                className={
-                  ` w-full text-start text-[0.8rem] sm:text-sm md:text-base lg:text-lg break-words sm:break-normal text-EpaWhite text-shadow-sm leading-3 shadow-black `
-                }
+                className={` w-full text-start text-[0.8rem] sm:text-sm md:text-base lg:text-lg break-words sm:break-normal text-EpaWhite text-shadow-sm leading-3 shadow-black `}
               >
-                {ReactHtmlParser(post.title)}
+                {parse(post.title || '')}
               </h3>
               {type !== 'video' && (
                 <ButtonSeePost
@@ -106,5 +104,5 @@ export default async function FeaturedPosts({
         ))}
       </ul>
     </div>
-  );
+  )
 }

@@ -1,7 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 import ImageMissing from './ImageMissing'
-import ReactHtmlParser from 'react-html-parser'
+import parse from 'html-react-parser'
+
 import ButtonSeePost from './ui/ButtonSeePost'
 
 export default function CardLastModernPost({ post, titleOnly }) {
@@ -26,7 +27,7 @@ export default function CardLastModernPost({ post, titleOnly }) {
             className={`absolute bottom-2 left-2 px-2 text-Black font-semibold line-clamp-2 uppercase text-start text-lg md:text-xl lg:text-2xl `}
           >
             <span className=" px-2 pr-4 bg-White/80 box-decoration-clone leading-[2rem] md:leading-[2.2rem] lg:leading-[2.5rem]">
-              {ReactHtmlParser(post?.title)}
+              {parse(post?.title || '')}
             </span>
           </h3>
           {!titleOnly && (
@@ -36,7 +37,7 @@ export default function CardLastModernPost({ post, titleOnly }) {
               }
             >
               <span className="px-2 pr-4 bg-White/90 box-decoration-clone leading-[2rem]">
-                {ReactHtmlParser(post?.excerpt)}
+                {parse(post?.excerpt || '')}
               </span>
             </p>
           )}

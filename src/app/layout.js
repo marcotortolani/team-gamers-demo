@@ -14,6 +14,7 @@ export const metadata = {
   title: 'Team Gamers',
   description:
     'Portal de contenido para gamers. Diseñado y desarrollado por Media Moob',
+  version: '1.2.0',
   openGraph: {
     title: 'Team Gamers',
     description:

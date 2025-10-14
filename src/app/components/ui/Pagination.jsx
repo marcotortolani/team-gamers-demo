@@ -17,7 +17,7 @@ export default function Pagination({ path, page, pages = 1 }) {
   }, [])
 
   return (
-    <div className="  w-full mt-6 px-4 flex items-center justify-center gap-1 xs:gap-2">
+    <div className="  w-full mt-6 px-4 flex items-center justify-center gap-1 xs:gap-2 ">
       {Array.from({ length: totalPages }, (_, index) => (
         <button
           className={`${

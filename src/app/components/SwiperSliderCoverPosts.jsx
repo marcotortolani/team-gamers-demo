@@ -2,7 +2,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
-import ReactHtmlParser from 'react-html-parser'
+import parse from 'html-react-parser'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Autoplay, Navigation } from 'swiper/modules'
 import SwiperCore from 'swiper'
@@ -101,7 +101,7 @@ export default function SwiperSliderCoverPosts({
                     '  uppercase font-medium pointer-events-none cursor-default line-clamp-1 box-decoration-clone text-lg md:text-xl lg:text-2xl text-left  '
                   }
                 >
-                  {ReactHtmlParser(post.title)}
+                  {parse(post.title || '')}
                 </h2>
               </div>
             </div>

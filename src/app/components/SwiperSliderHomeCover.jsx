@@ -1,7 +1,7 @@
 'use client'
 import React, { useRef, useState, useEffect } from 'react'
 import Image from 'next/image'
-import ReactHtmlParser from 'react-html-parser'
+import parse from 'html-react-parser'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Autoplay, Navigation } from 'swiper/modules'
 import SwiperCore from 'swiper'
@@ -78,7 +78,7 @@ export default function SwiperSliderHomeCover({
                     fill
                     priority={index === 0}
                     sizes="(min-width: 180px), 80vw, 100vw"
-                    alt={ReactHtmlParser(post.title)}
+                    alt={parse(post.title || post.name)}
                     style={{
                       objectFit: 'cover',
                       animationDuration: `${delayPerView + 5000}ms`,
@@ -107,7 +107,7 @@ export default function SwiperSliderHomeCover({
                     }
                   >
                     <span className=" px-2 pr-4 bg-Black box-decoration-clone leading-[30px] xs:leading-[40px] md:leading-[50px] ">
-                      {ReactHtmlParser(post.title)}
+                      {parse(post.title || '')}
                     </span>
                   </h2>
                   <h4
@@ -116,7 +116,7 @@ export default function SwiperSliderHomeCover({
                     }
                   >
                     <span className=" px-3 bg-White/90 box-decoration-clone leading-[1.8rem] xs:leading-[2.1rem] md:leading-[2.3rem] lg:leading-[2.5rem] ">
-                      {ReactHtmlParser(post.excerpt)}
+                      {parse(post.excerpt || '')}
                     </span>
                   </h4>
                 </div>
